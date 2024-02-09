@@ -11,7 +11,7 @@
 ## 使用指南
 用**浏览器**（推荐Edge，不推荐Firefox）打开 **`GGGGS.html`** 即可。
 ### 获取方法
-
+进入[**最新发布下载链接**](https://github.com/QuartzQuincy2019/GGGGS/releases/latest)，下载`.zip`压缩包即可。
 ### 注意事项
 - **GGGGS.html只能在计算机上正常运行。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
