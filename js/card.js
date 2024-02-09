@@ -53,10 +53,10 @@ function initializeCard(character, destination) {
 
 function initializeAllCard() {
     clearCard();
-    Sup=[];
-    Rup=[];
-    Scommon=[];
-    Rcommon=[];
+    Sup = [];
+    Rup = [];
+    Scommon = [];
+    Rcommon = [];
     for (var i = 0; i < CHARACTER_NAMES.length; i++) {
         var _chara = findCharacter(CHARACTER_NAMES[i]);
         if (_chara.star == 4) initializeCard(_chara, E_RBox);
@@ -160,14 +160,14 @@ function updateCards() {
     analizeCardSet();
 }
 
-function updateBanner(){
+function updateBanner() {
     var itemPoolSelect = document.getElementById("itemPoolSelect");
     var selectedPool = itemPoolSelect.value;
-    if(selectedPool == "none") {
+    if (selectedPool == "none") {
         E_header.style.backgroundImage = "url(./img/transparent.png)";
         return;
     }
-    var version = selectedPool.slice(5,-2);//"4_2"
+    var version = selectedPool.slice(5, -2);//"4_2"
     E_header.style.backgroundImage = "url(./img/Banner_" + version + ".png)";
 }
 

@@ -10,10 +10,11 @@ div.section {
     border-radius: 10px;
 }
 
-div.section a, div.section a:visited{
+div.section a,
+div.section a:visited {
     font-family: 'Times New Roman', Times, serif;
     background-color: #ffec80;
-    text-decoration:underline;
+    text-decoration: underline;
     color: #897500;
 }
 
@@ -105,7 +106,7 @@ a#TitleLink:active {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-p#VersionTitle{
+p#VersionTitle {
     text-shadow: 1px 1px 2px #000000;
 }
 
