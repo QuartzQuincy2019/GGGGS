@@ -1,0 +1,32 @@
+.PoolBox {
+    margin: 6px 6px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #7c5500;
+    min-height: 116px;
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+
+.PoolBox:empty {
+    height: 116px;
+}
+
+.NonBox {
+    background-color: #cfcfcf80;
+}
+
+.CommonBox {
+    background-color: #ffffff80;
+}
+
+.UpBox {
+    background-color: #ffec7f80;
+}
+
+.InventoryBox {
+    background-image: linear-gradient(135deg,
+            #36a1e760,
+            #6DD5FA60,
+            #FFFFFF60);
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>GGGGS</title>
+    <link rel="stylesheet" href=".\css\general.css">
+    <link rel="stylesheet" href=".\css\poolbox.css">
+    <link rel="stylesheet" href=".\css\form.css">
+    <link rel="stylesheet" href=".\css\card.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="glass-container">
+            <p class="header_title total_title"><strong><a id="TitleLink"
+                        href="https://github.com/QuartzQuincy2019/GGGGS">GGGGS</a></strong></p>
+            <p class="header_title subtitle"><strong>Genshin-Impact Global Graphic Gacha Simulator</strong></p>
+            <p class="header_title subtitle" id="VersionTitle"></p>
+        </div>
+    </div>
+    <hr>
+    <div class="section">
+        <p class="instructions">淡黄色背景：UP池；白色背景：非UP池；灰色背景：未参与到卡池中的角色</p>
+        <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
+        <form>
+            <select name="ItempoolSelection" id="itemPoolSelect" onchange="updateCards();updateBanner();" title="选择卡池">
+                <option value="none" selected>自定义卡池</option>
+                <option value="wish_4_4_1">v4.4前半：2024年01月31日-1——闲云</option>
+                <option value="wish_4_4_2">v4.4前半：2024年01月31日-2——纳西妲</option>
+                <option value="wish_4_3_3">v4.3后半：2024年01月09日-3——雷电将军</option>
+                <option value="wish_4_3_4">v4.3后半：2024年01月09日-4——宵宫</option>
+                <option value="wish_4_3_1">v4.3前半：2023年12月20日-1——纳维娅</option>
+                <option value="wish_4_3_2">v4.3前半：2023年12月20日-2——神里绫华</option>
+                <option value="wish_4_2_3">v4.2后半：2023年11月28日-3——赛诺</option>
+                <option value="wish_4_2_4">v4.2后半：2023年11月28日-4——神里绫人</option>
+                <option value="wish_4_2_1">v4.2前半：2023年11月08日-1——芙宁娜</option>
+                <option value="wish_4_2_2">v4.2前半：2023年11月08日-2——白术</option>
+                <option value="wish_4_1_3">v4.1后半：2023年10月17日-3——莱欧斯利</option>
+                <option value="wish_4_1_4">v4.1后半：2023年10月17日-4——温迪</option>
+                <option value="wish_4_1_1">v4.1前半：2023年09月27日-1——那维莱特</option>
+                <option value="wish_4_1_2">v4.1前半：2023年09月27日-2——胡桃</option>
+                <option value="wish_4_0_3">v4.0后半：2023年09月05日-3——钟离</option>
+                <option value="wish_4_0_4">v4.0后半：2023年09月05日-4——达达利亚</option>
+                <option value="wish_4_0_1">v4.0前半：2023年08月16日-1——林尼</option>
+                <option value="wish_4_0_2">v4.0前半：2023年08月16日-2——夜兰</option>
+            </select>
+        </form>
+        <div id="reset_button" class="interface_button" onclick="initializeAllCard();">重置卡池</div>
+    </div>
+    <div class="PoolBox UpBox" id="Sup_PoolBox"></div>
+    <div class="PoolBox CommonBox" id="Scommon_PoolBox"></div>
+    <div class="PoolBox NonBox" id="Snon_PoolBox"></div>
+    <hr>
+    <div class="PoolBox UpBox" id="Rup_PoolBox"></div>
+    <div class="PoolBox CommonBox" id="Rcommon_PoolBox"></div>
+    <div class="PoolBox NonBox" id="Rnon_PoolBox"></div>
+    <hr>
+    <div class="section">
+        <form name="gacha" id="GachaForm">
+            五星已垫数量：<input id="StartSDrop" type="number" title="五星已垫数量" min="0" max="89" step="1" value="0"><br>
+            四星已垫数量：<input id="StartRDrop" type="number" title="四星已垫数量" min="0" max="9" step="1" value="0"><br>
+            <input class="radio_type" type="radio" title="当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
+                value="cert" checked="true">
+            <label for="uc_option1_1">当前处于五星小保底</label><br>
+            <input class="radio_type" type="radio" title="当前处于五星大保底" name="IsSUpCertainRadio" id="uc_option1_2"
+                value="uncert">
+            <label for="uc_option1_2">当前处于五星大保底</label><br>
+            <input class="radio_type" type="radio" title="当前处于四星小保底" name="IsRUpCertainRadio" id="uc_option2_1"
+                value="cert" checked="true">
+            <label for="uc_option2_1">当前处于四星小保底</label><br>
+            <input class="radio_type" type="radio" title="当前处于四星大保底" name="IsRUpCertainRadio" id="uc_option2_2"
+                value="uncert">
+            <label for="uc_option2_2">当前处于四星大保底</label><br>
+            抽数：<input id="GachaTimes" type="number" title="抽数" min="1" max="9999" step="1"><br>
+            <input type="submit" class="interface_button" value="开始/继续祈愿">
+            <input type="reset" class="interface_button" value="重置祈愿信息">
+        </form>
+        <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数</p>
+    </div>
+    <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息"></div>
+    <div class="section">
+        <p class="rights"><strong>&copy;Quartz Studio (<em><a href="https://github.com/QuartzQuincy2019">@Quincy K.</a></em>) 2019-2024 &nbsp;&nbsp;&nbsp;<em><span>All Rights Reserved</span></em></strong></p>
+    </div>
+    <script src=".\js\database.js"></script>
+    <script src=".\js\core.js"></script>
+    <script src=".\js\wish.js"></script>
+    <script src=".\js\card.js"></script>
+</body>
+
+</html>

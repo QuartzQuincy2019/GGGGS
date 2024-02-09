@@ -1,0 +1,121 @@
+.card {
+    border-radius: 9px;
+    border-style: solid;
+    margin: 6px 6px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 94px;
+    display: inline-block;
+    transition-property: all;
+    transition-duration: 200ms;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.card:hover {
+    border-style: groove;
+    box-shadow: 3px 3px 6px;
+}
+
+.card img {
+    height: 76px;
+    width: 76px;
+    display: block;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.card p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    display: block;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    background-color: #ffffffa0;
+    text-shadow: 0px 0px 1px #414141;
+    font-family: '华文中宋';
+}
+
+.cryo {
+    color: #17b7e8;
+    border-color: #17b7e8;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #17b7e8;
+}
+
+.dendro {
+    color: #519603;
+    border-color: #519603;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #519603;
+}
+
+.hydro {
+    color: #1e78c7;
+    border-color: #1e78c7;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #1e78c7;
+}
+
+.electro {
+    color: #6957C2;
+    border-color: #6957C2;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #6957C2;
+}
+
+.geo {
+    color: #a58401;
+    border-color: #a58401;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #a58401;
+}
+
+.pyro {
+    color: #EC4923;
+    border-color: #EC4923;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #EC4923;
+}
+
+.anemo {
+    color: #18a9ac;
+    border-color: #18a9ac;
+    box-shadow: inset 0 0 3px #ffffff, 0 0 4px #18a9ac;
+}
+
+.starR {
+    background-image: linear-gradient(135deg, #ff00cc40, #33339940);
+    transition-property: all;
+    transition-duration: 200ms;
+}
+
+.starR:hover {
+    background-image: none;
+    background-color: #ffffff70;
+    color: #000000;
+}
+
+.starS {
+    background-image: linear-gradient(135deg, #f1271190, #f5af1990);
+    transition-property: all;
+    transition-duration: 200ms;
+}
+
+.starS:hover {
+    background-image: none;
+    background-color: #ffffff70;
+    color: #000000;
+}
+
+.container {
+    display: inline-block;
+    background-color: transparent;
+    font-size: 14px;
+    border-radius: 8px;
+    margin: 7px;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container p{
+    text-align: center;
+}
