@@ -1,2 +1,4 @@
 # GGGGS
-Genshin-Impact Graphic Global Gacha Simulator
+> Genshin-Impact Global Graphic Gacha Simulator
+
+> 图形化《原神》全局抽卡模拟器
