@@ -1,6 +1,10 @@
 form#GachaForm * {
     font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif, '华文中宋';
+}
+
+form#GachaForm p {
+    display: inline;
+    font-family: '华文中宋';
 }
 
 .interface_button {
@@ -41,17 +45,44 @@ form#GachaForm * {
 }
 
 input[type="number"] {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 4px;
     width: 90px;
     transition-property: all;
     transition-duration: 0.4s;
 }
 
 input[type="number"]:focus {
-    color: #ce9e00;
+    color: #a57e00;
     background-color: #ffffe6;
 }
 
+label {
+    font-family: '华文中宋';
+}
+
+.radio_type+label {
+    margin: 2px;
+    padding: 3px;
+    display: inline-block;
+    text-align: left;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #696969;
+    background-color: #cfcfcfb0;
+    color: #696969;
+    box-shadow: 0px 0px 5px #818181, inset 0px 0px 5px #ffffff;
+}
+
 .radio_type:checked+label {
-    background-color: #ffe696b0;
+    margin: 2px;
+    padding: 3px;
+    display: inline-block;
+    text-align: left;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #ce9e00;
+    background-color: #ffe385b0;
     color: #ce9e00;
+    box-shadow: 0px 0px 8px #ce9e00, inset 0px 0px 4px #ffc812;
 }

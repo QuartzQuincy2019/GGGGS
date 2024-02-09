@@ -21,6 +21,8 @@
     </div>
     <hr>
     <div class="section">
+        <audio controls loop autoplay src=".\mus\shed_a_light.mp3"></audio>
+        <p class="instructions centerized"><strong>简要说明</strong></p>
         <p class="instructions">淡黄色背景：UP池；白色背景：非UP池；灰色背景：未参与到卡池中的角色</p>
         <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
         <form>
@@ -57,9 +59,12 @@
     <div class="PoolBox NonBox" id="Rnon_PoolBox"></div>
     <hr>
     <div class="section">
+        <p class="instructions centerized"><strong>祈愿配置</strong></p>
         <form name="gacha" id="GachaForm">
-            五星已垫数量：<input id="StartSDrop" type="number" title="五星已垫数量" min="0" max="89" step="1" value="0"><br>
-            四星已垫数量：<input id="StartRDrop" type="number" title="四星已垫数量" min="0" max="9" step="1" value="0"><br>
+            <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number" title="五星已垫数量" min="0" max="89" step="1"
+                value="0"><br>
+            <p>四星已垫数量(≤9)：</p><input id="StartRDrop" type="number" title="四星已垫数量" min="0" max="9" step="1"
+                value="0"><br>
             <input class="radio_type" type="radio" title="当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
                 value="cert" checked="true">
             <label for="uc_option1_1">当前处于五星小保底</label><br>
@@ -72,7 +77,7 @@
             <input class="radio_type" type="radio" title="当前处于四星大保底" name="IsRUpCertainRadio" id="uc_option2_2"
                 value="uncert">
             <label for="uc_option2_2">当前处于四星大保底</label><br>
-            抽数：<input id="GachaTimes" type="number" title="抽数" min="1" max="9999" step="1"><br>
+            <p>抽数：</p><input id="GachaTimes" type="number" title="抽数" min="1" max="9999" step="1"><br>
             <input type="submit" class="interface_button" value="开始/继续祈愿">
             <input type="reset" class="interface_button" value="重置祈愿信息">
         </form>

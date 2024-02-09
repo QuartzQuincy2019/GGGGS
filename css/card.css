@@ -1,10 +1,10 @@
 .card {
-    border-radius: 9px;
+    border-radius: 10px;
     border-style: solid;
-    margin: 6px 6px;
+    margin: 5px 5px;
     width: -moz-fit-content;
     width: fit-content;
-    height: 94px;
+    height: 110px;
     display: inline-block;
     transition-property: all;
     transition-duration: 200ms;
@@ -18,11 +18,12 @@
 }
 
 .card img {
-    height: 76px;
-    width: 76px;
+    margin: 0;
+    height: 92px;
+    width: 88px;
     display: block;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .card p {
@@ -31,9 +32,8 @@
     display: block;
     text-align: center;
     font-size: 14px;
-    display: block;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     background-color: #ffffffa0;
     text-shadow: 0px 0px 1px #414141;
     font-family: '华文中宋';

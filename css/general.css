@@ -107,12 +107,27 @@ a#TitleLink:active {
 }
 
 p#VersionTitle {
-    text-shadow: 1px 1px 2px #000000;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 4px #000000;
 }
 
 p.instructions {
+    font-size: 22px;
     font-family: '华文中宋';
     color: #000000;
+}
+
+.centerized {
+    text-align: center;
+}
+
+.centerized strong::after {
+    content: "***~~~~~~~-----";
+}
+
+.centerized strong::before {
+    content: "-----~~~~~~~***";
 }
 
 p.rights {
@@ -129,4 +144,11 @@ p.rights span {
 hr {
     margin: 15px;
     height: 3px;
+}
+
+audio {
+    border: 3px solid #897500;
+    border-radius: 15px;
+    width: 50%;
+    height: 25px;
 }
