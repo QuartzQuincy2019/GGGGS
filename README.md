@@ -16,6 +16,7 @@
 - **GGGGS.html只能在计算机上正常运行。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
 ## 项目信息
+![Snipaste_2024-02-09_14-59-21](https://github.com/QuartzQuincy2019/GGGGS/assets/79129150/6f2a5e1b-f959-4d00-932f-9c4fa9c03948)   
 项目标题：GGGGS   
 项目英文全名：Genshin-Impact Global Graphic Gacha Simulator   
 项目中文全名：图形化《原神》全局抽卡模拟器   
