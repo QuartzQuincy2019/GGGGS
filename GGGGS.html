@@ -66,16 +66,16 @@
             <p>四星已垫数量(≤9)：</p><input id="StartRDrop" type="number" title="四星已垫数量" min="0" max="9" step="1"
                 value="0"><br>
             <input class="radio_type" type="radio" title="当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
-                value="cert" checked="true">
+                value="uncert" checked="true">
             <label for="uc_option1_1">当前处于五星小保底</label><br>
             <input class="radio_type" type="radio" title="当前处于五星大保底" name="IsSUpCertainRadio" id="uc_option1_2"
-                value="uncert">
+                value="cert">
             <label for="uc_option1_2">当前处于五星大保底</label><br>
             <input class="radio_type" type="radio" title="当前处于四星小保底" name="IsRUpCertainRadio" id="uc_option2_1"
-                value="cert" checked="true">
+                value="uncert" checked="true">
             <label for="uc_option2_1">当前处于四星小保底</label><br>
             <input class="radio_type" type="radio" title="当前处于四星大保底" name="IsRUpCertainRadio" id="uc_option2_2"
-                value="uncert">
+                value="cert">
             <label for="uc_option2_2">当前处于四星大保底</label><br>
             <p>抽数：</p><input id="GachaTimes" type="number" title="抽数" min="1" max="9999" step="1"><br>
             <input type="submit" class="interface_button" value="开始/继续祈愿">
@@ -83,7 +83,7 @@
         </form>
         <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数</p>
     </div>
-    <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息"></div>
+    <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;四星武器不予展示。"></div>
     <div class="section">
         <p class="rights"><strong>&copy;Quartz Studio (<em><a href="https://github.com/QuartzQuincy2019">@Quincy
                         K.</a></em>) 2019-2024 &nbsp;&nbsp;&nbsp;<em><span>All Rights Reserved</span></em></strong></p>

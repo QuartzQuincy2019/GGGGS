@@ -105,7 +105,6 @@ function wish(totalWishTimes, startSDrop, startRDrop, isSC, isRC) {
             R_DropCalc++;
             info += "第" + (wished) + "抽：3星物品。\n";
             level = "";
-            continue;
         }
         if (level == "S") {//抽到五星
             obtainedCalc.push(Number(S_DropCalc) + 1);//此时五星垫了几抽
@@ -154,6 +153,6 @@ function wish(totalWishTimes, startSDrop, startRDrop, isSC, isRC) {
             S_DropCalc++;
             R_DropCalc = 0;
         }
+        console.log(info);
     }
-    console.log(info);
 }
