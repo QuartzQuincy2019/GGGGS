@@ -17,6 +17,7 @@
 - **不要**随意更改文件（夹）名或删除文件（夹）。
 ## [项目信息](https://github.com/QuartzQuincy2019/GGGGS/wiki)
 ## 特别鸣谢
+[ys.mihoyo.com](https://ys.mihoyo.com/)
 [GlassGenerator.netlify.app](https://glassgenerator.netlify.app/)   
 [projects.verou.me](https://projects.verou.me/css3patterns/)   
 [bennettfeely.com](https://bennettfeely.com/gradients/)   
@@ -24,3 +25,5 @@
 [webkul.github.io](https://webkul.github.io/coolhue/)   
 [genshin-impact.fandom.com](https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki)   
 [developer.mozilla.org](https://developer.mozilla.org/zh-CN/docs/Web/CSS/)   
+## 版权与责任信息
+***GGGGS完全免费且开源，仅有此[(Github)](https://github.com/QuartzQuincy2019/GGGGS)一个官方下载渠道。任何私人创立需要收费的下载渠道都是不被允许的，在收费下载渠道产生的利益纠纷本作者概不负责。***
