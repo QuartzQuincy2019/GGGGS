@@ -341,13 +341,13 @@ var itemPools = {
         ["hutao"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["xingqiu", "ningguang", "beidou"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_4_4: [
         ["yelan"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["xingqiu", "ningguang", "beidou"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_4_1: [
         ["alhaitham"],
