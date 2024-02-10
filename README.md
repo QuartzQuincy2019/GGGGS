@@ -15,14 +15,7 @@
 ### 注意事项
 - **GGGGS.html只能在计算机上正常运行。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
-## 项目信息
-![108](https://github.com/QuartzQuincy2019/GGGGS/assets/79129150/253f265c-ea10-43e8-ac93-c5db2efeff6b)
-项目标题：GGGGS   
-项目英文全名：Genshin-Impact Global Graphic Gacha Simulator   
-项目中文全名：图形化《原神》全局抽卡模拟器   
-项目作者：Quincy K.   
-运行平台：Windows 7+   
-主文件：GGGGS.html   
+## [项目信息](https://github.com/QuartzQuincy2019/GGGGS/wiki)
 ## 特别鸣谢
 [GlassGenerator.netlify.app](https://glassgenerator.netlify.app/)   
 [projects.verou.me](https://projects.verou.me/css3patterns/)   
