@@ -26,4 +26,5 @@
 [genshin-impact.fandom.com](https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki)   
 [developer.mozilla.org](https://developer.mozilla.org/zh-CN/docs/Web/CSS/)   
 ## 版权与责任信息
+***GGGGS使用的一切图片和部分代码都来源于“特别鸣谢”中提到的网站，且是免费获取的，不存在版权纠纷。***
 ***GGGGS完全免费且开源，仅有此[(Github)](https://github.com/QuartzQuincy2019/GGGGS)一个官方下载渠道。任何私人创立需要收费的下载渠道都是不被允许的，在收费下载渠道产生的利益纠纷本作者概不负责。***
