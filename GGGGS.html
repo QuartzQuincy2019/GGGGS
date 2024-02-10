@@ -61,9 +61,9 @@
     <div class="section">
         <p class="instructions centerized"><strong>祈愿配置</strong></p>
         <form name="gacha" id="GachaForm">
-            <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number" title="五星已垫数量" min="0" max="89" step="1"
+            <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number" title="五星已垫数量，即上一次抽出五星之后的总抽数。" min="0" max="89" step="1"
                 value="0"><br>
-            <p>四星已垫数量(≤9)：</p><input id="StartRDrop" type="number" title="四星已垫数量" min="0" max="9" step="1"
+            <p>四星已垫数量(≤10)：</p><input id="StartRDrop" type="number" title="四星已垫数量，即上一次抽出四星之后的总抽数。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。" min="0" max="10" step="1"
                 value="0"><br>
             <input class="radio_type" type="radio" title="当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
                 value="uncert" checked="true">
@@ -81,7 +81,7 @@
             <input type="submit" class="interface_button" value="开始/继续祈愿">
             <input type="reset" class="interface_button" value="重置祈愿信息">
         </form>
-        <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数</p>
+        <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数（上一次抽出五星之后的抽数）</p>
     </div>
     <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;四星武器不予展示。"></div>
     <div class="section">

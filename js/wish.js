@@ -6,7 +6,7 @@ var isSupCertain = false;
 var isRupCertain = false;
 var S_Probability = 0.006;
 var R_Probability = 0.051;
-var S_DropCalc = 0;//五星UP角色保底计算器（五星垫数）
+var S_DropCalc = 0;//五星UP角色保底计算器（五星垫数）意味着抽取之前的垫数
 var R_DropCalc = 0;//四星UP角色保底计算器（四星垫数）
 var obtainedCharacters = [];
 var obtainedRecords = [];//储存第几抽出的角色
@@ -26,7 +26,7 @@ function refreshSProbability() {
     if (S_DropCalc > 73 && S_DropCalc <= 89) {
         S_Probability = 0.06 * S_DropCalc - 4.374;
     }
-    if (S_DropCalc == 90) S_Probability = 1;
+    if (S_DropCalc == 90) S_Probability = 1;//S垫数达到90必出S
 }
 
 /**
@@ -35,7 +35,8 @@ function refreshSProbability() {
  * @returns 抽到的等级
  */
 function decideLevel(randomedDecimal) {
-    if (R_DropCalc == 9) return "R";
+    //S级别优先于R级别，仅当S未到达垫数上限且R到达时，才必出R
+    if (S_DropCalc != 89 && R_DropCalc >= 9) return "R";
     if (randomedDecimal <= S_Probability) return "S";
     if (randomedDecimal > S_Probability && randomedDecimal < (S_Probability + R_Probability)) return "R";
     return "N";
