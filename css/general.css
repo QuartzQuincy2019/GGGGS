@@ -8,25 +8,20 @@ div.section {
     border-style: double;
     border-width: 3px;
     border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 div.section a,
 div.section a:visited {
     font-family: 'Times New Roman', Times, serif;
-    background-color: #ffec80;
     text-decoration: underline;
-    color: #897500;
 }
 
 body {
-    background-color: #fff1a9;
-    background-image:
-        radial-gradient(circle at 100% 150%, #fff1a9 24%, white 24%, white 28%, #fff1a9 28%, #fff1a9 36%, white 36%, white 40%, transparent 40%, transparent),
-        radial-gradient(circle at 0 150%, #fff1a9 24%, white 24%, white 28%, #fff1a9 28%, #fff1a9 36%, white 36%, white 40%, transparent 40%, transparent),
-        radial-gradient(circle at 50% 100%, white 10%, #fff1a9 10%, #fff1a9 23%, white 23%, white 30%, #fff1a9 30%, #fff1a9 43%, white 43%, white 50%, #fff1a9 50%, #fff1a9 63%, white 63%, white 71%, transparent 71%, transparent),
-        radial-gradient(circle at 100% 50%, white 5%, #fff1a9 5%, #fff1a9 15%, white 15%, white 20%, #fff1a9 20%, #fff1a9 29%, white 29%, white 34%, #fff1a9 34%, #fff1a9 44%, white 44%, white 49%, transparent 49%, transparent),
-        radial-gradient(circle at 0 50%, white 5%, #fff1a9 5%, #fff1a9 15%, white 15%, white 20%, #fff1a9 20%, #fff1a9 29%, white 29%, white 34%, #fff1a9 34%, #fff1a9 44%, white 44%, white 49%, transparent 49%, transparent);
     background-size: 100px 50px;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 select {
@@ -34,20 +29,13 @@ select {
     font-size: 24px;
     border-radius: 5px;
     border-width: 3px;
-    border-color: #000000;
-    background-color: #ffec7f;
     transition: all 0.2s;
     margin: 4px;
     display: inline-block;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
-select:hover {
-    background-color: #ffdb0e;
-}
-
-option {
-    background-color: #fff4b4;
-}
 
 div#header {
     width: 100%;
@@ -68,12 +56,10 @@ div#header {
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;
-    color: white;
     gap: 20px;
     border-radius: 0px;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
-    background-color: rgba(0, 191, 255, 0.071);
     box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
     border: 0px rgba(255, 255, 255, 0.4) solid;
     border-bottom: 0px rgba(40, 40, 40, 0.35) solid;
@@ -84,8 +70,6 @@ div#header {
 .header_title a#TitleLink {
     text-decoration: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: #ffffff;
-    text-shadow: 2px 2px 10px #000000;
     text-align: center;
     display: block;
     -webkit-user-select: none;
@@ -102,24 +86,25 @@ a#TitleLink:active {
 
 .subtitle {
     font-size: 34px;
-    text-shadow: 2px 2px 5px #000000;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 p#VersionTitle {
     margin-top: 6px;
     margin-bottom: 4px;
-    text-shadow: 1px 1px 4px #000000;
 }
 
 p.instructions {
     font-size: 22px;
     font-family: '华文中宋';
-    color: #000000;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 .centerized {
     text-align: center;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 .centerized strong::after {
@@ -132,13 +117,15 @@ p.instructions {
 
 p.rights {
     font-family: Arial, Helvetica, sans-serif;
-    color: #000000;
     font-size: 22px;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 p.rights span {
     font-family: 'Times New Roman', Times, serif;
-    color: red;
+    transition-property: all;
+    transition-duration: 0.3s;
 }
 
 hr {
@@ -147,7 +134,6 @@ hr {
 }
 
 audio {
-    border: 3px solid #897500;
     border-radius: 15px;
     width: 50%;
     height: 25px;

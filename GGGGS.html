@@ -8,6 +8,7 @@
     <link rel="stylesheet" href=".\css\poolbox.css">
     <link rel="stylesheet" href=".\css\form.css">
     <link rel="stylesheet" href=".\css\card.css">
+    <link id="SkinLink" rel="stylesheet" href=".\css\skin_aloft.css">
 </head>
 
 <body>
@@ -23,7 +24,8 @@
     <div class="section">
         <audio controls loop autoplay src=".\mus\shed_a_light.mp3"></audio>
         <p class="instructions centerized"><strong>简要说明</strong></p>
-        <p class="instructions">淡黄色背景：UP池；白色背景：非UP池；灰色背景：未参与到卡池中的角色</p>
+        <p class="instructions">按下p键可以切换界面皮肤。</p>
+        <p class="instructions">卡池三个一组，分为S和R两大组。每一组从上到下依次是：UP池、非UP池、未参与卡池</p>
         <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
         <form>
             <select name="ItempoolSelection" id="itemPoolSelect" onchange="updateCards();updateBanner();" title="选择卡池">
@@ -123,6 +125,7 @@
     <script src=".\js\core.js"></script>
     <script src=".\js\wish.js"></script>
     <script src=".\js\card.js"></script>
+    <script src=".\js\skin.js"></script>
 </body>
 
 </html>

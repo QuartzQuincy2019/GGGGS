@@ -1,0 +1,154 @@
+div.section a,
+div.section a:visited {
+    background-color: #006f6f;
+    color: #0ad5cb;
+}
+
+body {
+    background-image: url("../img/11684.png");
+    background-size: 100%;
+}
+
+select {
+    border-color: #dddddd;
+    background-color: #008284;
+    color: #dddddd;
+}
+
+select:hover {
+    background-color: #00abad;
+}
+
+option {
+    background-color: #004773;
+}
+
+.glass-container {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    background-color: #cce5ee12;
+}
+
+.header_title,
+.header_title a#TitleLink {
+    color: #e5e5e5;
+    text-shadow: 2px 2px 10px #828282;
+}
+
+.subtitle {
+    text-shadow: 2px 2px 5px #828282;
+}
+
+p#VersionTitle {
+    text-shadow: 1px 1px 4px #828282;
+}
+
+p.instructions {
+    color: #c6c6c6;
+}
+
+p.rights {
+    color: #c6c6c6;
+}
+
+p.rights span {
+    color: #00cdd0;
+}
+
+audio {
+    border: 3px solid #00a0ab;
+}
+
+form#GachaForm p {
+    color: #c6c6c6;
+}
+
+.interface_button {
+    color: #c6c6c6;
+    /* https://evankarageorgos.github.io/hue/grid.html */
+    background-color: #797572;
+    background-image:
+        linear-gradient(-173deg, rgba(255, 255, 255, 0.20) 0%, #000000 100%),
+        linear-gradient(72deg, rgba(255, 255, 255, 0.25) 25%, rgba(0, 0, 0, 0.25) 100%),
+        radial-gradient(47% 102%, rgba(255, 255, 255, 0.50) 0%, rgba(21, 24, 32, 0.60) 120%);
+    background-blend-mode: multiply;
+    border-color: #cccccc;
+    box-shadow: 1px 1px 3px #828282;
+    transition-property: all;
+    transition-duration: 300ms;
+}
+
+.interface_button:hover {
+    box-shadow: 2px 2px 11px #cccccc;
+    /* https://evankarageorgos.github.io/hue/grid.html */
+    background: #282828;
+    background-image: linear-gradient(-90deg, #7B7F82 2%, #303136 100%),
+        radial-gradient(50% 116%, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%),
+        linear-gradient(-59deg, rgba(255, 255, 255, 0.50) 7%, rgba(87, 87, 87, 0.50) 68%, rgba(85, 85, 85, 0.50) 76%, rgba(0, 0, 0, 0.50) 100%);
+    background-blend-mode: normal, multiply, multiply;
+}
+
+.interface_button:active {
+    box-shadow: 2px 2px 11px #cccccc;
+    /* https://evankarageorgos.github.io/hue/grid.html */
+    background: #A2A2A2;
+    background-image: radial-gradient(at 50% 90%, #B8B4B3 0%, #3B3A38 100%);
+    background-blend-mode: normal, multiply;
+}
+
+input[type="number"] {
+    color: #303030;
+    background-color: #a5a5a5;
+}
+
+input[type="number"]:focus {
+    color: #d9d9d9;
+    background-color: #303030;
+}
+
+.radio_type+label {
+    border-color: #9d9d9d;
+    background-color: #191919b0;
+    color: #9d9d9d;
+    box-shadow: 0px 0px 5px #818181;
+}
+
+.radio_type:checked+label {
+    border-color: #13b1c9;
+    background-color: #005b67b0;
+    color: #13b1c9;
+    box-shadow: 0px 0px 8px #13b1c9;
+}
+
+.PoolBox {
+    border-color: #00c9bb;
+}
+
+.NonBox {
+    background-color: #92929280;
+}
+
+.CommonBox {
+    background-color: #0099c380;
+}
+
+.UpBox {
+    background-color: #2df5ff80;
+}
+
+.container {
+    color: #d5d5d5;
+    text-shadow: 1px 1px 2px #a7a7a7;
+}
+
+.InventoryBox {
+    background-image: linear-gradient(135deg,
+            #36a1e760,
+            #2aa7d460,
+            #1a6aea60);
+}
+
+.card p {
+    background-color: #adadad;
+    text-shadow: 1px 1px 1px #000000;
+}
