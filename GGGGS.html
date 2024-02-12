@@ -28,8 +28,9 @@
         <p class="instructions">卡池三个一组，分为S和R两大组。每一组从上到下依次是：UP池、非UP池、未参与卡池</p>
         <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
         <form>
-            <select name="ItempoolSelection" id="itemPoolSelect" onchange="updateCards();updateBanner();" title="选择卡池">
-                <option value="none" selected>自定义卡池</option>
+            <select name="ItempoolSelection" id="itemPoolSelect" onchange="updateCards();updateBanner();"
+                title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
+                <option value="none" selected title="选中该选项后，所有卡片重归原位">自定义卡池</option>
                 <!-- 4.4 -->
                 <option value="wish_4_4_1">v4.4【彩鹞栉春风】前半：2024年01月31日-1——闲云</option>
                 <option value="wish_4_4_2">v4.4【彩鹞栉春风】前半：2024年01月31日-2——纳西妲</option>
@@ -90,33 +91,37 @@
     <div class="PoolBox CommonBox" id="Rcommon_PoolBox"></div>
     <div class="PoolBox NonBox" id="Rnon_PoolBox"></div>
     <hr>
-    <div class="section">
+    <div class="section"
+        title="五星物品基本概率：0.6%&#10;若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%&#10;四星物品基本概率：5.1%&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品">
         <p class="instructions centerized"><strong>祈愿配置</strong></p>
         <form name="gacha" id="GachaForm">
-            <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number" title="五星已垫数量，即上一次抽出五星之后的总抽数。" min="0" max="89"
-                step="1" value="0"><br>
+            <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number"
+                title="五星已垫数量，即自上一次抽出五星之后的总抽数。&#10;若连续89抽都未获得五星角色，则第90抽必定获得五星角色。" min="0" max="89" step="1"
+                value="0"><br>
             <p>四星已垫数量(≤10)：</p><input id="StartRDrop" type="number"
-                title="四星已垫数量，即上一次抽出四星之后的总抽数。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。" min="0"
-                max="10" step="1" value="0"><br>
-            <input class="radio_type" type="radio" title="当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
+                title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
+                min="0" max="10" step="1" value="0"><br>
+            <input class="radio_type" type="radio" title="选择：当前处于五星小保底" name="IsSUpCertainRadio" id="uc_option1_1"
                 value="uncert" checked="true">
-            <label for="uc_option1_1">当前处于五星小保底</label><br>
-            <input class="radio_type" type="radio" title="当前处于五星大保底" name="IsSUpCertainRadio" id="uc_option1_2"
+            <label for="uc_option1_1" title="上一次抽到的五星角色是卡池的UP五星角色">当前处于五星小保底</label><br>
+            <input class="radio_type" type="radio" title="选择：当前处于五星大保底" name="IsSUpCertainRadio" id="uc_option1_2"
                 value="cert">
-            <label for="uc_option1_2">当前处于五星大保底</label><br>
-            <input class="radio_type" type="radio" title="当前处于四星小保底" name="IsRUpCertainRadio" id="uc_option2_1"
+            <label for="uc_option1_2" title="上一次抽到的五星角色不是卡池的UP五星角色">当前处于五星大保底</label><br>
+            <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio" id="uc_option2_1"
                 value="uncert" checked="true">
-            <label for="uc_option2_1">当前处于四星小保底</label><br>
-            <input class="radio_type" type="radio" title="当前处于四星大保底" name="IsRUpCertainRadio" id="uc_option2_2"
+            <label for="uc_option2_1" title="上一次抽到的四星物品是卡池的UP四星角色">当前处于四星小保底</label><br>
+            <input class="radio_type" type="radio" title="选择：当前处于四星大保底" name="IsRUpCertainRadio" id="uc_option2_2"
                 value="cert">
-            <label for="uc_option2_2">当前处于四星大保底</label><br>
-            <p>抽数：</p><input id="GachaTimes" type="number" title="抽数" min="1" max="9999" step="1"><br>
-            <input type="submit" class="interface_button" value="开始/继续祈愿">
+            <label for="uc_option2_2" title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
+            <p>抽数：</p><input id="GachaTimes" type="number"
+                title="抽数&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。" min="1" max="9999" step="1"><br>
+            <div class="interface_button" onclick="submitForm(false);">开始/继续祈愿</div>
+            <div id="repeat_wish" class="interface_button" onclick="submitForm(true);">重复上次祈愿</div>
             <input type="reset" class="interface_button" value="重置祈愿信息">
         </form>
         <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数（上一次抽出五星之后的抽数）</p>
     </div>
-    <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;四星武器不予展示。"></div>
+    <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;注意：四星武器一律不予展示。"></div>
     <div class="section">
         <p class="rights"><strong>&copy;Quartz Studio (<em><a href="https://github.com/QuartzQuincy2019">@Quincy
                         K.</a></em>) 2019-2024 &nbsp;&nbsp;&nbsp;<em><span>All Rights Reserved</span></em></strong></p>

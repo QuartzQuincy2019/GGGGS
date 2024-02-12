@@ -5,7 +5,9 @@ var MAX_SKIN_ID = 2;
 var skinId = [null];
 var skinPath = [null];
 var skinNames = [null, "aloft", "eve"];
-var FILE_HEADER = "skin"
+var FILE_HEADER = "skin";
+
+var _FK_CHANGE_SKIN = 'p';
 
 for (var i = MIN_SKIN_ID; i <= MAX_SKIN_ID; i++) {
     skinId.push(i);
@@ -49,7 +51,7 @@ function getCurrentSkinId() {
 }
 
 document.addEventListener("keydown", function (e) {
-    if (e.key != "p") return false;
+    if (e.key != _FK_CHANGE_SKIN) return false;
     e.preventDefault();
     if (getCurrentSkinId() == MAX_SKIN_ID) {
         changeSkin(MIN_SKIN_ID);

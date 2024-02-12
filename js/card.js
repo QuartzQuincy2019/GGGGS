@@ -171,30 +171,31 @@ function updateBanner() {
     E_header.style.backgroundImage = "url(./img/Banner_" + version + ".png)";
 }
 
-E_GachaForm.addEventListener("submit",
-    function (e) {
-        inventory.innerHTML = "";
-        e.preventDefault();
-        var isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
-        var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
-        var isSC, isRC;
-        isSC_val == "cert" ? isSC = true : isSC = false;
-        isRC_val == "cert" ? isRC = true : isRC = false;
-        var times = E_GachaTimes.value;
-        var startSDrop = E_StartSDrop.value;
-        var startRDrop = E_StartRDrop.value;
-        wish(times, startSDrop, startRDrop, isSC, isRC);
-        for (var i = 0; i < obtainedCharacters.length; i++) {
-            var _container = document.createElement("div");
-            _container.classList.add("container");
-            inventory.appendChild(_container);
-            initializeCard(findCharacter(obtainedCharacters[i]), _container);
-            _container.innerHTML += "<p>" + Number(i + 1) + "#(" + Number(obtainedRecords[i]) + ", <strong>" + Number(obtainedCalc[i]) + "</strong>)</p>"
-        }
-        //
-        isSupCertain == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
-        isRupCertain == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
-        E_StartSDrop.value = S_DropCalc;
-        E_StartRDrop.value = R_DropCalc;
+function submitForm(isLastInfoAvailable) {
+    inventory.innerHTML = "";
+    var isSC, isRC, startSDrop, startRDrop, ttw;
+    var isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
+    var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
+    isSC_val == "cert" ? isSC = true : isSC = false;
+    isRC_val == "cert" ? isRC = true : isRC = false;
+    ttw = E_GachaTimes.value;
+    startSDrop = E_StartSDrop.value;
+    startRDrop = E_StartRDrop.value;
+    if (isLastInfoAvailable) {
+        wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+    } else {
+        wish(ttw, startSDrop, startRDrop, isSC, isRC);
     }
-);
+
+    for (var i = 0; i < obtainedCharacters.length; i++) {
+        var _container = document.createElement("div");
+        _container.classList.add("container");
+        inventory.appendChild(_container);
+        initializeCard(findCharacter(obtainedCharacters[i]), _container);
+        _container.innerHTML += "<p>" + Number(i + 1) + "#(" + Number(obtainedRecords[i]) + ", <strong>" + Number(obtainedCalc[i]) + "</strong>)</p>"
+    }
+    _IsSupCertain == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
+    _IsRupCertain == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
+    E_StartSDrop.value = _S_DropCalc;
+    E_StartRDrop.value = _R_DropCalc;
+}
