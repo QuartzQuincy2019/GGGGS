@@ -1,10 +1,10 @@
 var E_SkinLink = document.getElementById('SkinLink');
 var MIN_SKIN_ID = 1;
-var MAX_SKIN_ID = 2;
+var MAX_SKIN_ID = 3;
 
 var skinId = [null];
 var skinPath = [null];
-var skinNames = [null, "aloft", "eve"];
+var skinNames = [null, "aloft", "eve", "lantern"];
 var FILE_HEADER = "skin";
 
 var _FK_CHANGE_SKIN = 'p';

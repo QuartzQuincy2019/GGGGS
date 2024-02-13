@@ -1,0 +1,408 @@
+div.section a,
+div.section a:visited {
+    background-color: #f6ff47;
+    color: #cd0000;
+}
+
+div.section {
+    background-color: #ffffffd0;
+}
+
+body {
+    background-color: #e00000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='%23e7dc0a' fill-opacity='0.85'%3E%3Cpath fill-rule='evenodd' d='M29.42 29.41c.36-.36.58-.85.58-1.4V0h-4v26H0v4h28c.55 0 1.05-.22 1.41-.58h.01zm0 29.18c.36.36.58.86.58 1.4V88h-4V62H0v-4h28c.56 0 1.05.22 1.41.58zm29.16 0c-.36.36-.58.85-.58 1.4V88h4V62h26v-4H60c-.55 0-1.05.22-1.41.58h-.01zM62 26V0h-4v28c0 .55.22 1.05.58 1.41.37.37.86.59 1.41.59H88v-4H62zM18 36c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H20a2 2 0 0 1-2-2zm0 16c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H20a2 2 0 0 1-2-2zm16-26a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zM34 58a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zM34 78a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-6zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-6zM34 4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4zm-8 82a2 2 0 1 1 4 0v2h-4v-2zm0-68a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0V18zM66 4a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0V4zm0 72a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0v-8zm-48 0a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0v-8zm0-72a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0V4zm24-4h4v2a2 2 0 1 1-4 0V0zm0 60a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0V60zm14-24c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H58a2 2 0 0 1-2-2zm0 16c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H58a2 2 0 0 1-2-2zm-28-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 26a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM36 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-8-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 68a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16-34a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16-12a2 2 0 1 0 0 4 6 6 0 1 1 0 12 2 2 0 1 0 0 4 10 10 0 1 0 0-20zm-64 0a2 2 0 1 1 0 4 6 6 0 1 0 0 12 2 2 0 1 1 0 4 10 10 0 1 1 0-20zm56-12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 48a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-48 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-48a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm24 32a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-4a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm36-36a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM10 44c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm56 0c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm8 24c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zM3 68c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4H5a2 2 0 0 1-2-2zm0-48c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4H5a2 2 0 0 1-2-2zm71 0c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm6 66a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 86a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-68A6 6 0 1 1 8 2a6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm36 36a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 8%;
+    background-repeat: repeat;
+}
+
+select {
+    border-color: #ffeb36;
+    background-color: #fff8be;
+    color: #db0000;
+}
+
+select:hover {
+    background-color: #ffeb36;
+}
+
+option {
+    background-color: #fff8be;
+}
+
+.glass-container {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: #fcff3912;
+}
+
+.header_title,
+.header_title a#TitleLink {
+    color: #fff8a6;
+    text-shadow: 0px 0px 7px #fff700;
+}
+
+.subtitle {
+    text-shadow: 0px 0px 4px #fff700;
+}
+
+p#VersionTitle {
+    text-shadow: 0px 0px 2px #fff700;
+}
+
+p.instructions {
+    color: #000000;
+}
+
+p.rights {
+    color: #000000;
+}
+
+p.rights span {
+    color: #ff0000;
+}
+
+audio {
+    border: 3px solid #fff700;
+}
+
+form#GachaForm p {
+    color: #000000;
+}
+
+.interface_button {
+    color: #000000;
+    /* https://bennettfeely.com/gradients/ */
+    background:
+        radial-gradient(circle at bottom left,
+            transparent 0,
+            transparent 2em,
+            beige 2em,
+            beige 4em,
+            transparent 4em,
+            transparent 6em,
+            khaki 6em,
+            khaki 8em,
+            transparent 8em,
+            transparent 10em),
+        radial-gradient(circle at top right,
+            transparent 0,
+            transparent 2em,
+            beige 2em,
+            beige 4em,
+            transparent 4em,
+            transparent 6em,
+            khaki 6em,
+            khaki 8em,
+            transparent 8em,
+            transparent 10em),
+        radial-gradient(circle at top left,
+            transparent 0,
+            transparent 2em,
+            navajowhite 2em,
+            navajowhite 4em,
+            transparent 4em,
+            transparent 6em,
+            peachpuff 6em,
+            peachpuff 8em,
+            transparent 8em,
+            transparent 10em),
+        radial-gradient(circle at bottom right,
+            transparent 0,
+            transparent 2em,
+            palegoldenrod 2em,
+            palegoldenrod 4em,
+            transparent 4em,
+            transparent 6em,
+            peachpuff 6em,
+            peachpuff 8em,
+            transparent 8em,
+            transparent 10em), blanchedalmond;
+
+    background-blend-mode: multiply;
+    background-size: 4em 4em;
+    background-position: 0 0, 0 0, 5em 5em, 5em 5em;
+    border-color: #000000;
+    box-shadow: 1px 1px 3px #000000;
+    transition-property: all;
+    transition-duration: 400ms;
+}
+
+.interface_button:hover {
+    box-shadow: 2px 2px 14px #000000;
+    background-position: 0 0, 0 0, 8em 8em, 1em 1em;
+}
+
+.interface_button:active {
+    box-shadow: 2px 2px 14px #000000;
+    background-position: 0 0, 0em 0em, 0em 0em;
+}
+
+input[type="number"] {
+    color: #fff700;
+    background-color: #d80000;
+}
+
+input[type="number"]:focus {
+    color: #ff0000;
+    background-color: #fbff8b;
+}
+
+.radio_type+label {
+    border-color: #e6e6e6;
+    background-color: #494949b0;
+    color: #e6e6e6;
+    box-shadow: 0px 0px 5px #818181;
+}
+
+.radio_type:checked+label {
+    border-color: #fff700;
+    background-color: #ff1900b0;
+    color: #fff700;
+    box-shadow: 0px 0px 8px #fff700;
+}
+
+.PoolBox {
+    border-color: #fff700;
+}
+
+.NonBox {
+    background-color: #585858d0;
+}
+
+.CommonBox {
+    background:
+        radial-gradient(transparent 0,
+            transparent 2em,
+            lightblue 2em,
+            lightblue 2.5em,
+            transparent 2.5em,
+            transparent 100%),
+        radial-gradient(transparent 0,
+            transparent 2em,
+            aquamarine 2em,
+            aquamarine 2.5em,
+            transparent 2.5em,
+            transparent 100%),
+        radial-gradient(transparent 0,
+            transparent 2em,
+            khaki 2em,
+            khaki 2.5em,
+            transparent 2.5em,
+            transparent 100%),
+        radial-gradient(transparent 0,
+            transparent 2em,
+            pink 2em,
+            pink 2.5em,
+            transparent 2.5em,
+            transparent 100%), linen;
+
+
+    background-blend-mode: multiply;
+    background-size: 5em 5em;
+    background-position:
+        0 2.5em,
+        2.5em 0,
+        2.5em 2.5em,
+        0 0;
+    transition-property: all;
+    transition-duration: 800ms;
+}
+
+.CommonBox:hover {
+    background-position:
+        0 7.5em,
+        -2.5em 0,
+        7.5em 7.5em,
+        -5em -5em;
+}
+
+.UpBox {
+    background:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 1em,
+            moccasin 0,
+            moccasin 2em,
+            transparent 0,
+            transparent 3em,
+            powderblue 0,
+            powderblue 4em,
+            transparent 0,
+            transparent 5em,
+            lavender 0,
+            lavender 6em,
+            transparent 0,
+            transparent 7em,
+            beige 0,
+            beige 8em),
+        repeating-linear-gradient(-45deg,
+            transparent,
+            transparent 1em,
+            khaki 0,
+            khaki 2em,
+            transparent 0,
+            transparent 3em,
+            beige 0,
+            beige 4em,
+            transparent 0,
+            transparent 5em,
+            peachpuff 0,
+            peachpuff 6em), whitesmoke;
+    background-blend-mode: multiply;
+}
+
+.container {
+    color: #000000;
+    text-shadow: 0px 0px 2px #000000;
+}
+
+.InventoryBox {
+    background:
+        radial-gradient(circle at left,
+            transparent,
+            #99eb47,
+            #99eb47 3.36927%,
+            transparent 3.36927%,
+            transparent 6.73854%,
+            #b3e87d 6.73854%,
+            #b3e87d 10.10782%,
+            transparent 10.10782%,
+            transparent 13.47709%,
+            #ccebad 13.47709%,
+            #ccebad 16.84636%,
+            transparent 16.84636%,
+            transparent 20.21563%,
+            #a6ed5e 20.21563%,
+            #a6ed5e 23.58491%,
+            transparent 23.58491%,
+            transparent 26.95418%,
+            #ccebad 26.95418%,
+            #ccebad 30.32345%,
+            transparent 30.32345%,
+            transparent 33.69272%,
+            #b3e87d 33.69272%,
+            #b3e87d 37.06199%,
+            transparent 37.06199%,
+            transparent 40.43127%,
+            #99eb47 40.43127%,
+            #99eb47 43.80054%,
+            transparent 43.80054%,
+            transparent 47.16981%),
+        radial-gradient(circle at right,
+            transparent,
+            #99eb47 0%,
+            #99eb47 3.36927%,
+            transparent 3.36927%,
+            transparent 6.73854%,
+            #b3e87d 6.73854%,
+            #b3e87d 10.10782%,
+            transparent 10.10782%,
+            transparent 13.47709%,
+            #ccebad 13.47709%,
+            #ccebad 16.84636%,
+            transparent 16.84636%,
+            transparent 20.21563%,
+            #a6ed5e 20.21563%,
+            #a6ed5e 23.58491%,
+            transparent 23.58491%,
+            transparent 26.95418%,
+            #ccebad 26.95418%,
+            #ccebad 30.32345%,
+            transparent 30.32345%,
+            transparent 33.69272%,
+            #b3e87d 33.69272%,
+            #b3e87d 37.06199%,
+            transparent 37.06199%,
+            transparent 40.43127%,
+            #99eb47 40.43127%,
+            #99eb47 43.80054%,
+            transparent 43.80054%,
+            transparent 47.16981%),
+        radial-gradient(circle at left,
+            transparent,
+            #99eb47 0%,
+            #99eb47 3.36927%,
+            transparent 3.36927%,
+            transparent 6.73854%,
+            #b3e87d 6.73854%,
+            #b3e87d 10.10782%,
+            transparent 10.10782%,
+            transparent 13.47709%,
+            #ccebad 13.47709%,
+            #ccebad 16.84636%,
+            transparent 16.84636%,
+            transparent 20.21563%,
+            #a6ed5e 20.21563%,
+            #a6ed5e 23.58491%,
+            transparent 23.58491%,
+            transparent 26.95418%,
+            #ccebad 26.95418%,
+            #ccebad 30.32345%,
+            transparent 30.32345%,
+            transparent 33.69272%,
+            #b3e87d 33.69272%,
+            #b3e87d 37.06199%,
+            transparent 37.06199%,
+            transparent 40.43127%,
+            #99eb47 40.43127%,
+            #99eb47 43.80054%,
+            transparent 43.80054%,
+            transparent 47.16981%),
+        radial-gradient(circle at right,
+            transparent,
+            #99eb47 0%,
+            #99eb47 3.36927%,
+            transparent 3.36927%,
+            transparent 6.73854%,
+            #b3e87d 6.73854%,
+            #b3e87d 10.10782%,
+            transparent 10.10782%,
+            transparent 13.47709%,
+            #ccebad 13.47709%,
+            #ccebad 16.84636%,
+            transparent 16.84636%,
+            transparent 20.21563%,
+            #a6ed5e 20.21563%,
+            #a6ed5e 23.58491%,
+            transparent 23.58491%,
+            transparent 26.95418%,
+            #ccebad 26.95418%,
+            #ccebad 30.32345%,
+            transparent 30.32345%,
+            transparent 33.69272%,
+            #b3e87d 33.69272%,
+            #b3e87d 37.06199%,
+            transparent 37.06199%,
+            transparent 40.43127%,
+            #99eb47 40.43127%,
+            #99eb47 43.80054%,
+            transparent 43.80054%,
+            transparent 47.16981%), #99e052;
+
+    background-size: 4em 4em;
+    background-position:
+        0 0,
+        0 2em,
+        2em 0,
+        2em 2em;
+    background-blend-mode:
+        overlay,
+        overlay,
+        normal,
+        normal;
+    transition-property: all;
+    transition-duration: 800ms;
+}
+
+.InventoryBox:hover{
+    background-position:
+        0 0,
+        0 0,
+        2em 2em,
+        2em 2em;
+}
+
+.card p {
+    background-color: #ffffffd0;
+    text-shadow: 0px 0px 1px #303030;
+}

@@ -40,7 +40,7 @@ select {
 div#header {
     width: 100%;
     min-height: 100vh;
-    background-image: url(./img/transparent.png);
+    background-image: url(../img/transparent.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

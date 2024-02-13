@@ -1,4 +1,4 @@
-var __VERSION = "v1.2.0";
+var __VERSION = "v1.3.0";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
