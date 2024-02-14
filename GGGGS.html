@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <!-- 走吧，网页源代码没什么可看的，去看JS文件的代码 -->
+
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <title>GGGGS</title>
@@ -14,6 +15,7 @@
 </head>
 
 <body>
+    <!-- HEADER部分 -->
     <div id="header">
         <div class="glass-container">
             <!-- 此处有超链接 -->
@@ -24,9 +26,11 @@
         </div>
     </div>
     <hr>
+    <!-- 前向说明部分 -->
     <div class="section">
         <audio controls loop preload="metadata" src=".\mus\shed_a_light.mp3"></audio>
         <p class="instructions centerized"><strong>简要说明</strong></p>
+        <!-- 按Control键以切换皮肤 -->
         <p class="instructions">按下<strong style="font-family: Arial;">Control</strong>键可以切换界面皮肤。</p>
         <p class="instructions">卡池三个一组，分为S和R两大组。每一组从上到下依次是：UP池、非UP池、未参与卡池</p>
         <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
@@ -60,7 +64,7 @@
                 <!-- 3.8 -->
                 <option value="wish_3_8_3">v3.8【清夏！乐园？大秘境！】后半：2023年07月25日-3——珊瑚宫心海</option>
                 <option value="wish_3_8_4">v3.8【清夏！乐园？大秘境！】后半：2023年07月25日-4——流浪者</option>
-                <option value="wish_3_8_1">v3.8【清夏！乐园？大秘境！】前半：2023年07月05日-1——欧菈</option>
+                <option value="wish_3_8_1">v3.8【清夏！乐园？大秘境！】前半：2023年07月05日-1——优菈</option>
                 <option value="wish_3_8_2">v3.8【清夏！乐园？大秘境！】前半：2023年07月05日-2——可莉</option>
                 <!-- 3.7 -->
                 <option value="wish_3_7_3">v3.7【决斗！召唤之巅！】后半：2023年06月13日-3——艾尔海森</option>
@@ -86,6 +90,7 @@
         </form>
         <div id="reset_button" class="interface_button" onclick="initializeAllCard();">重置卡池</div>
     </div>
+    <!-- 卡池展示部分 -->
     <div class="PoolBox UpBox" id="Sup_PoolBox"></div>
     <div class="PoolBox CommonBox" id="Scommon_PoolBox"></div>
     <div class="PoolBox NonBox" id="Snon_PoolBox"></div>
@@ -94,6 +99,7 @@
     <div class="PoolBox CommonBox" id="Rcommon_PoolBox"></div>
     <div class="PoolBox NonBox" id="Rnon_PoolBox"></div>
     <hr>
+    <!-- 表单部分 -->
     <div class="section"
         title="五星物品基本概率：0.6%&#10;若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%&#10;四星物品基本概率：5.1%&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品">
         <p class="instructions centerized"><strong>祈愿配置</strong></p>
@@ -101,6 +107,7 @@
             <p>五星已垫数量(≤89)：</p><input id="StartSDrop" type="number"
                 title="五星已垫数量，即自上一次抽出五星之后的总抽数。&#10;若连续89抽都未获得五星角色，则第90抽必定获得五星角色。" min="0" max="89" step="1"
                 value="0"><br>
+                <!-- 真的会有人填10吗 -->
             <p>四星已垫数量(≤10)：</p><input id="StartRDrop" type="number"
                 title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
                 min="0" max="10" step="1" value="0"><br>
@@ -124,17 +131,20 @@
         </form>
         <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数（上一次抽出五星之后的抽数）</p>
     </div>
+    <!-- 背包部分 -->
     <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;注意：四星武器一律不予展示。"></div>
+    <!-- FOOTER部分 -->
     <div class="section">
         <p class="rights"><strong>&copy;Quartz Studio (<em><a href="https://github.com/QuartzQuincy2019">@Quincy
                         K.</a></em>) 2019-2024 &nbsp;&nbsp;&nbsp;<em><span>All Rights Reserved</span></em></strong></p>
     </div>
+    <!-- JS脚本部分 -->
+    <!-- 顺序不可调换！ -->
     <script src=".\js\database.js"></script>
     <script src=".\js\core.js"></script>
     <script src=".\js\wish.js"></script>
     <script src=".\js\card.js"></script>
     <script src=".\js\skin.js"></script>
-    <script id="E_ZERPL_PLUGINS" src=".\plugins.js"></script>
 </body>
 
 </html>

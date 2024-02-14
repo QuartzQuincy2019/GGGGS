@@ -65,7 +65,7 @@ var CHARACTER_LIST = [
     new Character("diona", 4, "猫尾特调", Element.cryo, "迪奥娜"),
     new Character("albedo", 5, "白垩之子", Element.geo, "阿贝多"),
     new Character("rosaria", 4, "棘冠恩典", Element.cryo, "罗莎莉亚"),
-    new Character("eula", 5, "浪花骑士", Element.cryo, "欧菈"),
+    new Character("eula", 5, "浪花骑士", Element.cryo, "优菈"),
     new Character("mika", 4, "晴霜的标绘", Element.cryo, "米卡"),
     //liyue
     new Character("xiao", 5, "靖妖傩舞", Element.anemo, "魈"),
@@ -96,7 +96,7 @@ var CHARACTER_LIST = [
     new Character("shogun", 5, "一心净土", Element.electro, "雷电将军"),
     new Character("sara", 4, "黑羽鸣镝", Element.electro, "九条裟罗"),
     new Character("kokomi", 5, "真珠之智", Element.hydro, "珊瑚宫心海"),
-    new Character("tohma", 4, "渡来介者", Element.pyro, "托马"),
+    new Character("thoma", 4, "渡来介者", Element.pyro, "托马"),
     new Character("gorou", 4, "戎犬锵锵", Element.geo, "五郎"),
     new Character("itto", 5, "花坂豪快", Element.geo, "荒泷一斗"),
     new Character("yae", 5, "浮世笑百姿", Element.electro, "八重神子"),
@@ -141,134 +141,134 @@ var itemPools = {
         ["xianyun"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["gaming", "faruzan", "noelle"],
-        ["lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_4_2: [
         ["nahida"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["gaming", "faruzan", "noelle"],
-        ["lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_3_3: [
         ["shogun"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["chevreuse", "sara", "bennett"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_3_4: [
         ["yoimiya"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["chevreuse", "sara", "bennett"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_3_1: [
         ["navia"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["sucrose", "rosaria", "candace"],
-        ["faruzan", "lynette", "sayu", "heizo", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_3_2: [
         ["ayaka"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["sucrose", "rosaria", "candace"],
-        ["faruzan", "lynette", "sayu", "heizo", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_2_3: [
         ["cyno"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kirara", "shinobu", "xiangling"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xinyan", "yanfei"]
     ],
     wish_4_2_4: [
         ["ayato"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kirara", "shinobu", "xiangling"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xinyan", "yanfei"]
     ],
     wish_4_2_1: [
         ["furina"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["charlotte", "collei", "beidou"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "kaveh", "kirara", "yaoyao", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "kaveh", "kirara", "yaoyao", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_2_2: [
         ["baizhu"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["charlotte", "collei", "beidou"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "kaveh", "kirara", "yaoyao", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "kaveh", "kirara", "yaoyao", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_1_3: [
         ["wriothesley"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
-        ["chongyun", "tohma", "dori"],
+        ["chongyun", "thoma", "dori"],
         ["faruzan", "lynette", "sayu", "heizo", "sucrose", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_1_4: [
         ["venti"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
-        ["chongyun", "tohma", "dori"],
+        ["chongyun", "thoma", "dori"],
         ["faruzan", "lynette", "sayu", "heizo", "sucrose", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_1_1: [
         ["neuvillette"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["fischl", "xingqiu", "diona"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_1_2: [
         ["hutao"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["fischl", "xingqiu", "diona"],
-        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "chongyun", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     // 4.0
     wish_4_0_3: [
         ["zhongli"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["freminet", "sayu", "noelle"],
-        ["faruzan", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_0_4: [
         ["tartaglia"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["freminet", "sayu", "noelle"],
-        ["faruzan", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_0_1: [
         ["lyney"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["lynette", "bennett", "barbara"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_4_0_2: [
         ["yelan"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["lynette", "bennett", "barbara"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     // 3.8
     wish_3_8_3: [
         ["kokomi"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["faruzan", "rosaria", "yanfei"],
-        ["sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan"]
+        ["sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan"]
     ],
     wish_3_8_4: [
         ["wanderer"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["faruzan", "rosaria", "yanfei"],
-        ["sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan"]
+        ["sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan"]
     ],
     wish_3_8_1: [
         ["eula"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
-        ["mika", "razor", "tohma"],
+        ["mika", "razor", "thoma"],
         ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_8_2: [
         ["klee"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
-        ["mika", "razor", "tohma"],
+        ["mika", "razor", "thoma"],
         ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "kirara", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "yunjin", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "xiangling", "xinyan", "yanfei"]
     ],
     // 3.7
@@ -276,99 +276,99 @@ var itemPools = {
         ["alhaitham"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["heizo", "xiangling", "yaoyao"],
-        ["faruzan", "sayu", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xinyan", "yanfei"]
     ],
     wish_3_7_4: [
         ["kazuha"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["heizo", "xiangling", "yaoyao"],
-        ["faruzan", "sayu", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xinyan", "yanfei"]
     ],
     wish_3_7_1: [
         ["yoimiya"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kirara", "yunjin", "chongyun"],
-        ["faruzan", "sayu", "heizo", "sucrose", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_7_2: [
         ["yae"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kirara", "yunjin", "chongyun"],
-        ["faruzan", "sayu", "heizo", "sucrose", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "diona", "layla", "mika", "rosaria", "collei", "kaveh", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     // 3.6
     wish_3_6_3: [
         ["baizhu"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kaveh", "candace", "fischl"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_6_4: [
         ["ganyu"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["kaveh", "candace", "fischl"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "mika", "rosaria", "collei", "yaoyao", "beidou", "dori", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_6_1: [
         ["nahida"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["shinobu", "dori", "layla"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "mika", "rosaria", "collei", "yaoyao", "beidou", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "mika", "rosaria", "collei", "yaoyao", "beidou", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_6_2: [
         ["nilou"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["shinobu", "dori", "layla"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "mika", "rosaria", "collei", "yaoyao", "beidou", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "mika", "rosaria", "collei", "yaoyao", "beidou", "fischl", "sara", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     // 3.5
     wish_3_5_3: [
         ["shenhe"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["diona", "sucrose", "mika"],
-        ["faruzan", "sayu", "heizo", "chongyun", "layla", "rosaria", "collei", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "chongyun", "layla", "rosaria", "collei", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_5_4: [
         ["ayaka"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["diona", "sucrose", "mika"],
-        ["faruzan", "sayu", "heizo", "chongyun", "layla", "rosaria", "collei", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "chongyun", "layla", "rosaria", "collei", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_5_1: [
         ["dehya"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["bennett", "barbara", "collei"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_5_2: [
         ["cyno"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["bennett", "barbara", "collei"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "candace", "xingqiu", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     // 3.4
     wish_3_4_3: [
         ["hutao"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["xingqiu", "ningguang", "beidou"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_4_4: [
         ["yelan"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["xingqiu", "ningguang", "beidou"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "tohma", "xiangling", "xinyan", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
     wish_3_4_1: [
         ["alhaitham"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["yaoyao", "yunjin", "xinyan"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "yanfei"]
     ],
     wish_3_4_2: [
         ["xiao"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "diluc"],
         ["yaoyao", "yunjin", "xinyan"],
-        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "tohma", "xiangling", "yanfei"]
+        ["faruzan", "sayu", "heizo", "sucrose", "chongyun", "diona", "layla", "rosaria", "collei", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "barbara", "candace", "xingqiu", "bennett", "thoma", "xiangling", "yanfei"]
     ]
 }

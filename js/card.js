@@ -54,6 +54,9 @@ function initializeCard(character, destination) {
     parentNode.appendChild(_card);
 }
 
+/**
+ * 初始化所有卡片
+ */
 function initializeAllCard() {
     clearCard();
     Sup = [];
@@ -67,7 +70,7 @@ function initializeAllCard() {
     }
 }
 
-document.body.onload = initializeAllCard();
+document.body.onload = initializeAllCard();//body加载后立刻初始化所有卡片
 
 /**
  * 用户动手操作时调用该函数
@@ -163,6 +166,10 @@ function updateCards() {
     analizeCardSet();
 }
 
+/**
+ * 切换条幅
+ * @returns 
+ */
 function updateBanner() {
     var itemPoolSelect = document.getElementById("itemPoolSelect");
     var selectedPool = itemPoolSelect.value;
@@ -174,6 +181,10 @@ function updateBanner() {
     E_header.style.backgroundImage = "url(./img/Banner_" + version + ".png)";
 }
 
+/**
+ * 核心流程函数。接收祈愿表单的所有信息，祈愿，并刷新卡片。
+ * @param {Boolean} isLastInfoAvailable 是否重复上一次祈愿
+ */
 function submitForm(isLastInfoAvailable) {
     inventory.innerHTML = "";
     var isSC, isRC, startSDrop, startRDrop, ttw;

@@ -19,6 +19,7 @@
 
 .card img {
     margin: 0;
+    /* 原卡片大小：256*256 */
     height: 92px;
     width: 88px;
     display: block;

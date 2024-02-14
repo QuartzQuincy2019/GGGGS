@@ -1,15 +1,23 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v1.3.1";
+var __VERSION = "v1.3.2";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
 
+/**
+ * 获取数组最后一个元素
+ * @returns 
+ */
 Array.prototype.getLast = function () {
     return this[this.length - 1];
 }
 
+/**
+ * 删除String数组中对应的字符串
+ * @param {String} target 
+ */
 Array.prototype.deleteElement = function (target) {
     var targetIndex = this.indexOf(target);
     if (targetIndex !== -1) {
