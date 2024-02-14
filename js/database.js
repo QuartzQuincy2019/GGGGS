@@ -1,3 +1,9 @@
+// database.js
+// 数据库。储存与游戏角色及属性、卡池配置相关信息。
+
+/**
+ * 仿枚举类型
+ */
 var Element = {
     anemo: 1,
     geo: 2,
@@ -15,12 +21,12 @@ var STAR_NUMBER = [4, 5];
 var STAR_NAME = ["R", "S"];
 
 class Character {
-    name;
-    star;
-    pfile;
-    signature;
-    element;
-    nameChs;
+    name;//角色识别名（不是英文名）
+    star;//角色星数
+    pfile;//Charaicon对应文件路径
+    signature;//角色称号
+    element;//角色元素
+    nameChs;//角色简体中文名
     /**
      * 
      * @param {String} name 
@@ -36,6 +42,10 @@ class Character {
         this.nameChs = nameChs;
     }
 }
+
+/**
+ * 角色列表
+ */
 var CHARACTER_LIST = [
     //mondstadt
     new Character("jean", 5, "蒲公英骑士", Element.anemo, "琴"),

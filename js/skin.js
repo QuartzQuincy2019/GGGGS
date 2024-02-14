@@ -1,3 +1,6 @@
+// skin.js
+// 皮肤。控制皮肤。
+
 var E_SkinLink = document.getElementById('SkinLink');
 var MIN_SKIN_ID = 1;
 var MAX_SKIN_ID = 3;
@@ -7,7 +10,7 @@ var skinPath = [null];
 var skinNames = [null, "aloft", "eve", "lantern"];
 var FILE_HEADER = "skin";
 
-var _FK_CHANGE_SKIN = 'p';
+var _FK_CHANGE_SKIN = "Control";
 
 for (var i = MIN_SKIN_ID; i <= MAX_SKIN_ID; i++) {
     skinId.push(i);

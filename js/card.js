@@ -1,3 +1,6 @@
+// card.js
+// 卡片。控制布局及内容。
+
 var E_SBox = document.getElementById("Snon_PoolBox");
 var E_RBox = document.getElementById("Rnon_PoolBox");
 var inventory = document.getElementById("inventory");

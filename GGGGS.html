@@ -1,6 +1,8 @@
+<!-- 图形化《原神》全局抽卡模拟器 (GGGGS) 主文件-->
+<!-- GGGGS.html -->
 <!DOCTYPE html>
 <html lang="zh-cn">
-
+<!-- 走吧，网页源代码没什么可看的，去看JS文件的代码 -->
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <title>GGGGS</title>
@@ -14,6 +16,7 @@
 <body>
     <div id="header">
         <div class="glass-container">
+            <!-- 此处有超链接 -->
             <p class="header_title total_title"><strong><a id="TitleLink"
                         href="https://github.com/QuartzQuincy2019/GGGGS">GGGGS</a></strong></p>
             <p class="header_title subtitle"><strong>Genshin-Impact Global Graphic Gacha Simulator</strong></p>
@@ -22,9 +25,9 @@
     </div>
     <hr>
     <div class="section">
-        <audio controls loop autoplay src=".\mus\shed_a_light.mp3"></audio>
+        <audio controls loop preload="metadata" src=".\mus\shed_a_light.mp3"></audio>
         <p class="instructions centerized"><strong>简要说明</strong></p>
-        <p class="instructions">按下p键可以切换界面皮肤。</p>
+        <p class="instructions">按下<strong style="font-family: Arial;">Control</strong>键可以切换界面皮肤。</p>
         <p class="instructions">卡池三个一组，分为S和R两大组。每一组从上到下依次是：UP池、非UP池、未参与卡池</p>
         <p class="instructions">点击下拉菜单可快捷选中预定卡池；点击角色卡片可进行自定义；重新选中“自定义卡池”或点击“重置卡池”可重置卡池。</p>
         <form>

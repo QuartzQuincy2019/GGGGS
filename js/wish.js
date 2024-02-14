@@ -1,3 +1,6 @@
+// wish.js
+// 祈愿。储存祈愿逻辑。
+
 var Sup = [];
 var Scommon = [];
 var Rup = [];
