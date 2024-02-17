@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Tinos Nerd Propo";
+    src: url(../fonts/TinosNerdFontPropo-Regular.ttf);
+}
+
 * {
     margin: 0;
 }
@@ -14,7 +19,7 @@ div.section {
 
 div.section a,
 div.section a:visited {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif, "Tinos Nerd Propo";
     text-decoration: underline;
 }
 
@@ -25,7 +30,7 @@ body {
 }
 
 select {
-    font-family: Arial, '楷体';
+    font-family: Arial, '楷体', "Tinos Nerd Propo";
     font-size: 24px;
     border-radius: 5px;
     border-width: 3px;
@@ -96,23 +101,24 @@ p#VersionTitle {
 
 p.instructions {
     font-size: 22px;
-    font-family: '华文中宋';
+    font-family: '华文中宋', "Tinos Nerd Propo";
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .centerized {
+    font-family: "华文中宋", "Tinos Nerd Propo";
     text-align: center;
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .centerized strong::after {
-    content: "***~~~~~~~-----";
+    content: "---------------";
 }
 
 .centerized strong::before {
-    content: "-----~~~~~~~***";
+    content: "---------------";
 }
 
 p.rights {

@@ -4,7 +4,7 @@ form#GachaForm * {
 
 form#GachaForm p {
     display: inline;
-    font-family: '华文中宋';
+    font-family: '华文中宋', "Tinos Nerd Propo";
 }
 
 .interface_button {
@@ -14,7 +14,7 @@ form#GachaForm p {
     padding: 10px;
     -webkit-user-select: none;
     user-select: none;
-    font-family: '微软雅黑';
+    font-family: "Tinos Nerd Propo";
     background-blend-mode: screen;
     border-style: solid;
     border-radius: 12px;
@@ -32,7 +32,7 @@ input[type="number"] {
 }
 
 label {
-    font-family: '华文中宋';
+    font-family: '华文中宋', "Tinos Nerd Propo";
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -46,6 +46,10 @@ label {
     border-style: solid;
 }
 
+.radio_type+label::before {
+    content: "";
+}
+
 .radio_type:checked+label {
     margin: 2px;
     padding: 3px;
@@ -53,4 +57,8 @@ label {
     text-align: left;
     border-radius: 8px;
     border-style: solid;
+}
+
+.radio_type:checked+label::before {
+    content: "";
 }
