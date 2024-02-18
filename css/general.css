@@ -3,6 +3,11 @@
     src: url(../fonts/TinosNerdFontPropo-Regular.ttf);
 }
 
+:root {
+    --color-A: #aaaaaa;
+    --color-B: #bbbbbb;
+}
+
 * {
     margin: 0;
 }
@@ -132,6 +137,34 @@ p.rights span {
     font-family: 'Times New Roman', Times, serif;
     transition-property: all;
     transition-duration: 0.3s;
+}
+
+div.bar{
+    display: inline-block;
+    margin: 0.5em;
+}
+
+div.bar div{
+    display: inline-block;
+    font-size: 20px;
+}
+
+div.bar div.bar_inner{
+    color: #ffffff;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+div.bar div.bar_side  {
+    display: inline-block;
+}
+
+.bar_side_a{
+    margin-right: 0.23em;
+}
+
+.bar_side_b{
+    margin-left: -0.01em;
 }
 
 hr {
