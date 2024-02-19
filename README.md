@@ -15,9 +15,10 @@
 ### 注意事项
 - **GGGGS.html只能在计算机上正常运行。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
-## [项目信息](https://github.com/QuartzQuincy2019/GGGGS/wiki)
+## 项目信息
+[**项目Wiki：使用指南、界面介绍等**](https://github.com/QuartzQuincy2019/GGGGS/wiki)
 ## 特别鸣谢
-[ys.mihoyo.com](https://ys.mihoyo.com/)
+[ys.mihoyo.com](https://ys.mihoyo.com/)   
 [GlassGenerator.netlify.app](https://glassgenerator.netlify.app/)   
 [projects.verou.me](https://projects.verou.me/css3patterns/)   
 [bennettfeely.com](https://bennettfeely.com/gradients/)   
