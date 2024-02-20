@@ -137,6 +137,19 @@ for (var i = 0; i < CHARACTER_LIST.length; i++) {
 }
 
 var itemPools = {
+    //4.4
+    wish_4_4_3: [
+        ["xiao"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["yaoyao", "xinyan", "ningguang"],
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "thoma", "xiangling", "yanfei"]
+    ],
+    wish_4_4_4: [
+        ["yae"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["yaoyao", "xinyan", "ningguang"],
+        ["faruzan", "lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "noelle", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "thoma", "xiangling", "yanfei"]
+    ],
     wish_4_4_1: [
         ["xianyun"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
@@ -149,6 +162,7 @@ var itemPools = {
         ["gaming", "faruzan", "noelle"],
         ["lynette", "sayu", "heizo", "sucrose", "charlotte", "chongyun", "diona", "freminet", "layla", "mika", "rosaria", "collei", "kaveh", "kirara", "yaoyao", "beidou", "dori", "fischl", "sara", "shinobu", "razor", "gorou", "ningguang", "yunjin", "barbara", "candace", "xingqiu", "bennett", "chevreuse", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
+    //4.3
     wish_4_3_3: [
         ["shogun"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],

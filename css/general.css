@@ -1,4 +1,5 @@
 @font-face {
+    /* Tinos Nerd Font: https://www.nerdfonts.com/ */
     font-family: "Tinos Nerd Propo";
     src: url(../fonts/TinosNerdFontPropo-Regular.ttf);
 }
@@ -35,7 +36,7 @@ body {
 }
 
 select {
-    font-family: Arial, '楷体', "Tinos Nerd Propo";
+    font-family: Arial, "仿宋", "Tinos Nerd Propo";
     font-size: 24px;
     border-radius: 5px;
     border-width: 3px;
@@ -139,31 +140,31 @@ p.rights span {
     transition-duration: 0.3s;
 }
 
-div.bar{
+div.bar {
     display: inline-block;
     margin: 0.5em;
 }
 
-div.bar div{
+div.bar div {
     display: inline-block;
     font-size: 20px;
 }
 
-div.bar div.bar_inner{
+div.bar div.bar_inner {
     color: #ffffff;
     padding-left: 0.3em;
     padding-right: 0.3em;
 }
 
-div.bar div.bar_side  {
+div.bar div.bar_side {
     display: inline-block;
 }
 
-.bar_side_a{
+.bar_side_a {
     margin-right: 0.23em;
 }
 
-.bar_side_b{
+.bar_side_b {
     margin-left: -0.01em;
 }
 
