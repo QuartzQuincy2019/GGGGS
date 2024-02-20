@@ -212,4 +212,93 @@ function submitForm(isLastInfoAvailable) {
     _IsRupCertain == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
     E_StartSDrop.value = _S_DropCalc;
     E_StartRDrop.value = _R_DropCalc;
+    E_GachaForm.title = "自打开页面以来已进行" + _TOKEN + "次祈愿。";
+}
+
+function isSCharacter(characterName) {
+    var _chara = findCharacter(characterName);
+    if (_chara.star == 5) return true;
+    return false;
+}
+
+function isUpCharacter(characterName) {
+    if (Sup.includes(characterName) || Rup.includes(characterName)) return true;
+    return false;
+}
+
+function checkSCharacter() {
+    var num = 0;
+    for (var i = 0; i < obtainedCharacters.length; i++) {
+        if (isSCharacter(obtainedCharacters[i])) num += 1;
+    }
+    return num;
+}
+
+function checkSUpCharacter() {
+    var num = 0;
+    for (var i = 0; i < obtainedCharacters.length; i++) {
+        if (isSCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) num += 1;
+    }
+    return num;
+}
+
+function tripleSupTest() {
+    _TotalWishTimes = 10;
+    E_GachaTimes.value = _TotalWishTimes;
+    var times = 0;
+    var num = 0;
+    var interval = 20000;
+    var safeLimit = 600000;
+    do {
+        submitForm(false);
+        num = checkSUpCharacter();
+        times++;
+        if (times % interval == 0 && times > (interval - 1)) alert("当前已进行" + times + "次十连，都未实现十连三黄Up。\n该提示每" + interval + "次十连出现一次。\n如果尝试" + safeLimit + "十连都不符合要求，则该循环会自动退出。");
+        if (times == safeLimit) break;
+    } while (num != 3);
+    if (times == safeLimit) {
+        alert(safeLimit + "次十连之内没有符合要求的记录。");
+        return;
+    }
+    alert("热烈祝贺！第" + times + "次十连三黄Up！");
+}
+
+function doubleSupTest() {
+    _TotalWishTimes = 10;
+    E_GachaTimes.value = _TotalWishTimes;
+    var times = 0;
+    var num = 0;
+    do {
+        submitForm(false);
+        num = checkSUpCharacter();
+        times++;
+    } while (num != 2);
+    alert("第" + times + "次十连获得双黄Up！");
+}
+
+function luckTest() {
+    var _MODE = document.getElementById("CharaNumberInTen").value;
+    if (_MODE == 0 || _MODE == undefined) {
+        alert("未指定角色数！");
+        return;
+    }
+    _TotalWishTimes = 10;
+    E_GachaTimes.value = _TotalWishTimes;
+    var times = 0;
+    var num = 0;
+    var interval = 20000;
+    var safeLimit = 300000;
+    do {
+        submitForm(false);
+        num = obtainedCharacters.length;
+        times++;
+        if (times % interval == 0 && times > (interval - 1)) alert("当前已进行" + times + "次十连，都未实现一次十连中有" + _MODE + "位角色。\n该提示每" + interval + "次十连出现一次。\n如果尝试" + safeLimit + "十连都不符合要求，则该循环会自动退出。");
+        if (times == safeLimit) break;
+    } while (num != _MODE);
+    if (times == safeLimit) {
+        alert(safeLimit + "次十连之内没有符合要求的记录。");
+        return;
+    }
+    alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
+
 }

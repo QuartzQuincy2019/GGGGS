@@ -8,6 +8,7 @@ form#GachaForm p {
 }
 
 .interface_button {
+    margin: 4px;
     display: inline-block;
     text-align: center;
     font-size: 24px;

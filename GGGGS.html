@@ -106,6 +106,7 @@
         title="五星物品基本概率：0.6%&#10;若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%&#10;四星物品基本概率：5.1%&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品">
         <p class="instructions centerized"><strong>祈愿配置</strong></p>
         <form name="gacha" id="GachaForm">
+            <p class="instructions centerized"><strong>󰒓一般祈愿配置󰒓</strong></p><br>
             <p>󰰣五星已垫数量(≤89)：</p><input id="StartSDrop" type="number"
                 title="五星已垫数量，即自上一次抽出五星之后的总抽数。&#10;若连续89抽都未获得五星角色，则第90抽必定获得五星角色。" min="0" max="89" step="1"
                 value="0"><br>
@@ -127,9 +128,20 @@
             <label for="uc_option2_2" title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
             <p>󰐍抽数：</p><input id="GachaTimes" type="number"
                 title="抽数&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。" min="1" max="9999" step="1"><br>
+
+            <p class="instructions centerized"><strong>󰘯特殊祈愿配置󰘯</strong></p><br>
+
+            <p>󰧾十连抽内角色数：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为6。" min="1" max="6"
+                step="1"><br>
+            <p class="instructions centerized"><strong>󰆿祈愿按钮区域󰆿</strong></p><br>
             <div class="interface_button" onclick="submitForm(false);">开始/继续祈愿</div>
             <div id="repeat_wish" class="interface_button" onclick="submitForm(true);">󰜉重复上次祈愿</div>
             <input type="reset" class="interface_button" value="重置祈愿信息">
+            <div id="luck_wish" title="我抽几次十连会出现多个角色？" class="interface_button" onclick="luckTest();">󰧾十连多角色测试</div>
+            <div id="doubleSup_wish" title="我抽几次十连会双黄？" class="interface_button" onclick="doubleSupTest();">󰇈十连双黄测试
+            </div>
+            <div id="tripleSup_wish" title="我抽几次十连会三黄？&#10;警告：该测试会占用较多内存。默认情况下，600000次十连都未达到十连三黄Up，则会退出循环。"
+                class="interface_button" onclick="tripleSupTest();">十连三黄测试</div>
         </form>
         <p class="instructions">X#(Y, Z)的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数（上一次抽出五星之后的抽数）</p>
     </div>

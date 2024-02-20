@@ -1,5 +1,6 @@
 // wish.js
 // 祈愿。储存祈愿逻辑。
+var _TOKEN = 0;
 
 var Sup = [];
 var Scommon = [];
@@ -114,6 +115,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     }
     var wished = 1;//当前祈愿次数
     for (; wished <= _TotalWishTimes; wished++) {
+        _TOKEN++;
         refreshSProbability();
         level = decideLevel(getRandomDecimal());
         if (level == "N") {//抽到了普通等级
