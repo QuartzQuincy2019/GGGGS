@@ -14,11 +14,12 @@
 }
 
 div.section {
+    flex: 1;
     margin: 6px;
-    padding: 6px;
+    padding: 1em;
     border-style: double;
-    border-width: 3px;
-    border-radius: 10px;
+    border-width: 0.3em;
+    border-radius: 1.2em;
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -105,26 +106,58 @@ p#VersionTitle {
     margin-bottom: 4px;
 }
 
+form.GachaForm {
+    width: 100%;
+}
+
+form.GachaForm * {
+    font-size: 24px;
+    font-family: Arial, "Tinos Nerd Propo", '华文中宋';
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+form.GachaForm p.FormInstructions {
+    display: inline;
+}
+
 p.instructions {
     font-size: 22px;
-    font-family: '华文中宋', "Tinos Nerd Propo";
+    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", '华文中宋';
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .centerized {
-    font-family: "华文中宋", "Tinos Nerd Propo";
+    font-family: Arial, "Tinos Nerd Propo", '华文中宋';
     text-align: center;
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .centerized strong::after {
-    content: "---------------";
+    content: "----------";
 }
 
 .centerized strong::before {
-    content: "---------------";
+    content: "----------";
+}
+
+.interface_button {
+    margin: 4px;
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: "Tinos Nerd Propo";
+    background-blend-mode: screen;
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 3px;
+    transition-property: all;
+    transition-duration: 300ms;
 }
 
 p.rights {
@@ -166,6 +199,15 @@ div.bar div.bar_side {
 
 .bar_side_b {
     margin-left: -0.01em;
+}
+
+div.FormContainer {
+    display: flex;
+    align-items: stretch;
+}
+
+div.FormSection {
+    flex-grow: 1;
 }
 
 hr {

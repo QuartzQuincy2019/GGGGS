@@ -1,7 +1,13 @@
 div.section a,
 div.section a:visited {
-    background-color: #006f6f;
-    color: #0ad5cb;
+    background-color: #002727;
+    color: #00cdd0;
+}
+
+div.section {
+    color:#003a5f;
+    border-color: #0ad5cb;
+    background-color: #e8fdffa0;
 }
 
 body {
@@ -44,15 +50,19 @@ p#VersionTitle {
 }
 
 p.instructions {
-    color: #c6c6c6;
+    color: #003a5f;
 }
 
 p.rights {
-    color: #c6c6c6;
+    color: #003a5f;
 }
 
 p.rights span {
-    color: #00cdd0;
+    color: #89ff56;
+}
+
+p#TotalCounter{
+    color: #e1e1e1;
 }
 
 audio {
@@ -60,7 +70,7 @@ audio {
 }
 
 form#GachaForm p {
-    color: #c6c6c6;
+    color: #003a5f;
 }
 
 .interface_button {

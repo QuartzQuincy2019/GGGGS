@@ -8,14 +8,29 @@ function lastWish() {
     wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
 }
 
+/**
+ * @function 表单数字是否合法
+ * @param {Element} _element 
+ * @returns 
+ */
+function isFormNumberValueLegal(_element) {
+    if (_element.value >= _element.min && _element.value < _element.max) return true;
+    return false;
+}
+
 function readNewInfo() {
     var isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
     var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
     isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
     isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
-    newInfo[0] = E_GachaTimes.value;
-    newInfo[1] = E_StartSDrop.value;
-    newInfo[2] = E_StartRDrop.value;
+    if (isFormNumberValueLegal(E_GachaTimes) && isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) {
+        newInfo[0] = E_GachaTimes.value;
+        newInfo[1] = E_StartSDrop.value;
+        newInfo[2] = E_StartRDrop.value;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function throwNewInfo() {
@@ -26,12 +41,14 @@ function throwNewInfo() {
 }
 
 /**
- * 核心流程函数，单轮祈愿。接收祈愿表单的所有信息，祈愿，并刷新卡片。
+ * @function 核心流程函数，单轮祈愿
+ * @desc 接收祈愿表单的所有信息，祈愿，并刷新卡片。
  * @param {Boolean} isLastInfoAvailable 是否重复上一次祈愿
  */
 function submitForm(isLastInfoAvailable) {
     inventory.innerHTML = "";
-    readNewInfo();
+    var status = readNewInfo();
+    if (!status) throw new Error("表单数据不合法！");
     if (isLastInfoAvailable) {
         lastWish();
     } else {
@@ -41,12 +58,22 @@ function submitForm(isLastInfoAvailable) {
     outputObtained();
 }
 
+/**
+ * @function 是否为五星角色
+ * @param {String} characterName 
+ * @returns 
+ */
 function isSCharacter(characterName) {
     var _chara = findCharacter(characterName);
     if (_chara.star == 5) return true;
     return false;
 }
 
+/**
+ * @function 是否为Up角色
+ * @param {String} characterName 
+ * @returns 
+ */
 function isUpCharacter(characterName) {
     if (Sup.includes(characterName) || Rup.includes(characterName)) return true;
     return false;

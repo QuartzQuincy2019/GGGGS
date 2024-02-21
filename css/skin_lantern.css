@@ -61,6 +61,11 @@ p.rights span {
     color: #ff0000;
 }
 
+p#TotalCounter{
+    background-color: #ffffffd0;
+    color: #000000;
+}
+
 audio {
     border: 3px solid #fff700;
 }

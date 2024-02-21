@@ -24,6 +24,12 @@ var newInfo = [0, 0, 0, false, false];
 
 
 var E_RepeatWish = document.getElementById("repeat_wish");
+var E_TotalCounter = document.getElementById("TotalCounter");
+
+function refreshTotalCounter() {
+    E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
+}
+refreshTotalCounter();
 
 function getCurrentInfo() {
     return [_TotalWishTimes, _S_DropCalc, _R_DropCalc, _IsSupCertain, _IsRupCertain];
@@ -183,6 +189,6 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             "\n是否五星大保底：" + text1 +
             "\n是否四星大保底：" + text2;
         newInfo = getCurrentInfo();
-        E_GachaForm.title = "自打开页面以来已进行" + _TOKEN + "次（" + _TOKEN / 10000 + "万次）祈愿。";
+        refreshTotalCounter();
     }
 }

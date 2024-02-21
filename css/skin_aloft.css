@@ -4,6 +4,10 @@ div.section a:visited {
     color: #897500;
 }
 
+div.section {
+    background-color: #fffde060;
+}
+
 body {
     background-color: #fff1a9;
     background-image:
