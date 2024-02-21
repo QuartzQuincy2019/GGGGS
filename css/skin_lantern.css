@@ -61,7 +61,7 @@ p.rights span {
     color: #ff0000;
 }
 
-p#TotalCounter{
+p#TotalCounter {
     background-color: #ffffffd0;
     color: #000000;
 }
@@ -399,7 +399,7 @@ input[type="number"]:focus {
     transition-duration: 800ms;
 }
 
-.InventoryBox:hover{
+.InventoryBox:hover {
     background-position:
         0 0,
         0 0,
@@ -409,5 +409,5 @@ input[type="number"]:focus {
 
 .card p {
     background-color: #ffffffd0;
-    text-shadow: 0px 0px 1px #303030;
+    text-shadow: 0 0 0.1vh #303030;
 }

@@ -2,6 +2,7 @@
     border-radius: 12%;
     border-style: solid;
     margin: 1vh 1vh;
+    margin-bottom: 0;
     padding: 0;
     height: 100%;
     cursor: pointer;
@@ -51,43 +52,43 @@
 .cryo {
     color: #17b7e8;
     border-color: #17b7e8;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #17b7e8;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #17b7e8;
 }
 
 .dendro {
     color: #519603;
     border-color: #519603;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #519603;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #519603;
 }
 
 .hydro {
     color: #1e78c7;
     border-color: #1e78c7;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #1e78c7;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #1e78c7;
 }
 
 .electro {
     color: #6957C2;
     border-color: #6957C2;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #6957C2;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #6957C2;
 }
 
 .geo {
     color: #a58401;
     border-color: #a58401;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #a58401;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #a58401;
 }
 
 .pyro {
     color: #EC4923;
     border-color: #EC4923;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #EC4923;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #EC4923;
 }
 
 .anemo {
     color: #18a9ac;
     border-color: #18a9ac;
-    box-shadow: inset 0 0 1vh #ffffff, 0 0 1.2vh #18a9ac;
+    box-shadow: inset 0 0 0.7vh #ffffff, 0 0 1.2vh #18a9ac;
 }
 
 .starR {
@@ -117,13 +118,16 @@
 .container {
     display: inline-block;
     background-color: transparent;
+    /* border: 0.2vh solid #00000020;
+    border-radius: 2vh; */
     font-size: 1.6vh;
-    margin: 0.4vh;
+    margin: 0.6vh;
     width: -moz-fit-content;
     width: fit-content;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .container p {
+    margin: 0;
     text-align: center;
 }

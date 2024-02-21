@@ -5,7 +5,7 @@ div.section a:visited {
 }
 
 div.section {
-    color:#003a5f;
+    color: #003a5f;
     border-color: #bbe7e5;
     background-color: #e8fdffa0;
 }
@@ -61,7 +61,7 @@ p.rights span {
     color: #89ff56;
 }
 
-p#TotalCounter{
+p#TotalCounter {
     color: #e1e1e1;
 }
 
@@ -160,5 +160,5 @@ input[type="number"]:focus {
 
 .card p {
     background-color: #cfcfcf;
-    text-shadow: 1px 1px 1px #000000;
+    text-shadow: 0 0 0.2vh #000000;
 }
