@@ -122,7 +122,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             obtainedNormal++;
             _S_DropCalc++;
             _R_DropCalc++;
-            info += "第" + (wished) + "抽：3星物品。\n";
+            // info += "第" + (wished) + "抽：3星物品。\n";
             level = "";
         }
         if (level == "S") {//抽到五星
@@ -134,13 +134,13 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
                 obtainedCharacters.push(Sup[0]);
                 _IsSupCertain = false;
                 _ch = obtainedCharacters.getLast();
-                info += "第" + (wished) + "抽：抽中本期5星UP角色" + _ch + "。\n";
+                // info += "第" + (wished) + "抽：抽中本期5星UP角色" + _ch + "。\n";
             }
             if (level == "Scommon") {
                 obtainedCharacters.push(getRandomElement(Scommon));
                 _IsSupCertain = true;
                 _ch = obtainedCharacters.getLast();
-                info += "第" + (wished) + "抽：抽中本期5星常驻角色" + _ch + "。\n";
+                // info += "第" + (wished) + "抽：抽中本期5星常驻角色" + _ch + "。\n";
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
@@ -154,7 +154,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
                 obtainedCharacters.push(getRandomElement(Rup));
                 _ch = obtainedCharacters.getLast();
                 _IsRupCertain = false;
-                info += "第" + (wished) + "抽：抽中本期4星UP角色" + _ch + "。\n";
+                // info += "第" + (wished) + "抽：抽中本期4星UP角色" + _ch + "。\n";
             }
             if (level == "Rcommon") {
                 obtainedRecords.push(wished);//第几抽抽到的
@@ -162,17 +162,17 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
                 obtainedCharacters.push(getRandomElement(Rcommon));
                 _ch = obtainedCharacters.getLast();
                 _IsRupCertain = true;
-                info += "第" + (wished) + "抽：抽中本期4星非UP角色" + _ch + "。\n";
+                // info += "第" + (wished) + "抽：抽中本期4星非UP角色" + _ch + "。\n";
             }
             if (level == "Rweapon") {
                 obtainedRWeapons++;
                 _IsRupCertain = true;
-                info += "第" + (wished) + "抽：抽中本期4星武器\n";
+                // info += "第" + (wished) + "抽：抽中本期4星武器\n";
             }
             _S_DropCalc++;
             _R_DropCalc = 0;
         }
-        console.log(info);
+        // console.log(info);
         var text1;
         if (lastInfo[3] === true) { text1 = "是" } else { text1 = "否" };
         var text2;
@@ -183,5 +183,6 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             "\n是否五星大保底：" + text1 +
             "\n是否四星大保底：" + text2;
         newInfo = getCurrentInfo();
+        E_GachaForm.title = "自打开页面以来已进行" + _TOKEN + "次（" + _TOKEN / 10000 + "万次）祈愿。";
     }
 }

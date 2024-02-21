@@ -1,5 +1,7 @@
 form#GachaForm * {
     font-size: 24px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 form#GachaForm p {
@@ -27,7 +29,7 @@ form#GachaForm p {
 input[type="number"] {
     font-family: Arial, Helvetica, sans-serif;
     margin: 4px;
-    width: 90px;
+    width: 115px;
     transition-property: all;
     transition-duration: 0.3s;
 }
