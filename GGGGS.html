@@ -104,7 +104,6 @@
     <hr>
     <!-- 表单部分 -->
     <div>
-        <p class="instructions centerized" id="TotalCounter"><strong></strong></p><br>
         <div class="FormContainer">
             <div class="section FormSection"
                 title="五星物品基本概率：0.6%&#10;若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%&#10;四星物品基本概率：5.1%&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品">
@@ -129,7 +128,7 @@
                     <input class="radio_type" type="radio" title="选择：当前处于四星大保底" name="IsRUpCertainRadio"
                         id="uc_option2_2" value="cert">
                     <label for="uc_option2_2" title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
-                    <p class="FormInstructions">󰐍单轮抽数：</p><input id="GachaTimes" type="number"
+                    <p class="FormInstructions">󰐍单轮抽数(1≤x≤100000)：</p><input id="GachaTimes" type="number"
                         title="单轮抽数&#10;允许的最大值为100000。&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。" min="1" max="100000"
                         step="1"><br>
                     <div class="interface_button" onclick="submitForm(false);">开始/继续祈愿</div>
@@ -143,7 +142,7 @@
             <div class="section FormSection">
                 <form name="specialGacha" id="SpecialGachaForm" class="GachaForm">
                 <p class="instructions centerized"><strong>󱙩高级祈愿配置󱙩</strong></p><br>
-                    <p class="FormInstructions">󰧾十连抽内角色数：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为7。" min="1"
+                    <p class="FormInstructions">󰧾十连抽内角色数(0≤x≤7)：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为7。" min="1"
                         max="7" step="1" value="5"><br>
                     <div id="luck_wish" title="我抽几次十连会出现多个角色？&#10;注意：本选项有硬件保护措施。"
                         class="interface_button" onclick="luckTest();">󰀏十连多角色测试</div>
@@ -158,6 +157,7 @@
                 </form>
             </div>
         </div>
+        <p class="instructions centerized" id="TotalCounter"><strong></strong></p><br>
     </div>
     <!-- 背包部分 -->
     <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;注意：四星武器一律不予展示。"></div>

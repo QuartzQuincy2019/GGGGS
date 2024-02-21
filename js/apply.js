@@ -14,7 +14,10 @@ function lastWish() {
  * @returns 
  */
 function isFormNumberValueLegal(_element) {
-    if (_element.value >= _element.min && _element.value < _element.max) return true;
+    var val = Number(_element.value);
+    var max = Number(_element.max);
+    var min = Number(_element.min);
+    if (val >= min && val <= max) return true;
     return false;
 }
 
@@ -23,12 +26,18 @@ function readNewInfo() {
     var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
     isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
     isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
-    if (isFormNumberValueLegal(E_GachaTimes) && isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) {
-        newInfo[0] = E_GachaTimes.value;
-        newInfo[1] = E_StartSDrop.value;
-        newInfo[2] = E_StartRDrop.value;
+    console.log("R:" + isFormNumberValueLegal(E_StartRDrop));
+    if ((isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) == true) {
+        console.log("imhere");
+        newInfo[0] = Number(E_GachaTimes.value) || 0;
+        newInfo[1] = Number(E_StartSDrop.value);
+        newInfo[2] = Number(E_StartRDrop.value);
         return true;
     } else {
+        console.log("imfalse");
+        newInfo[0] = 0;
+        newInfo[1] = 0;
+        newInfo[2] = 0;
         return false;
     }
 }
@@ -48,7 +57,11 @@ function throwNewInfo() {
 function submitForm(isLastInfoAvailable) {
     inventory.innerHTML = "";
     var status = readNewInfo();
-    if (!status) throw new Error("表单数据不合法！");
+    if (!status){
+        alert("表单数据不合法！");
+        throw new Error("表单数据不合法！");
+    }
+    if (!isFormNumberValueLegal(E_GachaTimes)) throw new Error("表单“单轮抽数”数据不合法！");
     if (isLastInfoAvailable) {
         lastWish();
     } else {
@@ -102,7 +115,11 @@ function tripleSupTest() {
     var num = 0;
     var interval = 100000;
     var safeLimit = 2000000;
-    readNewInfo();
+    var status = readNewInfo();
+    if (!status){
+        alert("表单数据不合法！");
+        throw new Error("表单数据不合法！");
+    }
     do {
         newWish();
         num = checkSUpCharacter();
@@ -111,6 +128,7 @@ function tripleSupTest() {
         if (times == safeLimit) break;
     } while (num < 3);
     outputObtained();
+    throwNewInfo();
     if (times == safeLimit) {
         alert(safeLimit + "次十连之内没有符合要求的记录。");
         return;
@@ -123,19 +141,24 @@ function doubleSupTest() {
     E_GachaTimes.value = _TotalWishTimes;
     var times = 0;
     var num = 0;
-    readNewInfo();
+    var status = readNewInfo();
+    if (!status){
+        alert("表单数据不合法！");
+        throw new Error("表单数据不合法！");
+    }
     do {
         newWish();
         num = checkSUpCharacter();
         times++;
     } while (num != 2);
     outputObtained();
+    throwNewInfo();
     alert("第" + times + "次十连获得双黄Up！");
 }
 
 function luckTest() {
     var _MODE = document.getElementById("CharaNumberInTen").value;
-    if (_MODE == 0 || _MODE == undefined || _MODE > document.getElementById("CharaNumberInTen").max) {
+    if (_MODE == 0 || _MODE == undefined || !isFormNumberValueLegal(document.getElementById("CharaNumberInTen"))) {
         alert("未指定角色数或角色数不正确！");
         return;
     }
@@ -145,7 +168,11 @@ function luckTest() {
     var num = 0;
     var interval = 100000;
     var safeLimit = 2000000;
-    readNewInfo();
+    var status = readNewInfo();
+    if (!status){
+        alert("表单数据不合法！");
+        throw new Error("表单数据不合法！");
+    }
     do {
         newWish();
         num = obtainedCharacters.length;
@@ -154,6 +181,7 @@ function luckTest() {
         if (times == safeLimit) break;
     } while (num != _MODE);
     outputObtained();
+    throwNewInfo();
     if (times == safeLimit) {
         alert(safeLimit + "次十连之内没有符合要求的记录。");
         return;
