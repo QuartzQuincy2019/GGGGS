@@ -38,11 +38,11 @@ body {
 
 select {
     font-family: Arial, "仿宋", "Tinos Nerd Propo";
-    font-size: 24px;
-    border-radius: 5px;
-    border-width: 3px;
+    font-size: 3.2vh;
+    border-radius: 1vh;
+    border-width: 0.4vh;
     transition: all 0.2s;
-    margin: 4px;
+    margin: 0.8vh;
     display: inline-block;
     transition-property: all;
     transition-duration: 0.3s;
@@ -93,17 +93,17 @@ a#TitleLink:active {
 }
 
 .total_title {
-    font-size: 130px;
+    font-size: 20vh;
 }
 
 .subtitle {
-    font-size: 34px;
+    font-size: 5vh;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 p#VersionTitle {
-    margin-top: 6px;
-    margin-bottom: 4px;
+    margin-top: 0.4vh;
+    margin-bottom: 0.6vh;
 }
 
 form.GachaForm {
@@ -111,7 +111,7 @@ form.GachaForm {
 }
 
 form.GachaForm * {
-    font-size: 24px;
+    font-size: 3vh;
     font-family: Arial, "Tinos Nerd Propo", '华文中宋';
     -webkit-user-select: none;
     user-select: none;
@@ -122,7 +122,7 @@ form.GachaForm p.FormInstructions {
 }
 
 p.instructions {
-    font-size: 22px;
+    font-size: 3vh;
     font-family: 'Arial Black', Arial, "Tinos Nerd Propo", '华文中宋';
     transition-property: all;
     transition-duration: 0.3s;
@@ -144,25 +144,25 @@ p.instructions {
 }
 
 .interface_button {
-    margin: 4px;
+    margin: 0.3vh;
     display: inline-block;
     text-align: center;
-    font-size: 24px;
-    padding: 10px;
+    font-size: 3vh;
+    padding: 1vh;
     -webkit-user-select: none;
     user-select: none;
     font-family: "Tinos Nerd Propo";
     background-blend-mode: screen;
     border-style: solid;
-    border-radius: 12px;
-    border-width: 3px;
+    border-radius: 1.4vh;
+    border-width: 0.4vh;
     transition-property: all;
     transition-duration: 300ms;
 }
 
 p.rights {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 22px;
+    font-size: 3vh;
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -180,7 +180,7 @@ div.bar {
 
 div.bar div {
     display: inline-block;
-    font-size: 20px;
+    font-size: 2.8vh;
 }
 
 div.bar div.bar_inner {
@@ -211,12 +211,12 @@ div.FormSection {
 }
 
 hr {
-    margin: 15px;
-    height: 3px;
+    margin: 3vh;
+    height: 0.8vh;
 }
 
 audio {
-    border-radius: 15px;
-    width: 50%;
-    height: 25px;
+    border-radius: 2vh;
+    width: 100%;
+    height: 3.5vh;
 }

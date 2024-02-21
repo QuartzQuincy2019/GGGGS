@@ -6,7 +6,7 @@ div.section a:visited {
 
 div.section {
     color:#003a5f;
-    border-color: #0ad5cb;
+    border-color: #bbe7e5;
     background-color: #e8fdffa0;
 }
 
@@ -159,6 +159,6 @@ input[type="number"]:focus {
 }
 
 .card p {
-    background-color: #adadad;
+    background-color: #cfcfcf;
     text-shadow: 1px 1px 1px #000000;
 }
