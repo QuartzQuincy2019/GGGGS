@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v2.2.1";
+var __VERSION = "v3.0.0";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -56,8 +56,6 @@ function getRandomDecimal() {
  * @returns 角色(Character)类型的值，若未找到则返回false。
  */
 function findCharacter(characterName) {
-    for (var i = 0; i < CHARACTER_LIST.length; i++) {
-        if (CHARACTER_LIST[i].name == characterName) return CHARACTER_LIST[i];
-    }
-    return false;
+    var _chara = characterMap[characterName];
+    return _chara;
 }

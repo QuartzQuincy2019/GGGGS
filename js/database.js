@@ -131,6 +131,12 @@ var CHARACTER_LIST = [
     new Character("tartaglia", 5, "「公子」", Element.hydro, "达达利亚")
 ];
 
+var characterMap = {};
+for (var i = 0; i < CHARACTER_LIST.length; i++) {
+    var character = CHARACTER_LIST[i];
+    characterMap[character.name] = character;
+}
+
 var CHARACTER_NAMES = [];
 for (var i = 0; i < CHARACTER_LIST.length; i++) {
     CHARACTER_NAMES.push(CHARACTER_LIST[i].name);

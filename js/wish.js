@@ -18,6 +18,7 @@ var obtainedRecords = [];//储存第几抽出的角色
 var obtainedCalc = [];//储存（金）垫了几抽出的角色
 var obtainedNormal = 0;
 var obtainedRWeapons = 0;
+var upCharacterMap = {};
 
 var lastInfo = [0, 0, 0, false, false];
 var newInfo = [0, 0, 0, false, false];
@@ -40,6 +41,13 @@ function selectWishPool(wishPool) {
     Scommon = wishPool[1];
     Rup = wishPool[2];
     Rcommon = wishPool[3];
+}
+
+function refreshUpMap() {
+    upCharacterMap = {};
+    Sup.concat(Rup).forEach(characterName => {
+        upCharacterMap[characterName] = true;
+    });
 }
 
 function refreshSProbability() {
@@ -123,72 +131,55 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     for (; wished <= _TotalWishTimes; wished++) {
         _TOKEN++;
         refreshSProbability();
-        level = decideLevel(getRandomDecimal());
+        var randomedDecimal = getRandomDecimal();
+        if (_S_DropCalc != 89 && _R_DropCalc >= 9) {
+            level = "R";
+        } else if (randomedDecimal <= S_Probability) {
+            level = "S";
+        } else if (randomedDecimal > S_Probability && randomedDecimal < (S_Probability + R_Probability)) {
+            level = "R";
+        } else {
+            level = "N";
+        }
         if (level == "N") {//抽到了普通等级
             obtainedNormal++;
             _S_DropCalc++;
             _R_DropCalc++;
-            // info += "第" + (wished) + "抽：3星物品。\n";
             level = "";
         }
         if (level == "S") {//抽到五星
             obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
             obtainedRecords.push(wished);//第几抽抽到的
-            level = decideS();
-
-            if (level == "Sup") {
+            if (_IsSupCertain || getRandomDecimal() <= 0.5) {
                 obtainedCharacters.push(Sup[0]);
                 _IsSupCertain = false;
-                _ch = obtainedCharacters.getLast();
-                // info += "第" + (wished) + "抽：抽中本期5星UP角色" + _ch + "。\n";
-            }
-            if (level == "Scommon") {
+            } else {
                 obtainedCharacters.push(getRandomElement(Scommon));
                 _IsSupCertain = true;
-                _ch = obtainedCharacters.getLast();
-                // info += "第" + (wished) + "抽：抽中本期5星常驻角色" + _ch + "。\n";
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
         }
         if (level == "R") {
-            level = decideR();
-
-            if (level == "Rup") {
-                obtainedRecords.push(wished);//第几抽抽到的
-                obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                obtainedCharacters.push(getRandomElement(Rup));
-                _ch = obtainedCharacters.getLast();
-                _IsRupCertain = false;
-                // info += "第" + (wished) + "抽：抽中本期4星UP角色" + _ch + "。\n";
-            }
-            if (level == "Rcommon") {
-                obtainedRecords.push(wished);//第几抽抽到的
-                obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                obtainedCharacters.push(getRandomElement(Rcommon));
-                _ch = obtainedCharacters.getLast();
-                _IsRupCertain = true;
-                // info += "第" + (wished) + "抽：抽中本期4星非UP角色" + _ch + "。\n";
-            }
-            if (level == "Rweapon") {
+            if (_IsRupCertain || getRandomDecimal() <= 0.5) {
+                if (getRandomDecimal() <= 0.5) {
+                    obtainedRecords.push(wished);//第几抽抽到的
+                    obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
+                    obtainedCharacters.push(getRandomElement(Rup));
+                    _IsRupCertain = false;
+                } else {
+                    obtainedRecords.push(wished);//第几抽抽到的
+                    obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
+                    obtainedCharacters.push(getRandomElement(Rcommon));
+                    _IsRupCertain = true;
+                }
+            } else {//抽到四星武器
                 obtainedRWeapons++;
                 _IsRupCertain = true;
-                // info += "第" + (wished) + "抽：抽中本期4星武器\n";
             }
             _S_DropCalc++;
             _R_DropCalc = 0;
         }
-        // console.log(info);
-        var text1;
-        if (lastInfo[3] === true) { text1 = "是" } else { text1 = "否" };
-        var text2;
-        if (lastInfo[4] === true) { text2 = "是" } else { text2 = "否" };
-        E_RepeatWish.title = "上次祈愿信息：\n抽数：" + lastInfo[0] +
-            "\n五星垫数：" + lastInfo[1] +
-            "\n四星垫数：" + lastInfo[2] +
-            "\n是否五星大保底：" + text1 +
-            "\n是否四星大保底：" + text2;
         newInfo = getCurrentInfo();
-        refreshTotalCounter();
     }
 }
