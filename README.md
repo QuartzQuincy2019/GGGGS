@@ -9,11 +9,12 @@
 
 
 ## 使用指南
-用**浏览器**（推荐Edge，不推荐Firefox）打开 **`GGGGS.html`** 即可。
-### 获取方法
+PC端：下载资源，用**浏览器**（推荐Edge，不推荐Firefox）打开 **`GGGGS.html`** 即可。
+移动端/PC端：访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)，注意网速较慢。（提倡PC端采取第一种使用方法）
+### 资源获取方法
 进入[**最新发布下载链接**](https://github.com/QuartzQuincy2019/GGGGS/releases/latest)，下载`.zip`压缩包即可。
 ### 注意事项
-- **GGGGS.html只能在计算机上正常运行，手机端请访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)以获得最佳体验。**
+- **主文件GGGGS.html只能在计算机上正常运行，手机端请访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)以获得最佳体验。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
 ## 项目信息
 [**项目Wiki：使用指南、界面介绍等**](https://github.com/QuartzQuincy2019/GGGGS/wiki)
