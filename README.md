@@ -13,7 +13,7 @@
 ### 获取方法
 进入[**最新发布下载链接**](https://github.com/QuartzQuincy2019/GGGGS/releases/latest)，下载`.zip`压缩包即可。
 ### 注意事项
-- **GGGGS.html只能在计算机上正常运行。**
+- **GGGGS.html只能在计算机上正常运行，手机端请访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)以获得最佳体验。**
 - **不要**随意更改文件（夹）名或删除文件（夹）。
 ## 项目信息
 [**项目Wiki：使用指南、界面介绍等**](https://github.com/QuartzQuincy2019/GGGGS/wiki)
