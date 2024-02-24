@@ -29,6 +29,7 @@ function refreshLastWishText() {
  */
 function isFormNumberValueLegal(_element) {
     var val = Number(_element.value);
+    if (!isInteger(val)) return false;
     var max = Number(_element.max);
     var min = Number(_element.min);
     if (val >= min && val <= max) return true;
@@ -116,6 +117,10 @@ function isUpCharacter(characterName) {
     return !!upCharacterMap[characterName];
 }
 
+function isCommonCharacter(characterName) {
+    return !!commonCharacterMap[characterName];
+}
+
 function checkSCharacter() {
     var num = 0;
     for (var character of obtainedCharacters) {
@@ -132,72 +137,147 @@ function checkSUpCharacter() {
     return num;
 }
 
-function multipleSupTest(_SupMODE) {
-    refreshUpMap();
+function checkSCommonCharacter() {
+    var num = 0;
+    for (var character of obtainedCharacters) {
+        if (isSCharacter(character) && isCommonCharacter(character)) num += 1;
+    }
+    return num;
+}
+
+function auxiliaryMultipleSTest(isAllUp, SQty) {
+    var num = 0;
+    var times = 0;
+    var max = 3;
+    var interval = _interval;
+    if (SQty != "Super") {
+        var t = SQty;
+        if (isAllUp == 'All_Up') {
+            do {
+                newWish();
+                num = checkSUpCharacter();
+                times++;
+            } while (num != t);
+            outputObtained();
+            throwNewInfo();
+            refreshLastWishText();
+            refreshTotalCounter();
+        }
+        else if (isAllUp == 'Not_All_Up') {
+            do {
+                newWish();
+                num = checkSCharacter();
+                times++;
+            } while (num != t);
+            outputObtained();
+            throwNewInfo();
+            refreshLastWishText();
+            refreshTotalCounter();
+        } else {
+            do {
+                newWish();
+                num = checkSCommonCharacter();
+                times++;
+            } while (num != t);
+            outputObtained();
+            throwNewInfo();
+            refreshLastWishText();
+            refreshTotalCounter();
+        }
+        return times;
+    } else {
+        if (isAllUp) {
+            do {
+                newWish();
+                num = checkSUpCharacter();
+                times++;
+                if (times % interval == 0) {
+                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星Up角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                    if (!res) break;
+                }
+            } while (num <= max);
+            outputObtained();
+            throwNewInfo();
+            refreshLastWishText();
+            refreshTotalCounter();
+        } else {
+            do {
+                newWish();
+                num = checkSCharacter();
+                times++;
+                if (times % interval == 0) {
+                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                    if (!res) break;
+                }
+            } while (num <= max);
+            outputObtained();
+            throwNewInfo();
+            refreshLastWishText();
+            refreshTotalCounter();
+        }
+        if (num > max) {
+            return [true, times];
+        } else {
+            return [false, times];
+        }
+    }
+}
+
+function multipleSTest(_SMODE) {
     _TotalWishTimes = 10;
     E_GachaTimes.value = _TotalWishTimes;
     var times = 0;
-    var num = 0;
-    var interval = _interval;
     var status = readNewInfo();
     checkPools();
     if (!status) {
         alert("表单数据不合法！");
         throw new Error("表单数据不合法！");
     }
-    if (_SupMODE == 2) {
-        do {
-            newWish();
-            num = checkSUpCharacter();
-            times++;
-        } while (num != 2);
-        outputObtained();
-        throwNewInfo();
-        refreshLastWishText();
-        refreshTotalCounter();
-        alert("第" + times + "次十连获得双黄Up！");
-
+    var IsAllSup_val = document.querySelector('input[name="IsAllSup"]:checked').value;
+    if (IsAllSup_val == 'All_Common' && (_SMODE == 'Super' || _SMODE == 3)) {
+        alert("此事件概率过小，无法继续进行。");
+        return;
     }
-    if (_SupMODE == 3) {
-        do {
-            newWish();
-            num = checkSUpCharacter();
-            times++;
-        } while (num != 3);
-        outputObtained();
-        throwNewInfo();
-        refreshLastWishText();
-        refreshTotalCounter();
-        alert("热烈祝贺！第" + times + "次十连实现十连3个黄Up！");
-
-    }
-    if (_SupMODE == "Super") {
-        do {
-            newWish();
-            num = checkSUpCharacter();
-            times++;
-            if (times % interval == 0) {
-                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现3个黄Up。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
-                if (!res) break;
-            }
-        } while (num <= 3);
-        outputObtained();
-        throwNewInfo();
-        refreshLastWishText();
-        refreshTotalCounter();
-        if (num > 3) {
-            alert("热烈祝贺！第" + times + "次十连实现多于3个黄Up！");
+    if (_SMODE == 2) {
+        times = auxiliaryMultipleSTest(IsAllSup_val, 2);
+        if (IsAllSup_val == 'All_Up') {
+            alert("第" + times + "次十连获得双黄Up！");
+        } else if (IsAllSup_val == 'Not_All_Up') {
+            alert("第" + times + "次十连获得双黄！");
         } else {
-            alert(times + "次十连内没有十连多于3个黄Up的记录。");
+            alert("幸运女神眷顾！第" + times + "次十连同时获得2个五星非Up角色！");
         }
-
+    }
+    if (_SMODE == 3) {
+        times = auxiliaryMultipleSTest(IsAllSup_val, 3);
+        if (IsAllSup_val == 'All_Up') {
+            alert("热烈祝贺！第" + times + "次十连实现十连3个黄Up！");
+        } else {
+            alert("第" + times + "次十连实现十连3个黄！");
+        }
+    }
+    if (_SMODE == "Super") {
+        var res = auxiliaryMultipleSTest(IsAllSup_val, "Super");
+        if (IsAllSup_val) {
+            if (res[0] == true) {
+                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星Up角色！");
+            } else {
+                alert(res[1] + "次十连内没有十连多于3个五星Up角色的记录。");
+            }
+        } else {
+            if (res[0] == true) {
+                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星角色！");
+            } else {
+                alert(res[1] + "次十连内没有十连多于3个五星角色的记录。");
+            }
+        }
     }
 }
 
 function luckTest() {
-    refreshUpMap();
     var _MODE = document.getElementById("CharaNumberInTen").value;
-    if (_MODE == 0 || _MODE == undefined || !isFormNumberValueLegal(document.getElementById("CharaNumberInTen"))) {
+    console.log(_MODE);
+    if (_MODE == undefined || !isFormNumberValueLegal(document.getElementById("CharaNumberInTen"))) {
         alert("未指定角色数或角色数不正确！");
         return;
     }
@@ -212,22 +292,42 @@ function luckTest() {
         alert("表单数据不合法！");
         throw new Error("表单数据不合法！");
     }
-    do {
-        newWish();
-        num = obtainedCharacters.length;
-        times++;
-        if (times % interval == 0) {
-            var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
-            if (!res) break;
+    var IsEqualToCharacterQuantityRadio_val = document.querySelector('input[name="IsEqualToCharacterQuantityRadio"]:checked').value;
+    IsEqualToCharacterQuantityRadio_val = convertBoolean(IsEqualToCharacterQuantityRadio_val);
+    if (IsEqualToCharacterQuantityRadio_val) {
+        do {
+            newWish();
+            num = obtainedCharacters.length;
+            times++;
+            if (times % interval == 0) {
+                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                if (!res) break;
+            }
+        } while (num != _MODE);
+        if (num == _MODE) {
+            alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
+        } else {
+            alert(times + "次十连内没有同时获得" + _MODE + "个角色的记录……");
         }
-    } while (num != _MODE);
+    }
+    if (!IsEqualToCharacterQuantityRadio_val) {
+        do {
+            newWish();
+            num = obtainedCharacters.length;
+            times++;
+            if (times % interval == 0) {
+                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                if (!res) break;
+            }
+        } while (num < _MODE);
+        if (num >= _MODE) {
+            alert("第" + times + "次十连实现了同时获得不少于" + _MODE + "个角色！");
+        } else {
+            alert(times + "次十连内没有实现同时获得不少于" + _MODE + "个角色的记录……");
+        }
+    }
     outputObtained();
     throwNewInfo();
     refreshLastWishText();
     refreshTotalCounter();
-    if (num == _MODE) {
-        alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
-    } else {
-        alert(times + "次十连内没有同时获得" + _MODE + "个角色的记录……");
-    }
 }

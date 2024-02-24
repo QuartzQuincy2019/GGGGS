@@ -1,6 +1,5 @@
 // wish.js
 // 祈愿。储存祈愿逻辑。
-var _TOKEN = 0;
 
 var Sup = [];
 var Scommon = [];
@@ -18,27 +17,29 @@ var obtainedRecords = [];//储存第几抽出的角色
 var obtainedCalc = [];//储存（金）垫了几抽出的角色
 var obtainedNormal = 0;
 var obtainedRWeapons = 0;
-var upCharacterMap = {};
 
 var lastInfo = [0, 0, 0, false, false];
 var newInfo = [0, 0, 0, false, false];
 
 
 var E_RepeatWish = document.getElementById("repeat_wish");
-var E_TotalCounter = document.getElementById("TotalCounter");
 
-function refreshTotalCounter() {
-    if (_TOKEN < 10000) {
-        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
-    } else if (_TOKEN < 100000000) {
-        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + _TOKEN / 10000 + "万次）祈愿";
-    } else {
-        var o = _TOKEN % 100000000 / 10000;
-        var q = getQuotient(_TOKEN, 100000000);
-        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + q + "亿" + o + "万次）祈愿";
-    }
+var upCharacterMap = {};
+var commonCharacterMap = {};
+
+function refreshUpMap() {
+    upCharacterMap = {};
+    Sup.concat(Rup).forEach(characterName => {
+        upCharacterMap[characterName] = true;
+    });
 }
-refreshTotalCounter();
+
+function refreshCommonMap() {
+    commonCharacterMap = {};
+    Scommon.concat(Rcommon).forEach(characterName => {
+        commonCharacterMap[characterName] = true;
+    });
+}
 
 function getCurrentInfo() {
     return [_TotalWishTimes, _S_DropCalc, _R_DropCalc, _IsSupCertain, _IsRupCertain];
@@ -49,13 +50,6 @@ function selectWishPool(wishPool) {
     Scommon = wishPool[1];
     Rup = wishPool[2];
     Rcommon = wishPool[3];
-}
-
-function refreshUpMap() {
-    upCharacterMap = {};
-    Sup.concat(Rup).forEach(characterName => {
-        upCharacterMap[characterName] = true;
-    });
 }
 
 function refreshSProbability() {
@@ -130,6 +124,8 @@ function checkPools() {
         alert("非UP卡池为空！");
         throw new Error("非UP卡池为空！");
     }
+    refreshUpMap();
+    refreshCommonMap();
 }
 
 function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {

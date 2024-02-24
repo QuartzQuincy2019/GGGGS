@@ -99,6 +99,7 @@
             </select>
         </form>
         <div id="reset_button" class="interface_button" onclick="initializeAllCard();">重置卡池</div>
+        <p class="instructions">注意：若五星UP池中的角色多于1个，则五星UP池中第一个角色参与五星UP池，剩余角色视为未参与卡池。</p>
     </div>
     <!-- 卡池展示部分 -->
     <div title="五星Up池【仅1个角色】" class="PoolBox UpBox" id="Sup_PoolBox"></div>
@@ -143,26 +144,48 @@
                     <div class="interface_button" onclick="resetForm();">重置祈愿信息</div>
                     <br>
                     <p class="instructions">鼠标指针悬停于表单内容（输入框、按钮、单选）上会显示附加说明。</p>
-                    <p class="instructions">背包中“#X:(Y, Z)”的含义：X——第X个角色；Y——第Y抽的角色；Z——五星垫数（上一次抽出五星之后的抽数）</p>
+                    <p class="instructions">󰄫五星物品基本概率：0.6%。若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%。</p>
+                    <p class="instructions">󰄫四星物品基本概率：5.1%。若连续9抽都未获得四星物品，则第10抽必定获得四星物品。</p>
+                    <p class="instructions">“垫数”指自上次抽出Up角色之后，已经进行的抽数。如上一次抽到Up角色之后再没有继续进行抽取，则此时垫数为0。</p>
+                    <p class="instructions">上一次抽到的角色属于Up角色，则此时处于“小保底”状态；上一次抽到的角色不属于Up角色，则此时处于“大保底”状态。</p>
+                    <p class="instructions">󱙌基本祈愿会在下方󰏖背包展示本轮祈愿中抽取到的所有角色，抽取到的三星武器、四星武器不予展示。</p>
+                    <p class="instructions">󰏖背包中“#X:(Y, Z)”的含义：X——抽取到的第X个角色；Y——第Y抽抽取到的角色；Z——五星垫数（上一次抽出五星角色之后，接着进行的第n抽）</p>
                 </form>
             </div>
             <div class="section FormSection">
                 <form name="specialGacha" id="SpecialGachaForm" class="GachaForm">
                     <p class="instructions centerized"><strong>󱙩高级祈愿配置󱙩</strong></p><br>
                     <p class="FormInstructions">󰧾十连抽内角色数(0≤x≤8)：</p><input id="CharaNumberInTen" type="number"
-                        title="十连抽内角色数&#10;最大值为7。" min="1" max="8" step="1" value="5"><br>
+                        title="十连抽内角色数&#10;最大值为7。" min="0" max="8" step="1" value="5"><br>
+                    <input class="radio_type" type="radio" title="选择：等于当前输入的角色数" name="IsEqualToCharacterQuantityRadio"
+                        id="sgf_option1_1" value="true" checked="true">
+                    <label for="sgf_option1_1" title="等于当前输入的角色数">等于当前输入的角色数</label><br>
+                    <input class="radio_type" type="radio" title="选择：大于或等于输入的角色数" name="IsEqualToCharacterQuantityRadio"
+                        id="sgf_option1_2" value="false">
+                    <label for="sgf_option1_2" title="大于或等于输入的角色数">大于或等于输入的角色数</label><br>
                     <div id="luck_wish" title="我抽几次十连会出现多个角色？" class="interface_button" onclick="luckTest();">󰀏十连多角色测试
                     </div>
-                    <div id="doubleSup_wish" title="我抽几次十连会双黄？" class="interface_button" onclick="multipleSupTest(2);">
+                    <hr>
+                    <input class="radio_type" type="radio" title="选择：获得的五星角色必须均为五星Up角色" name="IsAllSup"
+                        id="sgf_option2_1" value="All_Up" checked="true">
+                    <label for="sgf_option2_1" title="不准歪&#10;若选择此项，则“双”“三”只指五星Up角色。">获得的五星角色必须全部为五星Up角色</label><br>
+                    <input class="radio_type" type="radio" title="选择：获得的五星角色中可以有五星非Up角色" name="IsAllSup"
+                        id="sgf_option2_2" value="Not_All_Up">
+                    <label for="sgf_option2_2" title="允许歪">获得的五星角色中可以有五星非Up角色</label><br>
+                    <input class="radio_type" type="radio" title="选择：获得的五星角色必须全部为五星非Up角色" name="IsAllSup"
+                        id="sgf_option2_3" value="All_Common">
+                    <label for="sgf_option2_3" title="多歪&#10;若选择此项，则“双”“三”只指一次十连中五星非Up角色的数量。">参与统计的只有五星非Up角色</label><br>
+                    <div id="doubleSup_wish" title="我抽几次十连会双黄且不歪/双黄/连续歪两次？" class="interface_button" onclick="multipleSTest(2);">
                         󰎩十连双黄测试
                     </div>
-                    <div id="tripleSup_wish" title="我抽几次十连会三黄？" class="interface_button" onclick="multipleSupTest(3);">
+                    <div id="tripleSup_wish" title="我抽几次十连会三黄？" class="interface_button" onclick="multipleSTest(3);">
                         󰎬十连三黄测试</div>
                     <div id="multipleSup_wish" title="我抽几次十连会多于三黄？" class="interface_button"
-                        onclick="multipleSupTest('Super');">󱇐十连超三黄测试</div>
+                        onclick="multipleSTest('Super');">󱇐十连超三黄测试</div>
                     <br>
                     <p class="instructions">󱙩高级祈愿会读取󱙌基本祈愿配置表单的信息，作为第一次祈愿的起始值。</p>
-                    <p class="instructions">请单击按钮，并进行等待。100万次十连一般需要1秒钟左右的时间。</p>
+                    <p class="instructions">请单击按钮，并进行等待。300万次十连一般需要1秒钟左右的时间。</p>
+                    <p class="instructions">若选择“参与统计的只有五星非Up角色”，则“双”“三”只指一次十连中五星非Up角色的数量。</p>
                     <p class="instructions">硬件保护：每隔500万次十连都会跳出弹窗，此时您可以选择中止祈愿。</p>
                     <p class="instructions">弹窗弹出期间，您只能与弹窗交互，无法对网页进行操作。</p>
                     <p class="instructions">󱙩高级祈愿的“󰐍单轮抽数”为10，即十连。网页会自动填充该框，您无需输入。</p>

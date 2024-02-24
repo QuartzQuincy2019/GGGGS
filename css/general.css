@@ -58,7 +58,8 @@ select {
     border-width: 0.4vh;
     max-width: 90%;
     transition: all 0.2s;
-    margin: 0.8vh;
+    margin: 0.5vh;
+    cursor: pointer;
     display: inline-block;
     transition-property: all;
     transition-duration: 0.3s;
@@ -143,7 +144,7 @@ form.GachaForm {
 
 form.GachaForm * {
     font-size: var(--universal-font-size);
-    font-family: Arial, "Tinos Nerd Propo",'华文中宋', '宋体';
+    font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     -webkit-user-select: none;
     user-select: none;
 }
@@ -182,6 +183,7 @@ p.instructions {
     padding: 1vh;
     -webkit-user-select: none;
     user-select: none;
+    cursor: help;
     font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     background-blend-mode: screen;
     border-style: solid;
@@ -250,8 +252,8 @@ div.FormSection {
 }
 
 hr {
-    margin: 3vh;
-    height: 0.8vh;
+    margin: 1.5vh;
+    height: 0.5vh;
 }
 
 audio {

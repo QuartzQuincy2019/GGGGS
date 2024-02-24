@@ -1,10 +1,12 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v3.3.1";
+var __VERSION = "v3.4.0";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
+var _TOKEN = 0;
+var E_TotalCounter = document.getElementById("TotalCounter");
 
 /**
  * 获取数组最后一个元素
@@ -72,4 +74,25 @@ function getQuotient(dividend, divisor) {
 function findCharacter(characterName) {
     var _chara = characterMap[characterName];
     return _chara;
+}
+
+function refreshTotalCounter() {
+    if (_TOKEN < 10000) {
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
+    } else if (_TOKEN < 100000000) {
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + _TOKEN / 10000 + "万次）祈愿";
+    } else {
+        var o = _TOKEN % 100000000 / 10000;
+        var q = getQuotient(_TOKEN, 100000000);
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + q + "亿" + o + "万次）祈愿";
+    }
+}
+refreshTotalCounter();
+
+function convertBoolean(value) {
+    if (value === true) return true;
+    if (value === false) return false;
+    if (value == "true") return true;
+    if (value == "false") return false;
+    throw new Error("convertBoolean: 传入的值有误！");
 }

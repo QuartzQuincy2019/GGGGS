@@ -1,6 +1,7 @@
 input[type="number"] {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0.2vw;
+    cursor: help;
     width: 6em;
     transition-property: all;
     transition-duration: 0.3s;
@@ -10,6 +11,7 @@ label {
     border-radius: 0.9vw;
     margin:0.2vw;
     padding: 0.3vw;
+    cursor: help;
     font-family: '华文中宋', "Tinos Nerd Propo";
     transition-property: all;
     transition-duration: 0.3s;
