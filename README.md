@@ -10,7 +10,7 @@
 
 ## 使用指南
 PC端：下载资源，用**浏览器**（推荐Edge，不推荐Firefox）打开 **`GGGGS.html`** 即可。
-移动端/PC端：访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)，注意网速较慢。（提倡PC端采取第一种使用方法）
+移动端/PC端：访问[手机端入口](https://quartzquincy2019.github.io/GGGGS/GGGGS.html)（最新版本），注意网速较慢。（提倡PC端采取第一种使用方法）
 ### 资源获取方法
 进入[**最新发布下载链接**](https://github.com/QuartzQuincy2019/GGGGS/releases/latest)，下载`.zip`压缩包即可。
 ### 注意事项
