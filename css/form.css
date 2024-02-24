@@ -1,23 +1,23 @@
 input[type="number"] {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 4px;
-    width: 115px;
+    margin: 0.2vw;
+    width: 6em;
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 label {
+    border-radius: 0.9vw;
+    margin:0.2vw;
+    padding: 0.3vw;
     font-family: '华文中宋', "Tinos Nerd Propo";
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .radio_type+label {
-    margin: 2px;
-    padding: 3px;
     display: inline-block;
     text-align: left;
-    border-radius: 8px;
     border-style: solid;
 }
 
@@ -26,11 +26,8 @@ label {
 }
 
 .radio_type:checked+label {
-    margin: 2px;
-    padding: 3px;
     display: inline-block;
     text-align: left;
-    border-radius: 8px;
     border-style: solid;
 }
 

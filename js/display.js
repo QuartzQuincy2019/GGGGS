@@ -25,5 +25,5 @@ E_VERSION_BAR.style.right = "0.2vw";
 addBar("#ff8b14", "Quincy K.", "author_bar", document.getElementById("section_1"));
 var E_AUTHOR_BAR = document.getElementById("author_bar");
 E_AUTHOR_BAR.style.position = "fixed";
-E_AUTHOR_BAR.style.bottom = "4.5vh";
+E_AUTHOR_BAR.style.bottom = "calc(var(--universal-font-size) + 1vh)";
 E_AUTHOR_BAR.style.right = "0.2vw";

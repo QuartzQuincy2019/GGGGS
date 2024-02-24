@@ -1,14 +1,18 @@
 .PoolBox {
+    padding: 0.4vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     margin: 6px 6px;
-    border-radius: 3vh;
+    border-radius: 2vh;
     border-style: solid;
-    min-height: 19vh;
+    min-height: var(--card-height);
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .PoolBox:empty {
-    height: 19vh;
+    height: var(--card-height);
 }
 
 .UpBox,

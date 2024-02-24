@@ -7,19 +7,34 @@
 :root {
     --color-A: #aaaaaa;
     --color-B: #bbbbbb;
+    --universal-font-size: 3vh;
+    --card-height: calc(var(--universal-font-size) * 5.6);
 }
 
 * {
     margin: 0;
+    font-size: var(--universal-font-size);
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+        --universal-font-size: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :root {
+        --universal-font-size: 2vh;
+    }
 }
 
 div.section {
     flex: 1;
-    margin: 6px;
-    padding: 1em;
+    margin: 1vw;
+    padding: 1vw;
     border-style: double;
-    border-width: 0.3em;
-    border-radius: 1.2em;
+    border-width: 0.4vw;
+    border-radius: 1vw;
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -38,9 +53,10 @@ body {
 
 select {
     font-family: Arial, "仿宋", "Tinos Nerd Propo";
-    font-size: 3.2vh;
+    font-size: var(--universal-font-size);
     border-radius: 1vh;
     border-width: 0.4vh;
+    max-width: 90%;
     transition: all 0.2s;
     margin: 0.8vh;
     display: inline-block;
@@ -92,18 +108,33 @@ a#TitleLink:active {
     color: inherit;
 }
 
-.total_title {
-    font-size: 20vh;
+.total_title * {
+    font-size: 17vh;
 }
 
-.subtitle {
-    font-size: 5vh;
+.subtitle * {
+    font-size: 4vh;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.subtitle#VersionTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 1000px) {
+    .total_title * {
+        font-size: 13vw;
+    }
+
+    .subtitle {
+        display: none;
+    }
+}
+
 p#VersionTitle {
-    margin-top: 0.4vh;
-    margin-bottom: 0.6vh;
+    margin-top: 0.4vw;
+    margin-bottom: 0.6vw;
 }
 
 form.GachaForm {
@@ -111,8 +142,8 @@ form.GachaForm {
 }
 
 form.GachaForm * {
-    font-size: 3vh;
-    font-family: Arial, "Tinos Nerd Propo", '华文中宋';
+    font-size: var(--universal-font-size);
+    font-family: Arial, "Tinos Nerd Propo",'华文中宋', '宋体';
     -webkit-user-select: none;
     user-select: none;
 }
@@ -122,14 +153,14 @@ form.GachaForm p.FormInstructions {
 }
 
 p.instructions {
-    font-size: 3vh;
-    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", '华文中宋';
+    font-size: var(--universal-font-size);
+    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     transition-property: all;
     transition-duration: 0.3s;
 }
 
 .centerized {
-    font-family: Arial, "Tinos Nerd Propo", '华文中宋';
+    font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     text-align: center;
     transition-property: all;
     transition-duration: 0.3s;
@@ -147,11 +178,11 @@ p.instructions {
     margin: 0.3vh;
     display: inline-block;
     text-align: center;
-    font-size: 3vh;
+    font-size: var(--universal-font-size);
     padding: 1vh;
     -webkit-user-select: none;
     user-select: none;
-    font-family: "Tinos Nerd Propo";
+    font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     background-blend-mode: screen;
     border-style: solid;
     border-radius: 1.4vh;
@@ -162,7 +193,7 @@ p.instructions {
 
 p.rights {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 3vh;
+    font-size: var(--universal-font-size);
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -180,7 +211,7 @@ div.bar {
 
 div.bar div {
     display: inline-block;
-    font-size: 2.8vh;
+    font-size: var(--universal-font-size);
 }
 
 div.bar div.bar_inner {
@@ -210,13 +241,23 @@ div.FormSection {
     flex-grow: 1;
 }
 
+@media screen and (max-width: 800px) {
+    div.FormContainer {
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
 hr {
     margin: 3vh;
     height: 0.8vh;
 }
 
 audio {
-    border-radius: 2vh;
+    border-width: 0.2vw;
+    border-style: solid;
+    border-radius: 10vw;
     width: 100%;
-    height: 3.5vh;
+    height: 6vh;
 }

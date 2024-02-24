@@ -188,6 +188,6 @@ function outputObtained() {
         _container.classList.add("container");
         inventory.appendChild(_container);
         initializeCard(findCharacter(obtainedCharacters[i]), _container);
-        _container.innerHTML += "<p>" + Number(i + 1) + "#(" + Number(obtainedRecords[i]) + ", <strong>" + Number(obtainedCalc[i]) + "</strong>)</p>";
+        _container.innerHTML += "<p>#" + Number(i + 1) + ":(" + Number(obtainedRecords[i]) + ", <strong>" + Number(obtainedCalc[i]) + "</strong>)</p>";
     }
 }

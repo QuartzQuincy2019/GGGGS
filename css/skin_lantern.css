@@ -67,7 +67,7 @@ p#TotalCounter {
 }
 
 audio {
-    border: 3px solid #fff700;
+    border-color:  #ff6200;
 }
 
 form#GachaForm p {
@@ -171,7 +171,7 @@ input[type="number"]:focus {
 }
 
 .NonBox {
-    background-color: #585858d0;
+    background-color: #b9b9b9d0;
 }
 
 .CommonBox {
@@ -258,7 +258,7 @@ input[type="number"]:focus {
 
 .container {
     color: #000000;
-    text-shadow: 0px 0px 2px #000000;
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #000000;
 }
 
 .InventoryBox {
@@ -409,5 +409,5 @@ input[type="number"]:focus {
 
 .card p {
     background-color: #ffffffd0;
-    text-shadow: 0 0 0.1vh #303030;
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.04) #303030;
 }

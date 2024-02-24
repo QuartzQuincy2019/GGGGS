@@ -1,7 +1,6 @@
 // apply.js
 
 var _interval = 5000000; //每_interval次十连提醒一次
-var _safeLimit = 100000000; //最多进行_safeLimit次十连，强制结束
 
 function newWish() {
     wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
@@ -41,9 +40,7 @@ function readNewInfo() {
     var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
     isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
     isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
-    console.log("R:" + isFormNumberValueLegal(E_StartRDrop));
     if ((isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) == true) {
-        console.log("imhere");
         newInfo[0] = Number(E_GachaTimes.value) || 0;
         newInfo[1] = Number(E_StartSDrop.value);
         newInfo[2] = Number(E_StartRDrop.value);
@@ -64,6 +61,16 @@ function throwNewInfo() {
     newInfo[4] == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
 }
 
+function resetForm() {
+    E_StartSDrop.value = 0;
+    E_StartRDrop.value = 0;
+    E_uc_option1_1.checked = true;
+    E_uc_option1_2.checked = false;
+    E_uc_option2_1.checked = true;
+    E_uc_option2_2.checked = false;
+    E_GachaTimes.value = 1;
+}
+
 /**
  * @function 核心流程函数，单轮祈愿
  * @desc 接收祈愿表单的所有信息，祈愿，并刷新卡片。
@@ -77,6 +84,7 @@ function submitForm(isLastInfoAvailable) {
         throw new Error("表单数据不合法！");
     }
     if (!isFormNumberValueLegal(E_GachaTimes)) throw new Error("表单“单轮抽数”数据不合法！");
+    checkPools();
     if (isLastInfoAvailable) {
         lastWish();
     } else {
@@ -131,8 +139,8 @@ function multipleSupTest(_SupMODE) {
     var times = 0;
     var num = 0;
     var interval = _interval;
-    var safeLimit = _safeLimit;
     var status = readNewInfo();
+    checkPools();
     if (!status) {
         alert("表单数据不合法！");
         throw new Error("表单数据不合法！");
@@ -148,6 +156,7 @@ function multipleSupTest(_SupMODE) {
         refreshLastWishText();
         refreshTotalCounter();
         alert("第" + times + "次十连获得双黄Up！");
+
     }
     if (_SupMODE == 3) {
         do {
@@ -160,24 +169,28 @@ function multipleSupTest(_SupMODE) {
         refreshLastWishText();
         refreshTotalCounter();
         alert("热烈祝贺！第" + times + "次十连实现十连3个黄Up！");
+
     }
     if (_SupMODE == "Super") {
         do {
             newWish();
             num = checkSUpCharacter();
             times++;
-            if (times % interval == 0 && times > (interval - 1)) alert("当前已进行" + times / 10000 + "万次十连，都未实现十连多于3个黄Up。\n该提示每" + interval / 10000 + "万次十连出现一次。\n如果尝试" + safeLimit / 10000 + "万次十连都不符合要求，则该循环会自动退出。");
-            if (times == safeLimit) break;
+            if (times % interval == 0) {
+                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现3个黄Up。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                if (!res) break;
+            }
         } while (num <= 3);
         outputObtained();
         throwNewInfo();
         refreshLastWishText();
         refreshTotalCounter();
-        if (times == safeLimit) {
-            alert(safeLimit + "次十连之内没有符合要求的记录。");
-            return;
+        if (num > 3) {
+            alert("热烈祝贺！第" + times + "次十连实现多于3个黄Up！");
+        } else {
+            alert(times + "次十连内没有十连多于3个黄Up的记录。");
         }
-        alert("热烈祝贺！第" + times + "次十连实现多于3个黄Up！");
+
     }
 }
 
@@ -193,8 +206,8 @@ function luckTest() {
     var times = 0;
     var num = 0;
     var interval = _interval;
-    var safeLimit = _safeLimit;
     var status = readNewInfo();
+    checkPools();
     if (!status) {
         alert("表单数据不合法！");
         throw new Error("表单数据不合法！");
@@ -203,16 +216,18 @@ function luckTest() {
         newWish();
         num = obtainedCharacters.length;
         times++;
-        if (times % interval == 0 && times > (interval - 1)) alert("当前已进行" + times / 10000 + "万次十连，都未实现一次十连中有" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n如果尝试" + safeLimit / 10000 + "万次十连都不符合要求，则该循环会自动退出。");
-        if (times == safeLimit) break;
+        if (times % interval == 0) {
+            var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+            if (!res) break;
+        }
     } while (num != _MODE);
     outputObtained();
     throwNewInfo();
     refreshLastWishText();
     refreshTotalCounter();
-    if (times == safeLimit) {
-        alert(safeLimit + "次十连之内没有符合要求的记录。");
-        return;
+    if (num == _MODE) {
+        alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
+    } else {
+        alert(times + "次十连内没有同时获得" + _MODE + "个角色的记录……");
     }
-    alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
 }

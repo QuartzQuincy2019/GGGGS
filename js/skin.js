@@ -53,13 +53,17 @@ function getCurrentSkinId() {
     return getSkinId(getCurrentSkinPath());
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key != _FK_CHANGE_SKIN) return false;
-    e.preventDefault();
+function altSkin(){
     if (getCurrentSkinId() == MAX_SKIN_ID) {
         changeSkin(MIN_SKIN_ID);
     } else {
         changeSkin(getCurrentSkinId() + 1);
     }
+}
+
+document.addEventListener("keydown", function (e) {
+    if (e.key != _FK_CHANGE_SKIN) return false;
+    e.preventDefault();
+    altSkin();
     return true;
 })

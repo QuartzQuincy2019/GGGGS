@@ -28,7 +28,15 @@ var E_RepeatWish = document.getElementById("repeat_wish");
 var E_TotalCounter = document.getElementById("TotalCounter");
 
 function refreshTotalCounter() {
-    E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
+    if (_TOKEN < 10000) {
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
+    } else if (_TOKEN < 100000000) {
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + _TOKEN / 10000 + "万次）祈愿";
+    } else {
+        var o = _TOKEN % 100000000 / 10000;
+        var q = getQuotient(_TOKEN, 100000000);
+        E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + q + "亿" + o + "万次）祈愿";
+    }
 }
 refreshTotalCounter();
 
@@ -105,20 +113,15 @@ function getRandomElement(arr) {
     return arr[randomIndex];
 }
 
-function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
-    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), isSC, isRC];
-    _TotalWishTimes = totalWishes;
+function initializeObtained() {
     obtainedCharacters = [];
     obtainedRecords = [];
     obtainedCalc = [];
     obtainedNormal = 0;
     obtainedRWeapons = 0;
-    _S_DropCalc = startSDrop;
-    _R_DropCalc = startRDrop;
-    _IsSupCertain = isSC;
-    _IsRupCertain = isRC;
-    level = "";
-    info = "";
+}
+
+function checkPools() {
     if (Sup.length == 0 || Rup.length == 0) {
         alert("UP卡池为空！");
         throw new Error("UP卡池为空！");
@@ -127,9 +130,23 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
         alert("非UP卡池为空！");
         throw new Error("非UP卡池为空！");
     }
+}
+
+function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
+    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), isSC, isRC];
+    obtainedCharacters = [];
+    obtainedRecords = [];
+    obtainedCalc = [];
+    obtainedNormal = 0;
+    obtainedRWeapons = 0;
+    _TotalWishTimes = totalWishes;
+    _S_DropCalc = startSDrop;
+    _R_DropCalc = startRDrop;
+    _IsSupCertain = isSC;
+    _IsRupCertain = isRC;
+    var level = "";
     var wished = 1;//当前祈愿次数
     for (; wished <= _TotalWishTimes; wished++) {
-        _TOKEN++;
         refreshSProbability();
         var randomedDecimal = getRandomDecimal();
         if (_S_DropCalc != 89 && _R_DropCalc >= 9) {
@@ -180,6 +197,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             _S_DropCalc++;
             _R_DropCalc = 0;
         }
-        newInfo = getCurrentInfo();
     }
+    _TOKEN += _TotalWishTimes;
+    newInfo = getCurrentInfo();
 }
