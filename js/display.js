@@ -1,3 +1,5 @@
+var E_SpecialGachaControl = document.getElementById("SpecialGachaControl");
+
 function generateBar(_background_color, _innerHTML, _id) {
     var _p = document.createElement("div");
     _p.classList.add("bar");
@@ -25,5 +27,17 @@ E_VERSION_BAR.style.right = "0.2vw";
 addBar("#ff8b14", "Quincy K.", "author_bar", document.getElementById("section_1"));
 var E_AUTHOR_BAR = document.getElementById("author_bar");
 E_AUTHOR_BAR.style.position = "fixed";
-E_AUTHOR_BAR.style.bottom = "calc(var(--universal-font-size) + 1vh)";
+E_AUTHOR_BAR.style.bottom = "calc(var(--universal-font-size) + 2.0vh)";
 E_AUTHOR_BAR.style.right = "0.2vw";
+
+function areaControl(elementId) {
+    var _E = document.getElementById(elementId);
+    if (_E.style.display == "none") {
+        _E.style.display = "";
+        return;
+    }
+    if (_E.style.display == "") {
+        _E.style.display = "none";
+        return;
+    }
+}

@@ -5,8 +5,9 @@
     justify-content: space-between;
     flex-direction: column;
     align-items: stretch;
+    box-sizing: border-box;
     border-radius: 1vh;
-    border-width: 0.3vh;
+    border-width: 0.5vh;
     border-style: solid;
     margin: 1vh 0.7vw;
     margin-bottom: 0;
@@ -14,7 +15,6 @@
     height: var(--card-height);
     cursor: pointer;
     overflow: hidden;
-    box-sizing: border-box;
     width: -moz-fit-content;
     width: fit-content;
     -webkit-user-select: none;
@@ -22,6 +22,12 @@
     transition-property: all;
     transition-duration: 300ms;
     transform-origin: center center;
+}
+
+@media screen and (max-width: 950px) {
+    .card {
+        border-width: 0.3vh;
+    }
 }
 
 .card:hover {
@@ -37,8 +43,8 @@
     width: calc(var(--card-height) * 0.8);
     display: block;
     box-sizing: border-box;
-    border-top-left-radius: 1vh;
-    border-top-right-radius: 1vh;
+    border-top-left-radius: 0.6vh;
+    border-top-right-radius: 0.6vh;
 }
 
 .card>p {
@@ -49,9 +55,9 @@
     display: block;
     text-align: center;
     height: calc(var(--card-height) * 0.2);
-    font-size: calc(var(--card-height) * 0.13);
-    border-bottom-left-radius: 1vh;
-    border-bottom-right-radius: 1vh;
+    font-size: calc(var(--card-height) * 0.12);
+    border-bottom-left-radius: 0.6vh;
+    border-bottom-right-radius: 0.6vh;
     font-family: '华文中宋', '宋体';
     transition-property: all;
     transition-duration: 0.3s;
@@ -124,14 +130,26 @@
 }
 
 .container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: transparent;
-    /* border: 0.2vh solid #00000020;
-    border-radius: 2vh; */
+    /* border: 0.2vh solid #00000020;*/
+    border-radius: 2vh;
     margin: 0.6vh;
     width: -moz-fit-content;
     width: fit-content;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.SUpContainer {
+    border-radius: 0.6vw;
+    background-image: linear-gradient(-45deg, #FF8008D0, #FFC837D0);
+}
+
+.RUpContainer {
+    border-radius: 0.6vw;
+    background-image: linear-gradient(135deg, #f4c4f370, #fc67fa70);
 }
 
 .container>p {
@@ -140,6 +158,7 @@
     text-align: center;
 }
 
-.container>p>strong{
-    font-size: calc(var(--universal-font-size) / 1.3);
+.container p.veryMark {
+    display: block;
+    font-size: calc(var(--universal-font-size) / 1.0);
 }

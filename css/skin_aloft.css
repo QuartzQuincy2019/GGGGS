@@ -53,7 +53,7 @@ p#VersionTitle {
     text-shadow: 1px 1px 4px #000000;
 }
 
-p.instructions {
+div.section p.instructions {
     color: #000000;
 }
 
@@ -135,6 +135,10 @@ input[type="number"]:focus {
             #36a1e760,
             #6DD5FA60,
             #FFFFFF60);
+}
+
+.container {
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #aeaeae;
 }
 
 .card p {

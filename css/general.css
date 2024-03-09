@@ -16,7 +16,7 @@
     font-size: var(--universal-font-size);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1150px) {
     :root {
         --universal-font-size: 2.5vh;
     }
@@ -120,7 +120,7 @@ a#TitleLink:active {
 
 .subtitle#VersionTitle {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2vw;
+    font-size: 4vh;
 }
 
 @media screen and (max-width: 1000px) {
@@ -128,7 +128,11 @@ a#TitleLink:active {
         font-size: 13vw;
     }
 
-    .subtitle {
+    .subtitle#VersionTitle {
+        font-size: 4vw;
+    }
+
+    .subtitle#ExplanationTitle {
         display: none;
     }
 }
@@ -145,12 +149,22 @@ form.GachaForm {
 form.GachaForm * {
     font-size: var(--universal-font-size);
     font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
+}
+
+div#GachaFormInstructionArea *,
+div#SpecialFormInstructionArea {
     -webkit-user-select: none;
     user-select: none;
 }
 
-form.GachaForm p.FormInstructions {
+form.GachaForm p {
     display: inline;
+}
+
+p.TipTitle {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 5vh;
 }
 
 p.instructions {
@@ -183,12 +197,12 @@ p.instructions {
     padding: 1vh;
     -webkit-user-select: none;
     user-select: none;
-    cursor: help;
     font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     background-blend-mode: screen;
     border-style: solid;
     border-radius: 1.4vh;
     border-width: 0.4vh;
+    cursor: pointer;
     transition-property: all;
     transition-duration: 300ms;
 }
@@ -243,7 +257,7 @@ div.FormSection {
     flex-grow: 1;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 950px) {
     div.FormContainer {
         display: flex;
         align-items: stretch;
@@ -252,8 +266,14 @@ div.FormSection {
 }
 
 hr {
-    margin: 1.5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 2%;
+    margin-right: 2%;
     height: 0.5vh;
+    border-width: 0;
+    color: #000;
+    background-color: #000;
 }
 
 audio {

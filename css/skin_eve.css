@@ -7,7 +7,7 @@ div.section a:visited {
 div.section {
     color: #002338;
     border-color: #bbe7e5;
-    background-color: #c7d6d7a0;
+    background-color: #0000008a;
 }
 
 body {
@@ -45,12 +45,21 @@ option {
     text-shadow: 2px 2px 5px #828282;
 }
 
+hr {
+    background-color: #e2e2e2;
+    color: #e2e2e2;
+}
+
 p#VersionTitle {
     text-shadow: 1px 1px 4px #828282;
 }
 
 p.instructions {
-    color: #002338;
+    color: #e2e2e2;
+}
+
+div.section p {
+    color: #e2e2e2;
 }
 
 p.rights {
@@ -67,10 +76,6 @@ p#TotalCounter {
 
 audio {
     border-color: #00a0ab;
-}
-
-form#GachaForm p {
-    color: #002338;
 }
 
 .interface_button {
@@ -147,18 +152,15 @@ input[type="number"]:focus {
 }
 
 .container {
-    color: #d5d5d5;
-    text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #dadada;
+    color: #e1e1e1;
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.06) #2f2f2f;
 }
 
 .InventoryBox {
-    background-image: linear-gradient(135deg,
-            #36a1e760,
-            #2aa7d460,
-            #1a6aea60);
+    background-color: #0000008a;
 }
 
 .card p {
-    background-color: #cfcfcf;
-    text-shadow: 0 0 calc(var(--universal-font-size) * 0.06) #000000;
+    background-color: #d3d3d3;
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #dedede;
 }

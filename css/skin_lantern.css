@@ -49,7 +49,17 @@ p#VersionTitle {
     text-shadow: 0px 0px 2px #fff700;
 }
 
-p.instructions {
+hr {
+    background-color: #000000;
+    color: #000000;
+}
+
+p.TipTitle {
+    color: #000000;
+    background-color: #ffffffd0;
+}
+
+div.section p.instructions {
     color: #000000;
 }
 
@@ -67,11 +77,7 @@ p#TotalCounter {
 }
 
 audio {
-    border-color:  #ff6200;
-}
-
-form#GachaForm p {
-    color: #000000;
+    border-color: #ff6200;
 }
 
 .interface_button {
@@ -258,7 +264,7 @@ input[type="number"]:focus {
 
 .container {
     color: #000000;
-    text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #000000;
+    text-shadow: 0 0 calc(var(--universal-font-size) * 0.05) #000000;
 }
 
 .InventoryBox {

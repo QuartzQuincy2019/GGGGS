@@ -97,54 +97,6 @@ function submitForm(isLastInfoAvailable) {
     refreshTotalCounter();
 }
 
-/**
- * @function 是否为五星角色
- * @param {String} characterName 
- * @returns 
- */
-function isSCharacter(characterName) {
-    var _chara = characterMap[characterName];
-    if (_chara && _chara.star == 5) return true;
-    return false;
-}
-
-/**
- * @function 是否为Up角色
- * @param {String} characterName 
- * @returns 
- */
-function isUpCharacter(characterName) {
-    return !!upCharacterMap[characterName];
-}
-
-function isCommonCharacter(characterName) {
-    return !!commonCharacterMap[characterName];
-}
-
-function checkSCharacter() {
-    var num = 0;
-    for (var character of obtainedCharacters) {
-        if (isSCharacter(character)) num += 1;
-    }
-    return num;
-}
-
-function checkSUpCharacter() {
-    var num = 0;
-    for (var character of obtainedCharacters) {
-        if (isSCharacter(character) && isUpCharacter(character)) num += 1;
-    }
-    return num;
-}
-
-function checkSCommonCharacter() {
-    var num = 0;
-    for (var character of obtainedCharacters) {
-        if (isSCharacter(character) && isCommonCharacter(character)) num += 1;
-    }
-    return num;
-}
-
 function auxiliaryMultipleSTest(isAllUp, SQty) {
     var num = 0;
     var times = 0;

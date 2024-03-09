@@ -14,6 +14,66 @@ var E_uc_option2_2 = document.getElementById("uc_option2_2");
 var E_GachaTimes = document.getElementById("GachaTimes");
 var E_GachaForm = document.getElementById("GachaForm");
 
+
+/**
+ * @function 是否为五星角色
+ * @param {String} characterName 
+ * @returns 
+ */
+function isSCharacter(characterName) {
+    var _chara = characterMap[characterName];
+    if (_chara && _chara.star == 5) return true;
+    return false;
+}
+
+/**
+ * @function 是否为四星角色
+ * @param {String} characterName 
+ * @returns 
+ */
+function isRCharacter(characterName) {
+    var _chara = characterMap[characterName];
+    if (_chara && _chara.star == 4) return true;
+    return false;
+}
+
+/**
+ * @function 是否为Up角色
+ * @param {String} characterName 
+ * @returns 
+ */
+function isUpCharacter(characterName) {
+    return !!upCharacterMap[characterName];
+}
+
+function isCommonCharacter(characterName) {
+    return !!commonCharacterMap[characterName];
+}
+
+function checkSCharacter() {
+    var num = 0;
+    for (var character of obtainedCharacters) {
+        if (isSCharacter(character)) num += 1;
+    }
+    return num;
+}
+
+function checkSUpCharacter() {
+    var num = 0;
+    for (var character of obtainedCharacters) {
+        if (isSCharacter(character) && isUpCharacter(character)) num += 1;
+    }
+    return num;
+}
+
+function checkSCommonCharacter() {
+    var num = 0;
+    for (var character of obtainedCharacters) {
+        if (isSCharacter(character) && isCommonCharacter(character)) num += 1;
+    }
+    return num;
+}
+
 /**
  * 清空NonBox、UpBox、CommonBox中的卡片
  */
@@ -183,11 +243,15 @@ function updateBanner() {
 
 function outputObtained() {
     inventory.innerHTML = "";
+    checkPools();
     for (var i = 0; i < obtainedCharacters.length; i++) {
         var _container = document.createElement("div");
         _container.classList.add("container");
+        if (isSCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) _container.classList.add("SUpContainer");
+        if (isRCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) _container.classList.add("RUpContainer");
         inventory.appendChild(_container);
         initializeCard(findCharacter(obtainedCharacters[i]), _container);
-        _container.innerHTML += "<p>#" + Number(i + 1) + ":(" + Number(obtainedRecords[i]) + ", <strong>" + Number(obtainedCalc[i]) + "</strong>)</p>";
+        _container.innerHTML += "<p class='veryMark'><strong>" + Number(obtainedCalc[i]) + "</strong></p>";
+        _container.innerHTML += "<p>#" + Number(i + 1) + ":(" + Number(obtainedRecords[i]) + ")</p>";
     }
 }
