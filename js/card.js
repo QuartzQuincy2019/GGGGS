@@ -1,8 +1,22 @@
 // card.js
 // 卡片。控制布局及内容。
 
+var S_Non = [];
+var R_Non = [];
+
+/**
+ * S Chronicled Box
+ */
+var E_SChBox = document.getElementById("Chronicled_Sup_PoolBox");
+
+/**
+ * S Non Box
+ */
 var E_SBox = document.getElementById("Snon_PoolBox");
+var E_SupBox = document.getElementById("Sup_PoolBox");
+var E_ScommonBox = document.getElementById("Scommon_PoolBox");
 var E_RBox = document.getElementById("Rnon_PoolBox");
+var E_RupBox = document.getElementById("Rup_PoolBox");
 var inventory = document.getElementById("inventory");
 
 var E_StartSDrop = document.getElementById("StartSDrop");
@@ -13,6 +27,8 @@ var E_uc_option2_1 = document.getElementById("uc_option2_1");
 var E_uc_option2_2 = document.getElementById("uc_option2_2");
 var E_GachaTimes = document.getElementById("GachaTimes");
 var E_GachaForm = document.getElementById("GachaForm");
+
+var E_SBoxes = document.querySelectorAll(".SBox");
 
 
 /**
@@ -78,6 +94,7 @@ function checkSCommonCharacter() {
  * 清空NonBox、UpBox、CommonBox中的卡片
  */
 function clearCard() {
+    document.getElementById("Chronicled_Sup_PoolBox").innerHTML = "";
     document.getElementById("Snon_PoolBox").innerHTML = "";
     document.getElementById("Rnon_PoolBox").innerHTML = "";
     document.getElementById("Rup_PoolBox").innerHTML = "";
@@ -106,11 +123,30 @@ function initializeCard(character, destination) {
     _card.appendChild(_title);
     var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
     _card.title = _chara.star + "星【" + elementChs + "】 “" + _chara.signature + "” " + _chara.nameChs;
-    _card.id = "card_" + _chara.name;
+    _card.id = "card_" + _chara.name;//卡片id
     _card.onclick = function () {
         moveCard(this);
     };
+    /**
+     * 目的地
+     */
     var parentNode = destination;
+    if (_CHRONICLE_MODE == true) {
+        if (parentNode.id == "Chronicled_Sup_PoolBox") {
+            _card.id = "card_chronicled_" + _chara.name;
+            _card.onclick = function () {
+                alert("直接点击候选栏（可定轨五星池）中的角色属于无效操作。该区域中的卡片仅有展示作用。\n请点击“已定轨五星池”、“未定轨五星池”或“不参与集录祈愿的五星角色”三个区域中的角色卡片以更改定轨的角色。");
+            }
+        }
+        if (parentNode.id == "Rnon_PoolBox") {
+            _card.onclick = function () {
+                E_RBox.removeChild(this);
+                R_Non.deleteElement(_card.id);
+                Rup.push(_chara.name);
+                initializeCard(character, E_RupBox);
+            }
+        }
+    }
     parentNode.appendChild(_card);
 }
 
@@ -119,10 +155,13 @@ function initializeCard(character, destination) {
  */
 function initializeAllCard() {
     clearCard();
+    ChronicledSup = [];
     Sup = [];
     Rup = [];
     Scommon = [];
     Rcommon = [];
+    S_Non = [];
+    R_Non = [];
     for (var i = 0; i < CHARACTER_NAMES.length; i++) {
         var _chara = findCharacter(CHARACTER_NAMES[i]);
         if (_chara.star == 4) initializeCard(_chara, E_RBox);
@@ -134,35 +173,73 @@ document.body.onload = initializeAllCard();//body加载后立刻初始化所有�
 
 /**
  * 用户动手操作时调用该函数
- * @param {*} element 
+ * @param {Element} element 
  */
 function moveCard(element) {
     var passenger = element;
+    var passengerName = element.id.slice(5);
     var origin = element.parentNode;
     var destination;
-    if (origin.id === "Rnon_PoolBox") destination = document.getElementById("Rcommon_PoolBox");
-    if (origin.id === "Rcommon_PoolBox") destination = document.getElementById("Rup_PoolBox");
-    if (origin.id === "Rup_PoolBox") destination = document.getElementById("Rnon_PoolBox");
     if (origin.id === "Snon_PoolBox") destination = document.getElementById("Scommon_PoolBox");
     if (origin.id === "Scommon_PoolBox") destination = document.getElementById("Sup_PoolBox");
     if (origin.id === "Sup_PoolBox") destination = document.getElementById("Snon_PoolBox");
-    origin.removeChild(passenger);
-    destination.appendChild(passenger);
-    Sup = [];
-    Rup = [];
-    Rcommon = [];
-    Scommon = [];
-    for (var i = 0; i < document.getElementById("Sup_PoolBox").childNodes.length; i++) {
-        Sup.push(document.getElementById("Sup_PoolBox").children[i].id.slice(5));
-    }
-    for (var i = 0; i < document.getElementById("Scommon_PoolBox").childNodes.length; i++) {
-        Scommon.push(document.getElementById("Scommon_PoolBox").children[i].id.slice(5));
-    }
-    for (var i = 0; i < document.getElementById("Rup_PoolBox").childNodes.length; i++) {
-        Rup.push(document.getElementById("Rup_PoolBox").children[i].id.slice(5));
-    }
-    for (var i = 0; i < document.getElementById("Rcommon_PoolBox").childNodes.length; i++) {
-        Rcommon.push(document.getElementById("Rcommon_PoolBox").children[i].id.slice(5));
+    if (_CHRONICLE_MODE == true) {
+        if (findCharacter(passengerName).star == 5) {
+            if (origin.id === "Snon_PoolBox") {//要前往ScommonBox
+                S_Non.deleteElement(passengerName);//消去Non的身份
+                ChronicledSup.push(passengerName);//在Ch中登记
+                Scommon.push(passengerName);
+                initializeCard(findCharacter(passengerName), E_SChBox);//在Ch中复制一份
+            }
+            if (origin.id === "Scommon_PoolBox") {//要前往SupBox
+                Scommon.deleteElement(passengerName);
+                if (Sup.length != 0) {
+                    E_SupBox.removeChild(document.getElementById("card_" + Sup[0]));//删除当前的Sup卡片
+                    initializeCard(findCharacter(Sup[0]), E_ScommonBox);//并将其挪至Scom
+                    Scommon.push(Sup[0]);//将当前的Sup驱赶至Scommon
+                }
+                Sup = [passengerName];
+            }
+            if (origin.id === "Sup_PoolBox") {//要前往SnonBox
+                ChronicledSup.deleteElement(passengerName);
+                S_Non.push(Sup[0]);
+                Sup.deleteElement(passengerName);
+                E_SChBox.removeChild(document.getElementById("card_chronicled_" + passengerName));
+            }
+            origin.removeChild(passenger);
+            destination.appendChild(passenger);
+            // console.log(Sup, Scommon);
+        }
+        if (findCharacter(passengerName).star == 4) {
+            if (origin.id === "Rnon_PoolBox") {
+                destination = E_RupBox;
+            }
+            if (origin.id === "Rup_PoolBox") {
+                destination = E_RBox;
+            }
+        }
+    } else {
+        if (origin.id === "Rnon_PoolBox") destination = document.getElementById("Rcommon_PoolBox");
+        if (origin.id === "Rcommon_PoolBox") destination = document.getElementById("Rup_PoolBox");
+        if (origin.id === "Rup_PoolBox") destination = document.getElementById("Rnon_PoolBox");
+        origin.removeChild(passenger);
+        destination.appendChild(passenger);
+        Sup = [];
+        Rup = [];
+        Rcommon = [];
+        Scommon = [];
+        for (var i = 0; i < document.getElementById("Sup_PoolBox").childNodes.length; i++) {
+            Sup.push(document.getElementById("Sup_PoolBox").children[i].id.slice(5));
+        }
+        for (var i = 0; i < document.getElementById("Scommon_PoolBox").childNodes.length; i++) {
+            Scommon.push(document.getElementById("Scommon_PoolBox").children[i].id.slice(5));
+        }
+        for (var i = 0; i < document.getElementById("Rup_PoolBox").childNodes.length; i++) {
+            Rup.push(document.getElementById("Rup_PoolBox").children[i].id.slice(5));
+        }
+        for (var i = 0; i < document.getElementById("Rcommon_PoolBox").childNodes.length; i++) {
+            Rcommon.push(document.getElementById("Rcommon_PoolBox").children[i].id.slice(5));
+        }
     }
 }
 
@@ -172,36 +249,51 @@ function moveCard(element) {
 function analizeCardSet() {
     clearCard();
     let non = [];
-    let S_Non = [];
-    let R_Non = [];
+    S_Non = [];
+    R_Non = [];
     let all = [];
+    //录入所有角色名
     for (var i = 0; i < CHARACTER_LIST.length; i++) {
         all.push(CHARACTER_NAMES[i]);
     }
-    all.deleteElement(Sup[0]);
+    all.deleteElement(Sup[0]);//删除五星Up集
     for (var i = 0; i < Scommon.length; i++) {
         all.deleteElement(Scommon[i]);
-    }
+    }//从所有角色名中删除 常驻五星
     for (var i = 0; i < Rup.length; i++) {
         all.deleteElement(Rup[i]);
     }
     for (var i = 0; i < Rcommon.length; i++) {
         all.deleteElement(Rcommon[i]);
     }
-    non = all;
+    if (_CHRONICLE_MODE == true) {
+        for (var i = 0; i < ChronicledSup.length; i++) {
+            all.deleteElement(ChronicledSup[i]);
+        }
+    }
+    non = all;//令未选中的角色为删除操作后的所有角色
     for (var i = 0; i < non.length; i++) {
         if (findCharacter(non[i]).star === 4) R_Non.push(non[i]);
         if (findCharacter(non[i]).star === 5) S_Non.push(non[i]);
+    }//将所有未选中的角色安置
+    if (_CHRONICLE_MODE == true) {
+        for (var i = 0; i < ChronicledSup.length; i++) {
+            initializeCard(findCharacter(ChronicledSup[i]), E_SChBox);
+        }
     }
-    initializeCard(findCharacter(Sup[0]), document.getElementById("Sup_PoolBox"));
+    if (_CHRONICLE_MODE == false) {
+        initializeCard(findCharacter(Sup[0]), E_SupBox);
+    }
     for (var i = 0; i < Scommon.length; i++) {
-        initializeCard(findCharacter(Scommon[i]), document.getElementById("Scommon_PoolBox"));
+        initializeCard(findCharacter(Scommon[i]), E_ScommonBox);
     }
     for (var i = 0; i < Rup.length; i++) {
-        initializeCard(findCharacter(Rup[i]), document.getElementById("Rup_PoolBox"));
+        initializeCard(findCharacter(Rup[i]), E_RupBox);
     }
-    for (var i = 0; i < Rcommon.length; i++) {
-        initializeCard(findCharacter(Rcommon[i]), document.getElementById("Rcommon_PoolBox"));
+    if (_CHRONICLE_MODE == false) {
+        for (var i = 0; i < Rcommon.length; i++) {
+            initializeCard(findCharacter(Rcommon[i]), document.getElementById("Rcommon_PoolBox"));
+        }
     }
     for (var i = 0; i < S_Non.length; i++) {
         initializeCard(findCharacter(S_Non[i]), E_SBox);
@@ -226,19 +318,16 @@ function updateCards() {
     analizeCardSet();
 }
 
-/**
- * 切换条幅
- * @returns 
- */
-function updateBanner() {
-    var itemPoolSelect = document.getElementById("itemPoolSelect");
-    var selectedPool = itemPoolSelect.value;
+function updateChronicle() {
+    if (_CHRONICLE_MODE == false) return;
+    var chronicledPoolSelect = document.getElementById("chronicledPoolSelect");
+    var selectedPool = chronicledPoolSelect.value;
     if (selectedPool == "none") {
-        E_header.style.backgroundImage = "url(./img/transparent.png)";
+        initializeAllCard();
         return;
     }
-    var version = selectedPool.slice(5, -2);//"4_2"
-    E_header.style.backgroundImage = "url(./img/Banner_" + version + ".png)";
+    selectWishPool(chronicledPools[selectedPool]);
+    analizeCardSet();
 }
 
 function outputObtained() {

@@ -41,3 +41,55 @@ function areaControl(elementId) {
         return;
     }
 }
+
+function chronicledAreaControl() {
+    var Chronicled_matches = document.querySelectorAll(".ChronicleSpecialized");
+    var Normal_matches = document.querySelectorAll(".ChronicleDisabled");
+    var _E_ModeSwitch = document.getElementById("ModeSwitch");
+    if (_CHRONICLE_MODE == true) {
+        for (var i = 0; i < Chronicled_matches.length; ++i) {
+            Chronicled_matches[i].style.display = "";
+        }
+        for (var i = 0; i < Normal_matches.length; ++i) {
+            Normal_matches[i].style.display = "none";
+        }
+        _E_ModeSwitch.innerHTML = "退出集录祈愿模式";
+        return;
+    }
+    if (_CHRONICLE_MODE == false) {
+        for (var i = 0; i < Chronicled_matches.length; ++i) {
+            Chronicled_matches[i].style.display = "none";
+        }
+        for (var i = 0; i < Normal_matches.length; ++i) {
+            Normal_matches[i].style.display = "";
+        }
+        _E_ModeSwitch.innerHTML = "进入集录祈愿模式";
+        return;
+    }
+}
+chronicledAreaControl();
+
+function setBanner(url) {
+    E_header.style.backgroundImage = "url(" + url + ")";
+}
+
+/**
+ * 切换条幅
+ * @returns 
+ */
+function updateBanner() {
+    var itemPoolSelect = document.getElementById("itemPoolSelect");
+    var selectedPool = itemPoolSelect.value;
+    if (selectedPool == "none") {
+        setBanner("./img/transparent.png");
+        return;
+    }
+    var version = selectedPool.slice(5, -2);//"4_2"
+    setBanner("./img/Banner_" + version + ".png");
+}
+
+function randomArtworkBanner() {
+    var z = getRandomElement(CHARACTER_NAMES);
+    var c = findCharacter(z);
+    setBanner(c.wfile);
+}

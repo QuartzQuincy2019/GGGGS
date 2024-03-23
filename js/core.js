@@ -1,12 +1,14 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v3.6.0";
+var __VERSION = "v4.0.0";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
 var _TOKEN = 0;
+var _CHRONICLE_MODE = false;
 var E_TotalCounter = document.getElementById("TotalCounter");
+var E_ChronicledArea = document.getElementById("ChronicledArea");
 
 /**
  * 获取数组最后一个元素
@@ -73,6 +75,7 @@ function getQuotient(dividend, divisor) {
  */
 function findCharacter(characterName) {
     var _chara = characterMap[characterName];
+    if(_chara == undefined) return;
     return _chara;
 }
 
@@ -95,4 +98,24 @@ function convertBoolean(value) {
     if (value == "true") return true;
     if (value == "false") return false;
     throw new Error("convertBoolean: 传入的值有误！");
+}
+
+function switchWishMode() {
+    if (_CHRONICLE_MODE == true) {
+        _CHRONICLE_MODE = false;
+    } else {
+        _CHRONICLE_MODE = true;
+    }
+}
+
+/**
+ * 为了防止形成类似于C++指针的效果而设计的函数
+ * @param {Array} valueArray 
+ */
+function doValue(valueArray){
+    var temp = [];
+    for(var i=0;i<valueArray.length;i++){
+        temp.push(valueArray[i]);
+    }
+    return temp;
 }

@@ -30,23 +30,24 @@ option {
 }
 
 .glass-container {
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-color: #fcff3912;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    background-color: #ffffff32;
 }
 
 .header_title,
 .header_title a#TitleLink {
     color: #fff8a6;
-    text-shadow: 0px 0px 7px #fff700;
+    text-shadow: 4px 4px #f6e63a,-4px -4px #fba62f, 4px -3px #ff682c;
 }
 
 .subtitle {
-    text-shadow: 0px 0px 4px #fff700;
+    color: #fff8a6;
+    text-shadow: 2px 1px #f6e63a,-2px -1px #fba62f, 2px -2px #ff682c;
 }
 
 p#VersionTitle {
-    text-shadow: 0px 0px 2px #fff700;
+    text-shadow: 2px 1px #f6e63a,-2px -1px #fba62f, 2px -2px #ff682c;
 }
 
 hr {
@@ -174,6 +175,10 @@ input[type="number"]:focus {
 
 .PoolBox {
     border-color: #fff700;
+}
+
+.ChronicledBox{
+    background-color: #9f001080;
 }
 
 .NonBox {

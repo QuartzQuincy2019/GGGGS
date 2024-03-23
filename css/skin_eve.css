@@ -37,12 +37,12 @@ option {
 
 .header_title,
 .header_title a#TitleLink {
-    color: #e5e5e5;
-    text-shadow: 2px 2px 10px #828282;
+    color: #1e1e1e;
+    text-shadow: 5px -4px #ffffff, -4px 5px #ffffff;
 }
 
 .subtitle {
-    text-shadow: 2px 2px 5px #828282;
+    text-shadow: 1px 1px #ffffff, -1px -1px #ffffff;
 }
 
 hr {
@@ -51,7 +51,7 @@ hr {
 }
 
 p#VersionTitle {
-    text-shadow: 1px 1px 4px #828282;
+    text-shadow: -1px 1px #e0fffe, 1px -1px #e0fffe;
 }
 
 p.instructions {
@@ -137,6 +137,10 @@ input[type="number"]:focus {
 
 .PoolBox {
     border-color: #00c9bb;
+}
+
+.ChronicledBox{
+    background-color: #5c005f80;
 }
 
 .NonBox {

@@ -24,6 +24,7 @@ class Character {
     name;//角色识别名（不是英文名）
     star;//角色星数
     pfile;//Charaicon对应文件路径
+    wfile;//WishArtworks对应文件路径
     signature;//角色称号
     element;//角色元素
     nameChs;//角色简体中文名
@@ -36,7 +37,8 @@ class Character {
     constructor(name, star, signature, element, nameChs) {
         this.name = name;
         this.star = star;
-        this.pfile = '.\\img\\p_' + this.name + '.png';
+        this.pfile = './img/p_' + this.name + '.png';
+        this.wfile = './img/w_' + this.name + '.png';
         this.signature = signature;
         this.element = element;
         this.nameChs = nameChs;
@@ -104,6 +106,7 @@ var CHARACTER_LIST = [
     new Character("shinobu", 4, "烦恼刈除", Element.electro, "久岐忍"),
     new Character("heizo", 4, "心朝乂安", Element.anemo, "鹿野院平藏"),
     new Character("kirara", 4, "檐宇猫游", Element.dendro, "绮良良"),
+    new Character("chiori", 5, "鸣雷的裁锦师", Element.geo, "千织"),
     //sumeru
     new Character("tighnari", 5, "浅蔚轻行", Element.dendro, "提纳里"),
     new Character("collei", 4, "萃念初蘖", Element.dendro, "柯莱"),
@@ -142,7 +145,20 @@ for (var i = 0; i < CHARACTER_LIST.length; i++) {
     CHARACTER_NAMES.push(CHARACTER_LIST[i].name);
 }
 
-var itemPools = {
+const itemPools = {
+    //4.5
+    wish_4_5_1: [
+        ["chiori"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["gorou", "yunjin", "dori"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "faruzan", "fischl", "freminet", "gaming", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao"]
+    ],
+    wish_4_5_2: [
+        ["itto"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["gorou", "yunjin", "dori"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "faruzan", "fischl", "freminet", "gaming", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao"]
+    ],
     //4.4
     wish_4_4_3: [
         ["xiao"],
@@ -491,4 +507,12 @@ var itemPools = {
         ["collei", "diona", "fischl"],
         ["sayu", "heizo", "sucrose", "chongyun", "rosaria", "beidou", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"]
     ],
+}
+
+//混池
+var chronicledPools = {
+    wish_4_5_1: [
+        ["albedo", "diluc", "eula", "jean", "klee", "mona"],
+        ["amber", "barbara", "bennett", "diona", "fischl", "kaeya", "lisa", "mika", "noelle", "razor", "rosaria", "sucrose"]
+    ]
 }

@@ -65,5 +65,6 @@ document.addEventListener("keydown", function (e) {
     if (e.key != _FK_CHANGE_SKIN) return false;
     e.preventDefault();
     altSkin();
+    randomArtworkBanner();
     return true;
 })

@@ -3,23 +3,41 @@
 var _interval = 5000000; //每_interval次十连提醒一次
 
 function newWish() {
-    wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+    if (_CHRONICLE_MODE == false) {
+        wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+    } else {
+        chronicledWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+    }
 }
 
 function lastWish() {
-    wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+    if (_CHRONICLE_MODE == false) {
+        wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+    } else {
+        chronicledWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+    }
 }
 
 function refreshLastWishText() {
-    var text1;
-    if (lastInfo[3] === true) { text1 = "是" } else { text1 = "否" };
-    var text2;
-    if (lastInfo[4] === true) { text2 = "是" } else { text2 = "否" };
-    E_RepeatWish.title = "上次祈愿信息：\n抽数：" + lastInfo[0] +
-        "\n五星垫数：" + lastInfo[1] +
-        "\n四星垫数：" + lastInfo[2] +
-        "\n是否五星大保底：" + text1 +
-        "\n是否四星大保底：" + text2;
+    if (_CHRONICLE_MODE == false) {
+        var text1;
+        if (lastInfo[3] === true) { text1 = "是" } else { text1 = "否" };
+        var text2;
+        if (lastInfo[4] === true) { text2 = "是" } else { text2 = "否" };
+        E_RepeatWish.title = "上次祈愿信息：\n抽数：" + lastInfo[0] +
+            "\n五星垫数：" + lastInfo[1] +
+            "\n四星垫数：" + lastInfo[2] +
+            "\n是否五星大保底：" + text1 +
+            "\n是否四星大保底：" + text2;
+    } else {
+        var text2;
+        if (lastInfo[4] === true) { text2 = "是" } else { text2 = "否" };
+        E_RepeatWish.title = "上次祈愿信息：\n抽数：" + lastInfo[0] +
+            "\n五星垫数：" + lastInfo[1] +
+            "\n四星垫数：" + lastInfo[2] +
+            "\n命定值：" + lastInfo[3] +
+            "\n是否四星大保底：" + text2;
+    }
 }
 
 /**
@@ -37,17 +55,32 @@ function isFormNumberValueLegal(_element) {
 }
 
 function readNewInfo() {
-    var isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
+    let isSC_val;
+    let fp;
+    if (_CHRONICLE_MODE == false) {
+        isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
+        isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
+    } else {
+        fp = document.getElementById("FatePointInput").value;
+        newInfo[3] = fp;
+    }
     var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
-    isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
     isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
     if ((isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) == true) {
+        if (E_StartRDrop.value == 10) {
+            if (E_StartSDrop.value != 0) {
+                newInfo[0] = 0;
+                newInfo[1] = 0;
+                newInfo[2] = 0;
+                return false;
+            }
+        }
         newInfo[0] = Number(E_GachaTimes.value) || 0;
         newInfo[1] = Number(E_StartSDrop.value);
         newInfo[2] = Number(E_StartRDrop.value);
         return true;
     } else {
-        console.log("imfalse");
+        // console.log("imfalse");
         newInfo[0] = 0;
         newInfo[1] = 0;
         newInfo[2] = 0;
@@ -58,7 +91,11 @@ function readNewInfo() {
 function throwNewInfo() {
     E_StartSDrop.value = newInfo[1];
     E_StartRDrop.value = newInfo[2];
-    newInfo[3] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
+    if (_CHRONICLE_MODE == false) {
+        newInfo[3] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
+    } else {
+        document.getElementById("FatePointInput").value = newInfo[3];
+    }
     newInfo[4] == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
 }
 
@@ -67,6 +104,7 @@ function resetForm() {
     E_StartRDrop.value = 0;
     E_uc_option1_1.checked = true;
     E_uc_option1_2.checked = false;
+    _FatePoint = 0;
     E_uc_option2_1.checked = true;
     E_uc_option2_2.checked = false;
     E_GachaTimes.value = 1;

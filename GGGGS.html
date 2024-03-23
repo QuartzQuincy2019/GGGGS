@@ -36,15 +36,36 @@
         <p class="instructions">步骤󰲥：阅读相关说明，探索卡池“󰃣自定义”、“󱙩高级祈愿配置”等其他功能。</p>
         <!-- 按Control键以切换皮肤 -->
         <p class="instructions">按下<strong style="font-family: Arial;">Control</strong>键或点击按钮“切换皮肤”可以切换界面皮肤。</p>
-        <div id="change_skin_button" class="interface_button" onclick="altSkin();">切换皮肤</div>
+        <div id="change_skin_button" class="interface_button" onclick="altSkin();randomArtworkBanner();">切换皮肤</div>
     </div>
     <!-- 卡池操作部分 -->
     <div class="section" id="section_2">
         <p class="instructions centerized"><strong>󰛊卡池操作󰛊</strong></p>
+        <div class="interface_button" id="ModeSwitch"
+            onclick="switchWishMode();chronicledAreaControl();initializeAllCard();randomArtworkBanner();">
+            ModeSwitch</div>
+        <div class="ChronicleDisabled">
+            <p class="instructions">卡池分为󰰣五星和󰰠四星两大组，每一大组有三个小组。6个小组从上到下依次是：五星UP池、五星非UP池、未参与五星卡池、四星UP池、四星非UP池、未参与四星卡池。
+            </p>
+            <p class="instructions">󰲡点击“UP池”中的角色卡片可将其移放至“不参与祈愿”区域。</p>
+            <p class="instructions">󰲣点击“不参与祈愿”区域中的角色卡片可将其移放至“非UP池”。</p>
+            <p class="instructions">󰲥点击“非UP池”中的角色卡片可将其移放至“UP池”。</p>
+        </div>
+        <div class="ChronicleSpecialized">
+            <p class="instructions">“󰀖<strong>集录</strong>祈愿可定轨五星池”展示本次集录祈愿可以定轨的五星角色，仅供展示，用户不能在此区域进行操作。</p>
+            <p class="instructions">󰲡点击“󰓼未定轨五星池”中的角色卡片可将其<strong>定轨</strong>，并移放至“󰯏已定轨五星池”区域。
+            <p>
+            <p class="instructions">󰲣点击“󰯏已定轨五星池”中的角色卡片可将其移放至“不参与集录祈愿的五星角色”区域。</p>
+            <p class="instructions">󰲥点击“不参与集录祈愿的五星角色”区域中的角色卡片可将其移放至“󰓼未定轨五星池”区域。</p>
+        </div>
+        <hr>
         <form>
-            <select name="ItempoolSelection" id="itemPoolSelect" onchange="updateCards();updateBanner();"
-                title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
+            <select name="ItempoolSelection" id="itemPoolSelect" class="ChronicleDisabled"
+                onchange="updateCards();updateBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
                 <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义卡池</option>
+                <!-- 4.5 -->
+                <option value="wish_4_5_1">v4.5【铓锋锦间裁】前半：2024年03月13日-1——千织</option>
+                <option value="wish_4_5_2">v4.5【铓锋锦间裁】前半：2024年03月13日-2——荒泷一斗</option>
                 <!-- 4.4 -->
                 <option value="wish_4_4_3">v4.4【彩鹞栉春风】后半：2024年02月20日-3——魈</option>
                 <option value="wish_4_4_4">v4.4【彩鹞栉春风】后半：2024年02月20日-4——八重神子</option>
@@ -116,32 +137,73 @@
                 <option value="wish_3_0_1">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-1——提纳里</option>
                 <option value="wish_3_0_2">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-2——钟离</option>
             </select>
+            <select name="ChronicledpoolSelection" id="chronicledPoolSelect" class="ChronicleSpecialized"
+                onchange="updateChronicle();randomArtworkBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
+                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义集录卡池</option>
+                <!-- 4.5 -->
+                <option value="wish_4_5_1">v4.5【铓锋锦间裁】“晨风之诗”：2024年03月13日</option>
+            </select>
         </form>
-        <p class="instructions">卡池分为󰰣五星和󰰠四星两大组，每一大组有三个小组。6个小组从上到下依次是：五星UP池、五星非UP池、未参与五星卡池、四星UP池、四星非UP池、未参与四星卡池。</p>
         <p class="instructions">点击下拉菜单可快捷选中游戏中出现（过）的卡池。</p>
         <p class="instructions">点击角色卡片可以将该卡片调换至另一个卡池中，从而进行卡池的󰃣自定义。</p>
-        <p class="instructions">重新选中“󰃣自定义卡池”或点击“重置卡池”可重置卡池。</p>
+        <p class="instructions">重新选中“󰃣自定义[集录]卡池”或点击“重置卡池”可重置卡池。</p>
         <div id="reset_button" class="interface_button" onclick="initializeAllCard();">重置卡池</div>
         <p class="instructions">注意：若五星UP池中的角色多于1个，则五星UP池中第一个角色参与五星UP池，剩余角色视为未参与卡池。</p>
     </div>
     <hr>
     <!-- 卡池展示部分 -->
-    <p class="instructions centerized TipTitle">五星Up池</p>
-    <div title="五星Up池【仅1个角色】" class="PoolBox UpBox" id="Sup_PoolBox"></div>
-    <p class="instructions centerized TipTitle">五星非Up池（常驻五星池）</p>
-    <div title="五星非Up池（常驻五星池）（歪池）" class="PoolBox CommonBox" id="Scommon_PoolBox"></div>
-    <p class="instructions centerized TipTitle">未参与祈愿的五星角色：</p>
-    <div title="未参与到本次祈愿中的五星角色" class="PoolBox NonBox" id="Snon_PoolBox"></div>
+    <p class="instructions centerized TipTitle ChronicleSpecialized">󰀖可定轨五星池</p>
+    <div title="候选五星Up池" class="PoolBox ChronicledBox ChronicleSpecialized SBox" id="Chronicled_Sup_PoolBox"></div>
+
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">五星Up池</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">󰯏已定轨五星池</p>
+    </div>
+    <div title="五星Up池【仅1个角色】" class="PoolBox UpBox SBox" id="Sup_PoolBox"></div>
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">五星非Up池（常驻五星池）</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">󰓼未定轨五星池</p>
+    </div>
+    <div title="五星非Up池（常驻五星池）（歪池）" class="PoolBox CommonBox SBox" id="Scommon_PoolBox"></div>
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">不参与祈愿的五星角色：</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">不参与集录祈愿的五星角色：</p>
+    </div>
+    <div title="未参与到本次祈愿中的五星角色" class="PoolBox NonBox SBox" id="Snon_PoolBox"></div>
     <hr>
-    <p class="instructions centerized TipTitle">四星Up池</p>
-    <div title="四星Up池【仅3个角色】" class="PoolBox UpBox" id="Rup_PoolBox"></div>
-    <p class="instructions centerized TipTitle">四星非Up池（常驻四星池）</p>
-    <div title="四星非Up池（常驻四星池）" class="PoolBox CommonBox" id="Rcommon_PoolBox"></div>
-    <p class="instructions centerized TipTitle">未参与祈愿的四星角色：</p>
-    <div title="未参与到本次祈愿中的四星角色" class="PoolBox NonBox" id="Rnon_PoolBox"></div>
+
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">四星Up池</p>
+    </div>
+
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">参与集录祈愿的四星角色</p>
+    </div>
+    <div title="四星Up池【仅3个角色】" class="PoolBox UpBox RBox" id="Rup_PoolBox"></div>
+    <p class="instructions centerized TipTitle ChronicleDisabled">四星非Up池（常驻四星池）</p>
+    <div title="四星非Up池（常驻四星池）" class="PoolBox CommonBox ChronicleDisabled RBox" id="Rcommon_PoolBox"></div>
+
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">不参与祈愿的四星角色：</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">不参与集录祈愿的四星角色：</p>
+    </div>
+    <div title="未参与到本次祈愿中的四星角色" class="PoolBox NonBox RBox" id="Rnon_PoolBox"></div>
     <hr>
     <!-- 表单部分 -->
-    <p class="instructions centerized TipTitle">祈愿表单</p>
+    <div class="ChronicleDisabled">
+        <p class="instructions centerized TipTitle">祈愿表单</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">集录祈愿表单</p>
+    </div>
     <div>
         <div class="FormContainer">
             <div class="section FormSection">
@@ -154,12 +216,20 @@
                     <p>󰰠四星已垫数量(0≤x≤10)：</p><input id="StartRDrop" type="number"
                         title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;允许的值为0 - 10（均包含）。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
                         min="0" max="10" step="1" value="0"><br>
-                    <input class="radio_type" type="radio" title="选择：当前处于五星小保底" name="IsSUpCertainRadio"
-                        id="uc_option1_1" value="uncert" checked="true">
-                    <label for="uc_option1_1" title="上一次抽到的五星角色是卡池的UP五星角色">当前处于五星小保底</label><br>
-                    <input class="radio_type" type="radio" title="选择：当前处于五星大保底" name="IsSUpCertainRadio"
-                        id="uc_option1_2" value="cert">
-                    <label for="uc_option1_2" title="上一次抽到的五星角色不是卡池的UP五星角色">当前处于五星大保底</label><br>
+                    <div>
+                        <div id="SupSwitchDeterminationMode" class="ChronicleDisabled">
+                            <input class="radio_type" type="radio" title="选择：当前处于五星小保底" name="IsSUpCertainRadio"
+                                id="uc_option1_1" value="uncert" checked="true">
+                            <label for="uc_option1_1" title="上一次抽到的五星角色是卡池的UP五星角色">当前处于五星小保底</label><br>
+                            <input class="radio_type" type="radio" title="选择：当前处于五星大保底" name="IsSUpCertainRadio"
+                                id="uc_option1_2" value="cert">
+                            <label for="uc_option1_2" title="上一次抽到的五星角色不是卡池的UP五星角色">当前处于五星大保底</label><br>
+                        </div>
+                        <div id="SupFatePointDeterminationMode" class="ChronicleSpecialized">
+                            <p>当前<strong>命定值</strong>(0≤x≤1)：</p><input id="FatePointInput" type="number" title="命定值"
+                                min="0" max="1" step="1" value="0"><br>
+                        </div>
+                    </div>
                     <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio"
                         id="uc_option2_1" value="uncert" checked="true">
                     <label for="uc_option2_1" title="上一次抽到的四星物品是卡池的UP四星角色">当前处于四星小保底</label><br>
@@ -177,11 +247,12 @@
                 <div id="GachaFormInstructionArea" style="display: none;">
                     <p class="instructions">鼠标指针悬停于表单内容（输入框、按钮、单选）上会显示附加说明。</p>
                     <p class="instructions">󰄫五星物品基本概率：0.6%。若前73抽未获得五星物品，则从第74抽开始，五星物品概率每一抽增加6%，第90抽为100%。</p>
-                    <p class="instructions">󰄫四星物品基本概率：5.1%。若连续9抽都未获得四星物品，则第10抽必定获得四星物品。</p>
+                    <p class="instructions">󰄫四星物品基本概率：5.1%。若连续9抽都未获得四星物品，则第10抽必定获得四星或更高星级物品。</p>
                     <p class="instructions">“垫数”指自上次抽出Up角色之后，已经进行的抽数。如上一次抽到Up角色之后再没有继续进行抽取，则此时垫数为0。</p>
                     <p class="instructions">上一次抽到的角色属于Up角色，则此时处于“小保底”状态；上一次抽到的角色不属于Up角色，则此时处于“大保底”状态。</p>
-                    <p class="instructions">󱙌基本祈愿会在下方󰏖背包展示本轮祈愿中抽取到的所有角色，抽取到的三星武器、四星武器不予展示。</p>
-                    <p class="instructions">󰏖背包中每个角色卡片的正下方都有一个字号明显加大的数字：五星垫数（上一次抽出五星角色之后，接着进行的第n抽）</p>
+                    <p class="instructions">满足“󰰠四星已垫数量”的值为10的情况有且仅有一种：󰰣五星已垫数量=0，且󰰠四星已垫数量=10。其他情况都不符合抽取规则。</p>
+                    <p class="instructions">󱙌基本祈愿会在下方󰏖背包展示本轮祈愿中抽取到的所有角色，抽取到的三星武器、<strong>四星武器</strong>不予展示。</p>
+                    <p class="instructions">󰏖背包中每个角色卡片的<strong>正下方</strong>都有一个<strong>字号明显加大</strong>的数字：五星垫数（上一次抽出五星角色之后，接着进行的第n抽）</p>
                     <p class="instructions">󰏖背包中“#X:(Y)”的含义：X——抽取到的第X个角色；Y——第Y抽抽取到的角色</p>
                 </div>
                 <hr>

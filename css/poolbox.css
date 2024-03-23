@@ -15,6 +15,7 @@
     height: var(--card-height);
 }
 
+.ChronicledBox,
 .UpBox,
 .CommonBox,
 .NonBox {

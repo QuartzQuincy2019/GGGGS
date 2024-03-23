@@ -118,6 +118,10 @@ input[type="number"]:focus {
     border-color: #7c5500;
 }
 
+.ChronicledBox{
+    background-color: #d7ffe9;
+}
+
 .NonBox {
     background-color: #cfcfcf80;
 }
