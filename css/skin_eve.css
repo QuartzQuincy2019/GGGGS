@@ -35,14 +35,13 @@ option {
     background-color: #cce5ee12;
 }
 
-.header_title,
-.header_title a#TitleLink {
+.header_title {
     color: #1e1e1e;
-    text-shadow: 5px -4px #ffffff, -4px 5px #ffffff;
+    text-shadow: 0.2em -0.2em #ffffff, -0.2em 0.2em #ffffff;
 }
 
 .subtitle {
-    text-shadow: 1px 1px #ffffff, -1px -1px #ffffff;
+    text-shadow: 2px 2px #ffffff;
 }
 
 hr {
@@ -51,7 +50,7 @@ hr {
 }
 
 p#VersionTitle {
-    text-shadow: -1px 1px #e0fffe, 1px -1px #e0fffe;
+    text-shadow: 1px 1px #ffffff;
 }
 
 p.instructions {
@@ -139,7 +138,7 @@ input[type="number"]:focus {
     border-color: #00c9bb;
 }
 
-.ChronicledBox{
+.ChronicledBox {
     background-color: #5c005f80;
 }
 

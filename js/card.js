@@ -123,7 +123,6 @@ function initializeCard(character, destination) {
     _card.appendChild(_title);
     var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
     _card.title = _chara.star + "星【" + elementChs + "】 “" + _chara.signature + "” " + _chara.nameChs;
-    _card.id = "card_" + _chara.name;//卡片id
     _card.onclick = function () {
         moveCard(this);
     };
@@ -131,21 +130,17 @@ function initializeCard(character, destination) {
      * 目的地
      */
     var parentNode = destination;
+    _card.id = "card_" + _chara.name;//卡片id
     if (_CHRONICLE_MODE == true) {
-        if (parentNode.id == "Chronicled_Sup_PoolBox") {
+        if (parentNode.id == E_SChBox.id) {
             _card.id = "card_chronicled_" + _chara.name;
             _card.onclick = function () {
                 alert("直接点击候选栏（可定轨五星池）中的角色属于无效操作。该区域中的卡片仅有展示作用。\n请点击“已定轨五星池”、“未定轨五星池”或“不参与集录祈愿的五星角色”三个区域中的角色卡片以更改定轨的角色。");
             }
         }
-        if (parentNode.id == "Rnon_PoolBox") {
-            _card.onclick = function () {
-                E_RBox.removeChild(this);
-                R_Non.deleteElement(_card.id);
-                Rup.push(_chara.name);
-                initializeCard(character, E_RupBox);
-            }
-        }
+    }
+    if (parentNode.parentNode.id == inventory.id) {
+        _card.id = "card_obtained_" + _chara.name;
     }
     parentNode.appendChild(_card);
 }
@@ -184,6 +179,7 @@ function moveCard(element) {
     if (origin.id === "Scommon_PoolBox") destination = document.getElementById("Sup_PoolBox");
     if (origin.id === "Sup_PoolBox") destination = document.getElementById("Snon_PoolBox");
     if (_CHRONICLE_MODE == true) {
+        console.log(findCharacter(passengerName).star);
         if (findCharacter(passengerName).star == 5) {
             if (origin.id === "Snon_PoolBox") {//要前往ScommonBox
                 S_Non.deleteElement(passengerName);//消去Non的身份
@@ -206,18 +202,21 @@ function moveCard(element) {
                 Sup.deleteElement(passengerName);
                 E_SChBox.removeChild(document.getElementById("card_chronicled_" + passengerName));
             }
-            origin.removeChild(passenger);
-            destination.appendChild(passenger);
-            // console.log(Sup, Scommon);
         }
         if (findCharacter(passengerName).star == 4) {
-            if (origin.id === "Rnon_PoolBox") {
+            if (origin.id == E_RBox.id) {//要前往Rup
                 destination = E_RupBox;
+                R_Non.deleteElement(passengerName);
+                Rup.push(passengerName);
             }
-            if (origin.id === "Rup_PoolBox") {
+            if (origin.id == E_RupBox.id) {//要返回Rnon
                 destination = E_RBox;
+                Rup.deleteElement(passengerName);
+                R_Non.push(passengerName);
             }
         }
+        origin.removeChild(passenger);
+        destination.appendChild(passenger);
     } else {
         if (origin.id === "Rnon_PoolBox") destination = document.getElementById("Rcommon_PoolBox");
         if (origin.id === "Rcommon_PoolBox") destination = document.getElementById("Rup_PoolBox");
@@ -340,6 +339,7 @@ function outputObtained() {
         if (isRCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) _container.classList.add("RUpContainer");
         inventory.appendChild(_container);
         initializeCard(findCharacter(obtainedCharacters[i]), _container);
+        inventory.children[inventory.children.length - 1].children[0].id += "_" + Number(i + 1);
         _container.innerHTML += "<p class='veryMark'><strong>" + Number(obtainedCalc[i]) + "</strong></p>";
         _container.innerHTML += "<p>#" + Number(i + 1) + ":(" + Number(obtainedRecords[i]) + ")</p>";
     }

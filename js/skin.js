@@ -53,7 +53,7 @@ function getCurrentSkinId() {
     return getSkinId(getCurrentSkinPath());
 }
 
-function altSkin(){
+function altSkin() {
     if (getCurrentSkinId() == MAX_SKIN_ID) {
         changeSkin(MIN_SKIN_ID);
     } else {

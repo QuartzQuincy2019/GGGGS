@@ -35,19 +35,18 @@ option {
     background-color: #ffffff32;
 }
 
-.header_title,
-.header_title a#TitleLink {
+.header_title {
     color: #fff8a6;
-    text-shadow: 4px 4px #f6e63a,-4px -4px #fba62f, 4px -3px #ff682c;
+    text-shadow: 0.2em 0.2em #f6e63a, -0.2em -0.3em #fba62f, 0.3em -0.1em #ff682c;
 }
 
 .subtitle {
     color: #fff8a6;
-    text-shadow: 2px 1px #f6e63a,-2px -1px #fba62f, 2px -2px #ff682c;
+    text-shadow: 2px 2px #000000;
 }
 
 p#VersionTitle {
-    text-shadow: 2px 1px #f6e63a,-2px -1px #fba62f, 2px -2px #ff682c;
+    text-shadow: 2px 2px #000000;
 }
 
 hr {
@@ -177,7 +176,7 @@ input[type="number"]:focus {
     border-color: #fff700;
 }
 
-.ChronicledBox{
+.ChronicledBox {
     background-color: #9f001080;
 }
 

@@ -97,7 +97,7 @@ div#header {
     transition-duration: 300ms;
 }
 
-.glass-container:hover{
+.glass-container:hover {
     opacity: 0.4;
 }
 

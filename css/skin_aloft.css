@@ -39,8 +39,7 @@ option {
     background-color: rgba(0, 191, 255, 0.071);
 }
 
-.header_title,
-.header_title a#TitleLink {
+.header_title {
     color: #ffffff;
     text-shadow: 2px 2px 10px #000000;
 }
@@ -118,7 +117,7 @@ input[type="number"]:focus {
     border-color: #7c5500;
 }
 
-.ChronicledBox{
+.ChronicledBox {
     background-color: #d7ffe9;
 }
 

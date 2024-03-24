@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v4.0.0";
+var __VERSION = "v4.0.2";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -75,7 +75,7 @@ function getQuotient(dividend, divisor) {
  */
 function findCharacter(characterName) {
     var _chara = characterMap[characterName];
-    if(_chara == undefined) return;
+    if (_chara == undefined) return;
     return _chara;
 }
 
@@ -89,6 +89,7 @@ function refreshTotalCounter() {
         var q = getQuotient(_TOKEN, 100000000);
         E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + q + "亿" + o + "万次）祈愿";
     }
+    E_TotalCounter.children[0].innerHTML += " 合" + Number(_TOKEN * 16 / 10000) + "万元";
 }
 refreshTotalCounter();
 
@@ -112,9 +113,9 @@ function switchWishMode() {
  * 为了防止形成类似于C++指针的效果而设计的函数
  * @param {Array} valueArray 
  */
-function doValue(valueArray){
+function doValue(valueArray) {
     var temp = [];
-    for(var i=0;i<valueArray.length;i++){
+    for (var i = 0; i < valueArray.length; i++) {
         temp.push(valueArray[i]);
     }
     return temp;

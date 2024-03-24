@@ -194,7 +194,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
         }
     }
     _TOKEN += _TotalWishTimes;
-    newInfo = getCurrentInfo();
+    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), _IsSupCertain, _IsRupCertain];
 }
 
 function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
@@ -263,5 +263,5 @@ function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
         }
     }
     _TOKEN += _TotalWishTimes;
-    newInfo = getCurrentInfo();
+    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsRupCertain];
 }
