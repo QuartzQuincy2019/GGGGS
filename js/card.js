@@ -67,6 +67,12 @@ function isCommonCharacter(characterName) {
 }
 
 function checkSCharacter() {
+    var obtainedCharacters = [];
+    if (containerInfo.length > 1) {
+        for (var i = 1; i < containerInfo.length; i++) {
+            obtainedCharacters.push(containerInfo[i].name);
+        }
+    }
     var num = 0;
     for (var character of obtainedCharacters) {
         if (isSCharacter(character)) num += 1;
@@ -75,6 +81,12 @@ function checkSCharacter() {
 }
 
 function checkSUpCharacter() {
+    var obtainedCharacters = [];
+    if (containerInfo.length > 1) {
+        for (var i = 1; i < containerInfo.length; i++) {
+            obtainedCharacters.push(containerInfo[i].name);
+        }
+    }
     var num = 0;
     for (var character of obtainedCharacters) {
         if (isSCharacter(character) && isUpCharacter(character)) num += 1;
@@ -83,6 +95,12 @@ function checkSUpCharacter() {
 }
 
 function checkSCommonCharacter() {
+    var obtainedCharacters = [];
+    if (containerInfo.length > 1) {
+        for (var i = 1; i < containerInfo.length; i++) {
+            obtainedCharacters.push(containerInfo[i].name);
+        }
+    }
     var num = 0;
     for (var character of obtainedCharacters) {
         if (isSCharacter(character) && isCommonCharacter(character)) num += 1;
@@ -109,7 +127,7 @@ function clearCard() {
  * @param {Element} destination 【元素类对象】放置目的地
  * @returns 
  */
-function initializeCard(character, destination) {
+function initializeCharacterCard(character, destination) {
     var _chara = character;
     var _card = document.createElement("div");
     _card.classList.add("card");
@@ -145,6 +163,23 @@ function initializeCard(character, destination) {
     parentNode.appendChild(_card);
 }
 
+function initializeWeaponCard(weapon, destination) {
+    var _weapon = weapon;
+    var _card = document.createElement("div");
+    _card.classList.add("card");
+    _card.classList.add("star" + extractValue(_weapon.star, STAR_NUMBER, STAR_NAME));
+    var _weaponImg = document.createElement("img");
+    _weaponImg.src = _weapon.weaponFile;
+    _card.appendChild(_weaponImg);
+    var _title = document.createElement("p");
+    _title.innerHTML = _weapon.nameChs;
+    _card.appendChild(_title);
+    _card.title = _weapon.star + "星 " + _weapon.nameChs;
+    var parentNode = destination;
+    _card.id = "card_" + _weapon.name;//卡片id
+    parentNode.appendChild(_card);
+}
+
 /**
  * 初始化所有卡片
  */
@@ -159,8 +194,8 @@ function initializeAllCard() {
     R_Non = [];
     for (var i = 0; i < CHARACTER_NAMES.length; i++) {
         var _chara = findCharacter(CHARACTER_NAMES[i]);
-        if (_chara.star == 4) initializeCard(_chara, E_RBox);
-        if (_chara.star == 5) initializeCard(_chara, E_SBox);
+        if (_chara.star == 4) initializeCharacterCard(_chara, E_RBox);
+        if (_chara.star == 5) initializeCharacterCard(_chara, E_SBox);
     }
 }
 
@@ -185,13 +220,13 @@ function moveCard(element) {
                 S_Non.deleteElement(passengerName);//消去Non的身份
                 ChronicledSup.push(passengerName);//在Ch中登记
                 Scommon.push(passengerName);
-                initializeCard(findCharacter(passengerName), E_SChBox);//在Ch中复制一份
+                initializeCharacterCard(findCharacter(passengerName), E_SChBox);//在Ch中复制一份
             }
             if (origin.id === "Scommon_PoolBox") {//要前往SupBox
                 Scommon.deleteElement(passengerName);
                 if (Sup.length != 0) {
                     E_SupBox.removeChild(document.getElementById("card_" + Sup[0]));//删除当前的Sup卡片
-                    initializeCard(findCharacter(Sup[0]), E_ScommonBox);//并将其挪至Scom
+                    initializeCharacterCard(findCharacter(Sup[0]), E_ScommonBox);//并将其挪至Scom
                     Scommon.push(Sup[0]);//将当前的Sup驱赶至Scommon
                 }
                 Sup = [passengerName];
@@ -277,28 +312,28 @@ function analizeCardSet() {
     }//将所有未选中的角色安置
     if (_CHRONICLE_MODE == true) {
         for (var i = 0; i < ChronicledSup.length; i++) {
-            initializeCard(findCharacter(ChronicledSup[i]), E_SChBox);
+            initializeCharacterCard(findCharacter(ChronicledSup[i]), E_SChBox);
         }
     }
     if (_CHRONICLE_MODE == false) {
-        initializeCard(findCharacter(Sup[0]), E_SupBox);
+        initializeCharacterCard(findCharacter(Sup[0]), E_SupBox);
     }
     for (var i = 0; i < Scommon.length; i++) {
-        initializeCard(findCharacter(Scommon[i]), E_ScommonBox);
+        initializeCharacterCard(findCharacter(Scommon[i]), E_ScommonBox);
     }
     for (var i = 0; i < Rup.length; i++) {
-        initializeCard(findCharacter(Rup[i]), E_RupBox);
+        initializeCharacterCard(findCharacter(Rup[i]), E_RupBox);
     }
     if (_CHRONICLE_MODE == false) {
         for (var i = 0; i < Rcommon.length; i++) {
-            initializeCard(findCharacter(Rcommon[i]), document.getElementById("Rcommon_PoolBox"));
+            initializeCharacterCard(findCharacter(Rcommon[i]), document.getElementById("Rcommon_PoolBox"));
         }
     }
     for (var i = 0; i < S_Non.length; i++) {
-        initializeCard(findCharacter(S_Non[i]), E_SBox);
+        initializeCharacterCard(findCharacter(S_Non[i]), E_SBox);
     }
     for (var i = 0; i < R_Non.length; i++) {
-        initializeCard(findCharacter(R_Non[i]), E_RBox);
+        initializeCharacterCard(findCharacter(R_Non[i]), E_RBox);
     }
 }
 
@@ -332,15 +367,16 @@ function updateChronicle() {
 function outputObtained() {
     inventory.innerHTML = "";
     checkPools();
-    for (var i = 0; i < obtainedCharacters.length; i++) {
+    for (var i = 1; i < containerInfo.length + 1; i++) {
+        if (containerInfo[i] == undefined) return;
         var _container = document.createElement("div");
         _container.classList.add("container");
-        if (isSCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) _container.classList.add("SUpContainer");
-        if (isRCharacter(obtainedCharacters[i]) && isUpCharacter(obtainedCharacters[i])) _container.classList.add("RUpContainer");
+        if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
+        if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
         inventory.appendChild(_container);
-        initializeCard(findCharacter(obtainedCharacters[i]), _container);
-        inventory.children[inventory.children.length - 1].children[0].id += "_" + Number(i + 1);
-        _container.innerHTML += "<p class='veryMark'><strong>" + Number(obtainedCalc[i]) + "</strong></p>";
-        _container.innerHTML += "<p>#" + Number(i + 1) + ":(" + Number(obtainedRecords[i]) + ")</p>";
+        initializeCharacterCard(findCharacter(containerInfo[i].name), _container);
+        inventory.children[inventory.children.length - 1].children[0].id += "_" + Number(i);
+        _container.innerHTML += "<p class='veryMark'><strong>" + Number(containerInfo[i].obtainedCalc) + "</strong></p>";
+        _container.innerHTML += "<p>#" + Number(i) + ":(" + Number(containerInfo[i].obtainedRecord) + ")</p>";
     }
 }

@@ -287,7 +287,7 @@ function luckTest() {
     if (IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            num = obtainedCharacters.length;
+            num = containerInfo.length - 1;
             times++;
             if (times % interval == 0) {
                 var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
@@ -303,7 +303,7 @@ function luckTest() {
     if (!IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            num = obtainedCharacters.length;
+            num = containerInfo.length - 1;
             times++;
             if (times % interval == 0) {
                 var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");

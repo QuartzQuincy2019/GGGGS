@@ -1,12 +1,13 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v4.0.2";
+var __VERSION = "v4.0.3";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
 var _TOKEN = 0;
 var _CHRONICLE_MODE = false;
+var _WEAPON_MODE = false;
 var E_TotalCounter = document.getElementById("TotalCounter");
 var E_ChronicledArea = document.getElementById("ChronicledArea");
 
@@ -79,6 +80,17 @@ function findCharacter(characterName) {
     return _chara;
 }
 
+/**
+ * 通过武器识别名获取武器对象。
+ * @param {String} weaponName 
+ * @returns 武器(weapon)类型的值，若未找到则返回false。
+ */
+function findWeapon(weaponName) {
+    var _weapon = weaponMap[weaponName];
+    if (_weapon == undefined) return;
+    return _weapon;
+}
+
 function refreshTotalCounter() {
     if (_TOKEN < 10000) {
         E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次祈愿";
@@ -119,4 +131,11 @@ function doValue(valueArray) {
         temp.push(valueArray[i]);
     }
     return temp;
+}
+
+
+function getItemType(name){
+    if(WEAPON_NAMES.includes(name)) return "weapon";
+    if(CHARACTER_NAMES.includes(name)) return "character";
+    return false;
 }

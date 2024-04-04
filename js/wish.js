@@ -13,11 +13,23 @@ var _FatePoint = 0;
 var S_Probability = 0.006;
 var R_Probability = 0.051;
 var _TotalWishTimes = 0;
+
+class ContainerInfo {
+    type;//character/weapon
+    name;
+    obtainedRecord;
+    obtainedCalc;
+    constructor(type, name, obtainedRecord, obtainedCalc) {
+        this.type = type;
+        this.name = name;
+        this.obtainedCalc = obtainedCalc;
+        this.obtainedRecord = obtainedRecord;
+    }
+}
+var containerInfo = [];//盛放ContainerInfo类
+
 var _S_DropCalc = 0;//五星UP角色保底计算器（五星垫数）意味着抽取之前的垫数
 var _R_DropCalc = 0;//四星UP角色保底计算器（四星垫数）
-var obtainedCharacters = [];
-var obtainedRecords = [];//储存第几抽出的角色
-var obtainedCalc = [];//储存（金）垫了几抽出的角色
 var obtainedNormal = 0;
 var obtainedRWeapons = 0;
 
@@ -125,9 +137,7 @@ function checkPools() {
 
 function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), isSC, isRC];
-    obtainedCharacters = [];
-    obtainedRecords = [];
-    obtainedCalc = [];
+    containerInfo = [null];//清空
     obtainedNormal = 0;
     obtainedRWeapons = 0;
     _TotalWishTimes = totalWishes;
@@ -155,35 +165,31 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             level = "";
         }
         if (level == "S") {//抽到五星
-            obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-            obtainedRecords.push(wished);//第几抽抽到的
             if (_IsSupCertain || getRandomDecimal() <= 0.5) {
-                obtainedCharacters.push(Sup[0]);
                 _IsSupCertain = false;
+                containerInfo.push(new ContainerInfo("character", Sup[0], wished, Number(_S_DropCalc) + 1));
             } else {
-                obtainedCharacters.push(getRandomElement(Scommon));
+                let _ch = getRandomElement(Scommon);
                 _IsSupCertain = true;
+                containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
         }
         if (level == "R") {
             if (_IsRupCertain) {
-                obtainedRecords.push(wished);//第几抽抽到的
-                obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                obtainedCharacters.push(getRandomElement(Rup));
                 _IsRupCertain = false;
+                let _ch = getRandomElement(Rup);
+                containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
             } else if (getRandomDecimal() <= 0.5) {//角色/武器决定
                 if (_IsSupCertain || getRandomDecimal() <= 0.5) {//Up角色/非Up角色决定
-                    obtainedRecords.push(wished);//第几抽抽到的
-                    obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                    obtainedCharacters.push(getRandomElement(Rup));
+                    let _ch = getRandomElement(Rup);
                     _IsRupCertain = false;
+                    containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 } else {
-                    obtainedRecords.push(wished);//第几抽抽到的
-                    obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                    obtainedCharacters.push(getRandomElement(Rcommon));
+                    let _ch = getRandomElement(Rcommon);
                     _IsRupCertain = true;
+                    containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 }
             } else {//抽到四星武器
                 obtainedRWeapons++;
@@ -199,9 +205,7 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
 
 function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
     lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isRC];
-    obtainedCharacters = [];
-    obtainedRecords = [];
-    obtainedCalc = [];
+    containerInfo = [null];
     obtainedNormal = 0;
     obtainedRWeapons = 0;
     var maxFatePoint = 1;
@@ -234,25 +238,23 @@ function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
             level = "";
         }
         if (level == "S") {//抽到五星
-            obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-            obtainedRecords.push(wished);//第几抽抽到的
             if (_IsSupCertain || getRandomDecimal() <= 0.5) {
-                obtainedCharacters.push(Sup[0]);
                 _IsSupCertain = false;
                 _FatePoint = 0;
+                containerInfo.push(new ContainerInfo("character", Sup[0], wished, Number(_S_DropCalc) + 1));
             } else {
-                obtainedCharacters.push(getRandomElement(Scommon));
+                let _ch = getRandomElement(Scommon);
                 _FatePoint += 1;
                 if (_FatePoint == maxFatePoint) _IsSupCertain = true;
+                containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
         }
         if (level == "R") {
             if (_IsRupCertain || getRandomDecimal() <= 0.5) {
-                obtainedRecords.push(wished);//第几抽抽到的
-                obtainedCalc.push(Number(_S_DropCalc) + 1);//此时五星垫了几抽
-                obtainedCharacters.push(getRandomElement(Rup));
+                let _ch = getRandomElement(Rup);
+                containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 _IsRupCertain = false;
             } else {//抽到四星武器
                 obtainedRWeapons++;

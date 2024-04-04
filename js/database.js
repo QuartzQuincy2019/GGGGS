@@ -14,6 +14,14 @@ var Element = {
     cryo: 7
 }
 
+var WeaponType = {
+    sword: 1,
+    catalyst: 2,
+    polearm: 3,
+    claymore: 4,
+    bow: 5
+}
+
 var ELEMENT_NAME = ["anemo", "geo", "electro", "dendro", "hydro", "pyro", "cryo"];
 var ELEMENT_NAMECHS = ["风", "岩", "雷", "草", "水", "火", "冰"];
 var ELEMENT_NUMBER = [1, 2, 3, 4, 5, 6, 7];
@@ -41,6 +49,21 @@ class Character {
         this.wfile = './img/w_' + this.name + '.png';
         this.signature = signature;
         this.element = element;
+        this.nameChs = nameChs;
+    }
+}
+
+class Weapon {
+    name;
+    star;
+    weaponFile;
+    weaponType;
+    nameChs;
+    constructor(name, star, weaponType, nameChs) {
+        this.name = name;
+        this.star = star;
+        this.weaponType = weaponType;
+        this.weaponFile = './img/weapon/' + this.star + '/Weapon_' + this.name + '.png';
         this.nameChs = nameChs;
     }
 }
@@ -145,8 +168,115 @@ for (var i = 0; i < CHARACTER_LIST.length; i++) {
     CHARACTER_NAMES.push(CHARACTER_LIST[i].name);
 }
 
+var WEAPON_LIST = [
+    // 5 star
+    new Weapon("Amos'_Bow", 5, WeaponType.bow, "阿莫斯之弓"),
+    new Weapon("Aqua_Simulacra", 5, WeaponType.bow, "若水"),
+    new Weapon("Aquila_Favonia", 5, WeaponType.sword, "风鹰剑"),
+    new Weapon("A_Thousand_Floating_Dreams", 5, WeaponType.catalyst, "千夜浮梦"),
+    new Weapon("Beacon_of_the_Reed_Sea", 5, WeaponType.claymore, "苇海信标"),
+    new Weapon("Calamity_Queller", 5, WeaponType.polearm, "息灾"),
+    new Weapon("Cashflow_Supervision", 5, WeaponType.catalyst, "金流监督"),
+    new Weapon("Crane's_Echoing_Call", 5, WeaponType.catalyst, "鹤鸣余音"),
+    new Weapon("Elegy_for_the_End", 5, WeaponType.bow, "终末嗟叹之诗"),
+    new Weapon("Engulfing_Lightning", 5, WeaponType.polearm, "薙草之稻光"),
+    new Weapon("Everlasting_Moonglow", 5, WeaponType.catalyst, "不灭月华"),
+    new Weapon("Freedom-Sworn", 5, WeaponType.sword, "苍古自由之誓"),
+    new Weapon("Haran_Geppaku_Futsu", 5, WeaponType.sword, "波乱月白经津"),
+    new Weapon("Hunter's_Path", 5, WeaponType.bow, "猎人之径"),
+    new Weapon("Jadefall's_Splendor", 5, WeaponType.catalyst, "碧落之珑"),
+    new Weapon("Kagura's_Verity", 5, WeaponType.catalyst, "神乐之真意"),
+    new Weapon("Key_of_Khaj-Nisut", 5, WeaponType.sword, "圣显之钥"),
+    new Weapon("Light_of_Foliar_Incision", 5, WeaponType.sword, "裁叶萃光"),
+    new Weapon("Lost_Prayer_to_the_Sacred_Winds", 5, WeaponType.catalyst, "四风原典"),
+    new Weapon("Memory_of_Dust", 5, WeaponType.catalyst, "尘世之锁"),
+    new Weapon("Mistsplitter_Reforged", 5, WeaponType.sword, "雾切之回光"),
+    new Weapon("Polar_Star", 5, WeaponType.bow, "冬极白星"),
+    new Weapon("Primordial_Jade_Cutter", 5, WeaponType.sword, "磐岩结绿"),
+    new Weapon("Primordial_Jade_Winged-Spear", 5, WeaponType.polearm, "和璞鸢"),
+    new Weapon("Redhorn_Stonethresher", 5, WeaponType.claymore, "赤角石溃杵"),
+    new Weapon("Skyward_Atlas", 5, WeaponType.catalyst, "天空之卷"),
+    new Weapon("Skyward_Blade", 5, WeaponType.sword, "天空之刃"),
+    new Weapon("Skyward_Harp", 5, WeaponType.bow, "天空之翼"),
+    new Weapon("Skyward_Pride", 5, WeaponType.claymore, "天空之傲"),
+    new Weapon("Skyward_Spine", 5, WeaponType.polearm, "天空之脊"),
+    new Weapon("Song_of_Broken_Pines", 5, WeaponType.claymore, "松籁响起之时"),
+    new Weapon("Splendor_of_Tranquil_Waters", 5, WeaponType.sword, "静水流涌之辉"),
+    new Weapon("Staff_of_Homa", 5, WeaponType.polearm, "护摩之杖"),
+    new Weapon("Staff_of_the_Scarlet_Sands", 5, WeaponType.polearm, "赤沙之杖"),
+    new Weapon("Summit_Shaper", 5, WeaponType.sword, "斫峰之刃"),
+    new Weapon("The_First_Great_Magic", 5, WeaponType.bow, "最初的大魔术"),
+    new Weapon("The_Unforged", 5, WeaponType.claymore, "无工之剑"),
+    new Weapon("Thundering_Pulse", 5, WeaponType.bow, "飞雷之弦振"),
+    new Weapon("Tome_of_the_Eternal_Flow", 5, WeaponType.catalyst, "万世流涌大典"),
+    new Weapon("Tulaytullah's_Remembrance", 5, WeaponType.catalyst, "图莱杜拉的回忆"),
+    new Weapon("Uraku_Misugiri", 5, WeaponType.sword, "有乐御簾切"),
+    new Weapon("Verdict", 5, WeaponType.claymore, "裁断"),
+    new Weapon("Vortex_Vanquisher", 5, WeaponType.polearm, "贯虹之槊"),
+    new Weapon("Wolf's_Gravestone", 5, WeaponType.claymore, "狼的末路"),
+    // 4 star
+    new Weapon("Akuoumaru", 4, WeaponType.claymore, "恶王丸"),
+    new Weapon("Alley_Hunter", 4, WeaponType.bow, "暗巷猎手"),
+    new Weapon("Dragon's_Bane", 4, WeaponType.polearm, "匣里灭辰"),
+    new Weapon("Eye_of_Perception", 4, WeaponType.catalyst, "昭心"),
+    new Weapon("Favonius_Codex", 4, WeaponType.catalyst, "西风秘典"),
+    new Weapon("Favonius_Greatsword", 4, WeaponType.claymore, "西风大剑"),
+    new Weapon("Favonius_Lance", 4, WeaponType.polearm, "西风长枪"),
+    new Weapon("Favonius_Sword", 4, WeaponType.sword, "西风剑"),
+    new Weapon("Favonius_Warbow", 4, WeaponType.bow, "西风猎弓"),
+    new Weapon("Lion's_Roar", 4, WeaponType.sword, "匣里龙吟"),
+    new Weapon("Lithic_Blade", 4, WeaponType.claymore, "千岩古剑"),
+    new Weapon("Lithic_Spear", 4, WeaponType.polearm, "千岩长枪"),
+    new Weapon("Makhaira_Aquamarine", 4, WeaponType.claymore, "玛海菈的水色"),
+    new Weapon("Mitternachts_Waltz", 4, WeaponType.bow, "幽夜华尔兹"),
+    new Weapon("Mouun's_Moon", 4, WeaponType.bow, "曚云之月"),
+    new Weapon("Portable_Power_Saw", 4, WeaponType.claymore, "便携动力锯"),
+    new Weapon("Prospector's_Drill", 4, WeaponType.polearm, "勘探钻机"),
+    new Weapon("Rainslasher", 4, WeaponType.claymore, "雨裁"),
+    new Weapon("Range_Gauge", 4, WeaponType.bow, "测距规"),
+    new Weapon("Rust", 4, WeaponType.bow, "弓藏"),
+    new Weapon("Sacrificial_Bow", 4, WeaponType.bow, "祭礼弓"),
+    new Weapon("Sacrificial_Fragments", 4, WeaponType.catalyst, "祭礼残章"),
+    new Weapon("Sacrificial_Greatsword", 4, WeaponType.claymore, "祭礼大剑"),
+    new Weapon("Sacrificial_Sword", 4, WeaponType.sword, "祭礼剑"),
+    new Weapon("The_Alley_Flash", 4, WeaponType.sword, "暗巷闪光"),
+    new Weapon("The_Bell", 4, WeaponType.claymore, "钟剑"),
+    new Weapon("The_Black_Sword", 4, WeaponType.sword, "黑剑"),
+    new Weapon("The_Dockhand's_Assistant", 4, WeaponType.sword, "船坞长剑"),
+    new Weapon("The_Flute", 4, WeaponType.sword, "笛剑"),
+    new Weapon("The_Stringless", 4, WeaponType.bow, "绝弦"),
+    new Weapon("The_Widsith", 4, WeaponType.catalyst, "流浪乐章"),
+    new Weapon("Wandering_Evenstar", 4, WeaponType.catalyst, "流浪的晚星"),
+    new Weapon("Wavebreaker's_Fin", 4, WeaponType.polearm, "断浪长鳍"),
+    new Weapon("Wine_and_Song", 4, WeaponType.catalyst, "暗巷的酒与诗"),
+    new Weapon("Xiphos'_Moonlight", 4, WeaponType.sword, "西福斯的月光")
+];
+
+var weaponMap = {};
+for (var i = 0; i < WEAPON_LIST.length; i++) {
+    var weapon = WEAPON_LIST[i];
+    weaponMap[weapon.name] = weapon;
+}
+
+var WEAPON_NAMES = [];
+for (var i = 0; i < WEAPON_LIST.length; i++) {
+    WEAPON_NAMES.push(WEAPON_LIST[i].name);
+}
+
 const itemPools = {
     //4.5
+    wish_4_5_3: [
+        ["neuvillette"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["barbara", "xingqiu", "yanfei"],
+        ["beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xiangling", "xinyan", "yaoyao", "yunjin"]
+    ],
+    wish_4_5_4: [
+        ["kazuha"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["barbara", "xingqiu", "yanfei"],
+        ["beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xiangling", "xinyan", "yaoyao", "yunjin"]
+    ],
     wish_4_5_1: [
         ["chiori"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],

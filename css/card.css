@@ -51,11 +51,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    max-width: 100%;
     overflow: hidden;
     display: block;
     text-align: center;
     height: calc(var(--card-height) * 0.2);
-    font-size: calc(var(--card-height) * 0.12);
+    font-size: calc(var(--card-height) * 0.11);
     border-bottom-left-radius: 0.6vh;
     border-bottom-right-radius: 0.6vh;
     font-family: '华文中宋', '宋体';
