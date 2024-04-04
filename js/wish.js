@@ -2,10 +2,58 @@
 // 第三版 祈愿逻辑（2024/3/23）
 // 祈愿。储存祈愿逻辑。
 
+/**
+ * Sup：五星Up物品，只有一个
+ */
 var Sup = [];
+
+/**
+ * Scommon：概率未提升的五星物品。用户有一定概率能抽取到。
+ */
 var Scommon = [];
+
+/**
+ * Rup：四星Up物品。可以有多个
+ */
 var Rup = [];
+
+/**
+ * Rcommon：概率未提升的四星物品。
+ */
 var Rcommon = [];
+
+/**
+ * Candidates：候选
+ */
+var Candidates = [];
+
+var Sup_W = [];
+var Sup_C = [];
+var Rup_W = [];
+var Rup_C = [];
+var Scommon_W = [];
+var Scommon_C = [];
+var Rcommon_W = [];
+var Rcommon_C = [];
+function resetDetail() {
+    Candidates = [];
+    Sup = [];
+    Scommon = [];
+    Rup = [];
+    Rcommon = [];
+    Sup_W = [];
+    Sup_C = [];
+    Rup_W = [];
+    Rup_C = [];
+    Scommon_W = [];
+    Scommon_C = [];
+    Rcommon_W = [];
+    Rcommon_C = [];
+}
+
+
+
+var RW = [];//R Weapon
 var ChronicledSup = [];
 var _IsSupCertain = false;
 var _IsRupCertain = false;//紫保底的意思是：一定能抽到紫Up
@@ -67,11 +115,26 @@ function getCurrentInfo() {
 
 function selectWishPool(wishPool) {
     if (_CHRONICLE_MODE == false) {
-        ChronicledSup = [];
-        Sup = doValue(wishPool[0]);
-        Scommon = doValue(wishPool[1]);
-        Rup = doValue(wishPool[2]);
-        Rcommon = doValue(wishPool[3]);
+        if (_GACHA_MODE == "character") {
+            ChronicledSup = [];
+            var u3 = doValue(wishPool[3]);
+            var u4 = doValue(wishPool[4]);
+            Sup = doValue(wishPool[0]);
+            Scommon = doValue(wishPool[1]);
+            Rup = doValue(wishPool[2]);
+            Rcommon = doValue(u3.concat(u4));
+            Rcommon_W = doValue(u4);
+        }
+        if (_GACHA_MODE == "weapon") {
+            var u3 = doValue(wishPool[3]);
+            var u4 = doValue(wishPool[4]);
+            ChronicledSup = [];
+            Sup = doValue(wishPool[0]);
+            Scommon = doValue(wishPool[1]);
+            Rup = doValue(wishPool[2]);
+            Rcommon = doValue(u3.concat(u4));
+            Rcommon_W = doValue(u3);
+        }
     }
     if (_CHRONICLE_MODE == true) {
         ChronicledSup = doValue(wishPool[0]);
@@ -93,6 +156,24 @@ function refreshSProbability() {
 function refreshRProbability() {
     if (_R_DropCalc >= 9) R_Probability = 0.994;
     if (_R_DropCalc < 9) R_Probability = 0.051;
+}
+
+function refreshWSProbability() {
+    if (_S_DropCalc <= 62) S_Probability = 0.007;
+    if (_S_DropCalc > 62 && _S_DropCalc <= 71) {
+        S_Probability = 0.007 + 0.07 * (_S_DropCalc - 62);
+    }
+    if (_S_DropCalc > 71 && _S_DropCalc <= 79) {
+        S_Probability = 0.637 + 0.035 * (_S_DropCalc - 71);
+    }
+    if (_S_DropCalc == 80) S_Probability = 1;
+}
+
+function refreshWRProbability() {
+    if (_R_DropCalc <= 7) R_Probability = 0.06;
+    if (_R_DropCalc == 8) R_Probability = 0.66;
+    if (_R_DropCalc == 9) R_Probability = 0.96;
+    if (_R_DropCalc >= 10) _R_DropCalc = 1;
 }
 
 /**
@@ -177,23 +258,27 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             _R_DropCalc++;
         }
         if (level == "R") {
-            if (_IsRupCertain) {
+            if (_IsRupCertain) {//触发紫大保底，即触发紫保底角色
                 _IsRupCertain = false;
-                let _ch = getRandomElement(Rup);
+                let _ch = getRandomElement(Rup_C);
                 containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
             } else if (getRandomDecimal() <= 0.5) {//角色/武器决定
-                if (_IsSupCertain || getRandomDecimal() <= 0.5) {//Up角色/非Up角色决定
-                    let _ch = getRandomElement(Rup);
+                if (_IsRupCertain || getRandomDecimal() <= 0.5) {//抽到角色，进行Up角色/非Up角色决定
+                    let _ch = getRandomElement(Rup_C);
                     _IsRupCertain = false;
                     containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 } else {
-                    let _ch = getRandomElement(Rcommon);
+                    let _ch = getRandomElement(Rcommon_C);
                     _IsRupCertain = true;
                     containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 }
             } else {//抽到四星武器
                 obtainedRWeapons++;
                 _IsRupCertain = true;
+                if (Rcommon_W.length != 0) {
+                    let _ch = getRandomElement(Rcommon_W);
+                    containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
+                }
             }
             _S_DropCalc++;
             _R_DropCalc = 0;
@@ -201,6 +286,83 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     }
     _TOKEN += _TotalWishTimes;
     newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), _IsSupCertain, _IsRupCertain];
+}
+
+function weaponWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
+    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isRC];
+    containerInfo = [null];//清空
+    obtainedNormal = 0;
+    obtainedRWeapons = 0;
+    _FatePoint = fp;
+    var maxFatePoint = 2;
+    _TotalWishTimes = totalWishes;
+    _S_DropCalc = startSDrop;
+    _R_DropCalc = startRDrop;
+    _IsRupCertain = isRC;
+    var level = "";
+    var wished = new Number(1);//当前祈愿次数
+    for (; wished <= _TotalWishTimes; wished++) {
+        refreshWRProbability();
+        refreshWSProbability();
+        var randomedDecimal = getRandomDecimal();
+        if (randomedDecimal <= S_Probability) {
+            level = "S";
+        } else if (randomedDecimal > S_Probability && randomedDecimal < (S_Probability + R_Probability)) {
+            level = "R";
+        } else {
+            level = "N";
+        }
+        if (level == "N") {//抽到了普通等级
+            obtainedNormal++;
+            _S_DropCalc++;
+            _R_DropCalc++;
+            level = "";
+        }
+        if (level == "S") {//抽到五星
+            if (_IsSupCertain || getRandomDecimal() <= 0.75) {//Sup/Scommon
+                //抽到本期定轨的两个之一
+                if (fp == maxFatePoint || getRandomDecimal() <= 0.5) {
+                    //抽到定轨的武器
+                    fp = 0;
+                    containerInfo.push(new ContainerInfo("weapon", Sup[0], wished, Number(_S_DropCalc) + 1));
+                } else {
+                    //抽到与定轨相反的武器
+                    fp += 1;
+                    containerInfo.push(new ContainerInfo("weapon", Sup[1], wished, Number(_S_DropCalc) + 1));
+                }
+                _IsSupCertain = false;
+            } else {
+                let _ch = getRandomElement(Scommon_W);
+                fp += 1;
+                if (fp == maxFatePoint) _IsSupCertain = true;
+                containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
+            }
+            _S_DropCalc = 0;
+            _R_DropCalc++;
+        }
+        if (level == "R") {
+            console.log("断点在此");
+            if (_IsRupCertain || getRandomDecimal() <= 0.75) {
+                let _ch = getRandomElement(Rup_W);
+                _IsRupCertain = false;
+                containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
+            } else {
+                let _ch = getRandomElement(Rcommon);
+                _IsRupCertain = true;
+                if (getItemType(_ch) == "character") {
+                    containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
+                }
+                if (getItemType(_ch) == "weapon") {
+                    containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
+                }
+            }
+        }
+        _S_DropCalc++;
+        _R_DropCalc = 0;
+    }
+    _FatePoint = fp;
+    _TOKEN += _TotalWishTimes;
+    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsRupCertain];
 }
 
 function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {

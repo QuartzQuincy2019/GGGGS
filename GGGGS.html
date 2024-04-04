@@ -42,9 +42,12 @@
     <!-- 卡池操作部分 -->
     <div class="section" id="section_2">
         <p class="instructions centerized"><strong>󰛊卡池操作󰛊</strong></p>
-        <div class="interface_button" id="ModeSwitch"
+        <div class="interface_button" id="ModeSwitch" style="display: none;"
             onclick="switchWishMode();chronicledAreaControl();initializeAllCard();randomArtworkBanner();">
             ModeSwitch</div>
+        <div class="interface_button" id="GachaModeSwitch"
+            onclick="switchGachaMode();chronicledAreaControl();gachaModeAreaControl();initializeAllCard();randomArtworkBanner();">
+            角色/武器池</div>
         <div class="ChronicleDisabled">
             <p class="instructions">卡池分为󰰣五星和󰰠四星两大组，每一大组有三个小组。6个小组从上到下依次是：五星UP池、五星非UP池、未参与五星卡池、四星UP池、四星非UP池、未参与四星卡池。
             </p>
@@ -61,7 +64,7 @@
         </div>
         <hr>
         <form>
-            <select name="ItempoolSelection" id="itemPoolSelect" class="ChronicleDisabled"
+            <select name="ItempoolSelection" id="characterPoolSelect" class="ChronicleDisabled CharacterSpecialized"
                 onchange="updateCards();updateBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
                 <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义卡池</option>
                 <!-- 4.5 -->
@@ -140,6 +143,10 @@
                 <option value="wish_3_0_1">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-1——提纳里</option>
                 <option value="wish_3_0_2">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-2——钟离</option>
             </select>
+            <select name="WeaponpoolSelection" id="weaponPoolSelect" class="ChronicleDisabled WeaponSpecialized" onchange="updateCards();updateBanner();">
+                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义武器池</option>
+                <option value="wish_4_5_2">v4.5【铓锋锦间裁】后半：2024年04月02日-2——那维莱特&枫原万叶</option>
+            </select>
             <select name="ChronicledpoolSelection" id="chronicledPoolSelect" class="ChronicleSpecialized"
                 onchange="updateChronicle();randomArtworkBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
                 <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义集录卡池</option>
@@ -155,32 +162,61 @@
     </div>
     <hr>
     <!-- 卡池展示部分 -->
-    <p class="instructions centerized TipTitle ChronicleSpecialized">󰀖可定轨五星池</p>
-    <div title="候选五星Up池" class="PoolBox ChronicledBox ChronicleSpecialized SBox" id="Chronicled_Sup_PoolBox"></div>
 
-    <div class="ChronicleDisabled">
-        <p class="instructions centerized TipTitle">五星Up池</p>
+    <!-- 五星Up定轨展示板区域 -->
+    <div class="ChronicleDisabled CharacterSpecialized">
+        <p class="instructions centerized TipTitle">角色祈愿：可定轨五星角色</p>
+    </div>
+    <div class="ChronicleDisabled WeaponSpecialized">
+        <p class="instructions centerized TipTitle">武器祈愿：可定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">󰯏已定轨五星池</p>
+        <p class="instructions centerized TipTitle">󰀖集录：可定轨五星池</p>
     </div>
-    <div title="五星Up池【仅1个角色】" class="PoolBox UpBox SBox" id="Sup_PoolBox"></div>
-    <div class="ChronicleDisabled">
-        <p class="instructions centerized TipTitle">五星非Up池（常驻五星池）</p>
+    <div title="候选五星Up池" class="PoolBox ChronicledBox SBox WeaponSpecialized ChronicleSpecialized" id="Chronicled_Sup_PoolBox"></div>
+
+    <!-- 五星Up区域 -->
+    <div class="ChronicleDisabled CharacterSpecialized">
+        <p class="instructions centerized TipTitle">󰯏角色祈愿：已定轨五星角色</p>
+    </div>
+    <div class="ChronicleDisabled WeaponSpecialized">
+        <p class="instructions centerized TipTitle">󰯏武器祈愿：已定轨&未定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">󰓼未定轨五星池</p>
+        <p class="instructions centerized TipTitle">󰯏集录：已定轨五星池</p>
+    </div>
+    <div title="五星Up物品池【只允许1个物品】" class="PoolBox UpBox SBox" id="Sup_PoolBox"></div>
+
+    <!-- common区域 -->
+    <div class="ChronicleDisabled CharacterSpecialized">
+        <p class="instructions centerized TipTitle">角色祈愿：常驻五星角色</p>
+    </div>
+    <div class="ChronicleDisabled WeaponSpecialized">
+        <p class="instructions centerized TipTitle">武器祈愿：待定轨和常驻五星武器</p>
+    </div>
+    <div class="ChronicleSpecialized">
+        <p class="instructions centerized TipTitle">󰓼集录：普通概率五星池</p>
     </div>
     <div title="五星非Up池（常驻五星池）（歪池）" class="PoolBox CommonBox SBox" id="Scommon_PoolBox"></div>
-    <div class="ChronicleDisabled">
+
+    <!-- 不参与区域 -->
+    <div class="ChronicleDisabled CharacterSpecialized">
         <p class="instructions centerized TipTitle">不参与祈愿的五星角色：</p>
+    </div>
+    <div class="ChronicleDisabled WeaponSpecialized">
+        <p class="instructions centerized TipTitle">不参与祈愿的五星武器：</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">不参与集录祈愿的五星角色：</p>
     </div>
-    <div title="未参与到本次祈愿中的五星角色" class="PoolBox NonBox SBox" id="Snon_PoolBox"></div>
+    <div title="未参与到本次祈愿中的五星" class="PoolBox NonBox SBox" id="Snon_PoolBox"></div>
+    </div>
+
+    <!-- 五星结束 -->
+
     <hr>
 
+    <!-- 四星开始 -->
     <div class="ChronicleDisabled">
         <p class="instructions centerized TipTitle">四星Up池</p>
     </div>
@@ -192,13 +228,20 @@
     <p class="instructions centerized TipTitle ChronicleDisabled">四星非Up池（常驻四星池）</p>
     <div title="四星非Up池（常驻四星池）" class="PoolBox CommonBox ChronicleDisabled RBox" id="Rcommon_PoolBox"></div>
 
-    <div class="ChronicleDisabled">
-        <p class="instructions centerized TipTitle">不参与祈愿的四星角色：</p>
+    <div class="ChronicleDisabled CharacterSpecialized">
+        <p class="instructions centerized TipTitle">不参与祈愿的四星角色、武器：</p>
+    </div>
+    <div class="ChronicleDisabled WeaponSpecialized">
+        <p class="instructions centerized TipTitle">不参与祈愿的四星角色、武器：</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">不参与集录祈愿的四星角色：</p>
     </div>
     <div title="未参与到本次祈愿中的四星角色" class="PoolBox NonBox RBox" id="Rnon_PoolBox"></div>
+
+
+
+
     <hr>
     <!-- 表单部分 -->
     <div class="ChronicleDisabled">
@@ -220,7 +263,7 @@
                         title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;允许的值为0 - 10（均包含）。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
                         min="0" max="10" step="1" value="0"><br>
                     <div>
-                        <div id="SupSwitchDeterminationMode" class="ChronicleDisabled">
+                        <div id="SupSwitchDeterminationMode" class="CharacterSpecialized">
                             <input class="radio_type" type="radio" title="选择：当前处于五星小保底" name="IsSUpCertainRadio"
                                 id="uc_option1_1" value="uncert" checked="true">
                             <label for="uc_option1_1" title="上一次抽到的五星角色是卡池的UP五星角色">当前处于五星小保底</label><br>
@@ -228,9 +271,9 @@
                                 id="uc_option1_2" value="cert">
                             <label for="uc_option1_2" title="上一次抽到的五星角色不是卡池的UP五星角色">当前处于五星大保底</label><br>
                         </div>
-                        <div id="SupFatePointDeterminationMode" class="ChronicleSpecialized">
-                            <p>当前<strong>命定值</strong>(0≤x≤1)：</p><input id="FatePointInput" type="number" title="命定值"
-                                min="0" max="1" step="1" value="0"><br>
+                        <div id="SupFatePointDeterminationMode" class="WeaponSpecialized ChronicleSpecialized">
+                            <p>当前<strong>命定值</strong>(0≤x≤1or2)：</p><input id="FatePointInput" type="number" title="命定值"
+                                min="0" max="2" step="1" value="0"><br>
                         </div>
                     </div>
                     <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio"
@@ -257,7 +300,7 @@
                     <p class="instructions">󱙌基本祈愿会在下方󰏖背包展示本轮祈愿中抽取到的所有角色，抽取到的三星武器、<strong>四星武器</strong>不予展示。</p>
                     <p class="instructions">
                         󰏖背包中每个角色卡片的<strong>正下方</strong>都有一个<strong>字号明显加大</strong>的数字：五星垫数（上一次抽出五星角色之后，接着进行的第n抽）</p>
-                    <p class="instructions">󰏖背包中“#X:(Y)”的含义：X——抽取到的第X个角色；Y——第Y抽抽取到的角色</p>
+                    <p class="instructions">󰏖背包中“#X:(Y)”的含义：X——抽取到的第X个物品；Y——第Y抽抽取到的物品</p>
                 </div>
                 <hr>
                 <div class="interface_button" id="GachaInstructionControl"

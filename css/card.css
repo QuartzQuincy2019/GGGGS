@@ -64,6 +64,15 @@
     transition-duration: 0.3s;
 }
 
+.card.weaponCard{
+    border-color: #ffffff;
+    border-style: double;
+}
+
+.card.weaponCard>p{
+    color: #000000;
+}
+
 .cryo {
     color: #17b7e8;
     border-color: #17b7e8;

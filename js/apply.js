@@ -4,7 +4,12 @@ var _interval = 5000000; //每_interval次十连提醒一次
 
 function newWish() {
     if (_CHRONICLE_MODE == false) {
-        wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+        if (_GACHA_MODE == "character") {
+            wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+        }
+        if (_GACHA_MODE == "weapon") {
+            weaponWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+        }
     } else {
         chronicledWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
     }
@@ -12,7 +17,12 @@ function newWish() {
 
 function lastWish() {
     if (_CHRONICLE_MODE == false) {
-        wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+        if (_GACHA_MODE == "character") {
+            wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+        }
+        if (_GACHA_MODE == "weapon") {
+            weaponWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+        }
     } else {
         chronicledWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
     }
@@ -93,6 +103,8 @@ function throwNewInfo() {
     E_StartRDrop.value = newInfo[2];
     if (_CHRONICLE_MODE == false) {
         newInfo[3] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
+        console.log(newInfo[3]);
+        document.getElementById("FatePointInput").value = newInfo[3];
     } else {
         document.getElementById("FatePointInput").value = newInfo[3];
     }

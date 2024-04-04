@@ -1,15 +1,16 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v4.0.3";
+var __VERSION = "v4.0.4ud";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
 var _TOKEN = 0;
 var _CHRONICLE_MODE = false;
-var _WEAPON_MODE = false;
 var E_TotalCounter = document.getElementById("TotalCounter");
 var E_ChronicledArea = document.getElementById("ChronicledArea");
+
+var _GACHA_MODE = "character"; // character或weapon，仅限于非chronicled
 
 /**
  * 获取数组最后一个元素
@@ -76,7 +77,9 @@ function getQuotient(dividend, divisor) {
  */
 function findCharacter(characterName) {
     var _chara = characterMap[characterName];
-    if (_chara == undefined) return;
+    if (_chara == undefined) {
+        throw new Error("findCharacter：没有找到名为" + characterName + "的角色。");
+    }
     return _chara;
 }
 
@@ -87,7 +90,9 @@ function findCharacter(characterName) {
  */
 function findWeapon(weaponName) {
     var _weapon = weaponMap[weaponName];
-    if (_weapon == undefined) return;
+    if (_weapon == undefined) {
+        throw new Error("findWeapon：没有找到名为" + weaponName + "的武器。");
+    };
     return _weapon;
 }
 
@@ -113,6 +118,14 @@ function convertBoolean(value) {
     throw new Error("convertBoolean: 传入的值有误！");
 }
 
+function switchGachaMode() {
+    if (_GACHA_MODE == "character") {
+        _GACHA_MODE = "weapon";
+    } else {
+        _GACHA_MODE = "character";
+    }
+}
+
 function switchWishMode() {
     if (_CHRONICLE_MODE == true) {
         _CHRONICLE_MODE = false;
@@ -133,9 +146,33 @@ function doValue(valueArray) {
     return temp;
 }
 
-
-function getItemType(name){
-    if(WEAPON_NAMES.includes(name)) return "weapon";
-    if(CHARACTER_NAMES.includes(name)) return "character";
+/**
+ * 
+ * @param {String} name 识别名
+ * @returns 
+ */
+function getItemType(name) {
+    if (WEAPON_NAMES.includes(name)) return "weapon";
+    if (CHARACTER_NAMES.includes(name)) return "character";
     return false;
+}
+
+function getGameObject(name) {
+    if (getItemType(name) == "weapon") {
+        return findWeapon(name);
+    }
+    if (getItemType(name) == "character") {
+        return findCharacter(name);
+    }
+    throw new Error("getObject：错误！该识别名" + name + "不存在于映射中！");
+}
+
+/**
+ * 将混乱的数组排序
+ * @returns 
+ */
+function rearrangeItem(arrayInMess){
+  const cElements = arrayInMess.filter(item => getItemType(item) == "character");
+  const wElements = arrayInMess.filter(item => getItemType(item) == "weapon");
+  return [...cElements, ...wElements];
 }

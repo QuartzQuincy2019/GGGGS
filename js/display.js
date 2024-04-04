@@ -42,6 +42,30 @@ function areaControl(elementId) {
     }
 }
 
+function gachaModeAreaControl(){
+    var weaponSpecialized_matches = document.querySelectorAll(".WeaponSpecialized");
+    var characterSpecialized_matches = document.querySelectorAll(".CharacterSpecialized");
+    if(_GACHA_MODE == "character"){
+        for (var i = 0; i < weaponSpecialized_matches.length; ++i) {
+            weaponSpecialized_matches[i].style.display = "none";
+        }
+        for (var i = 0; i < characterSpecialized_matches.length; ++i) {
+            characterSpecialized_matches[i].style.display = "";
+        }
+        return;
+    }
+    if(_GACHA_MODE == "weapon"){
+        for (var i = 0; i < weaponSpecialized_matches.length; ++i) {
+            weaponSpecialized_matches[i].style.display = "";
+        }
+        for (var i = 0; i < characterSpecialized_matches.length; ++i) {
+            characterSpecialized_matches[i].style.display = "none";
+        }
+        return;
+    }
+}
+
+
 function chronicledAreaControl() {
     var Chronicled_matches = document.querySelectorAll(".ChronicleSpecialized");
     var Normal_matches = document.querySelectorAll(".ChronicleDisabled");
@@ -68,9 +92,11 @@ function chronicledAreaControl() {
     }
 }
 chronicledAreaControl();
+gachaModeAreaControl();
 
 function setBanner(url) {
-    E_header.style.backgroundImage = "url(" + url + ")";
+    var text = 'url(\"'+url+'\")';
+    E_header.style.backgroundImage = text;
 }
 
 /**
@@ -78,14 +104,21 @@ function setBanner(url) {
  * @returns 
  */
 function updateBanner() {
-    var itemPoolSelect = document.getElementById("itemPoolSelect");
-    var selectedPool = itemPoolSelect.value;
+    var selector;
+    if(_GACHA_MODE=="character"){
+        selector = document.getElementById("characterPoolSelect");
+    }
+    if(_GACHA_MODE=="weapon"){
+        selector = document.getElementById("weaponPoolSelect");
+    }
+    var selectedPool = selector.value;
     if (selectedPool == "none") {
         setBanner("./img/transparent.png");
         return;
     }
     var version = selectedPool.slice(5, -2);//"4_2"
-    setBanner("./img/Banner_" + version + ".png");
+    var url = "./img/Banner_" + version + ".png";
+    setBanner(url);
 }
 
 function randomArtworkBanner() {
