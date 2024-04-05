@@ -781,5 +781,7 @@ function outputObtained() {
         inventory.children[inventory.children.length - 1].children[0].id += "_" + Number(i);
         _container.innerHTML += "<p class='veryMark'><strong>" + Number(containerInfo[i].obtainedCalc) + "</strong></p>";
         _container.innerHTML += "<p>#" + Number(i) + ":(" + Number(containerInfo[i].obtainedRecord) + ")</p>";
+        starRCardControl();
+        weaponCardControl();
     }
 }
