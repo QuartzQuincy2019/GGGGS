@@ -42,22 +42,24 @@
     <!-- 卡池操作部分 -->
     <div class="section" id="section_2">
         <p class="instructions centerized"><strong>󰛊卡池操作󰛊</strong></p>
-        <div class="interface_button" id="ModeSwitch" style="display: none;"
+        <div class="interface_button" id="ModeSwitch"
             onclick="switchWishMode();chronicledAreaControl();initializeAllCard();randomArtworkBanner();">
             ModeSwitch</div>
-        <div class="interface_button" id="GachaModeSwitch"
+        <div class="interface_button ChronicleDisabled" id="GachaModeSwitch"
             onclick="switchGachaMode();chronicledAreaControl();gachaModeAreaControl();initializeAllCard();randomArtworkBanner();">
             角色/武器池</div>
         <div class="ChronicleDisabled">
             <p class="instructions">卡池分为󰰣五星和󰰠四星两大组，每一大组有三个小组。6个小组从上到下依次是：五星UP池、五星非UP池、未参与五星卡池、四星UP池、四星非UP池、未参与四星卡池。
             </p>
-            <p class="instructions"><strong class="emphasis2">卡片排序</strong>：被点击的卡片会被附加在目的地卡池的<strong
-                    class="emphasis1">末尾</strong>，您可以通过此移动规则实现卡池中<strong class="emphasis1">卡片的排序</strong>。</p>
-            </p>
+            <p class="instructions">󰲡点击“UP池”中的卡片可将其移放至“不参与祈愿”区域。</p>
+            <p class="instructions"><strong class="emphasis2">卡片移动</strong>：<strong
+                    class="emphasis1">【Up池】-->【不参与池】-->【非Up池】-->【Up池】</strong></p>
             <p class="instructions">󰲡点击“UP池”中的卡片可将其移放至“不参与祈愿”区域。</p>
             <p class="instructions">󰲣点击“不参与祈愿”区域中的卡片可将其移放至“非UP池”。</p>
             <p class="instructions">󰲥点击“非UP池”（常驻）中的卡片可将其移放至“UP池”。</p>
-            <p class="instructions">综上：【Up池】-->【不参与池】-->【非Up池】-->【Up池】</p>
+            <p class="instructions"><strong class="emphasis2">卡片排序</strong>：被点击的卡片会被附加在目的地卡池的<strong
+                    class="emphasis1">末尾</strong>，您可以通过此移动规则实现卡池中<strong class="emphasis1">卡片的排序</strong>。</p>
+            </p>
             <div class="WeaponSpecialized">
                 <p class="instructions">󰓥武器祈愿的“<strong
                         class="emphasis2">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</strong>”池（称为五星Up池）要求<strong
@@ -71,10 +73,10 @@
                         class="emphasis1">不参与神铸定轨但能抽取到</strong>的武器，即<strong class="emphasis1">常驻五星武器</strong>。
                 </p>
                 <p class="instructions">在󰓥武器祈愿的<strong class="emphasis2">五星Up</strong>池中已经有2个武器卡片的情况下，如果您点击<strong
-                        class="emphasis2">五星非Up</strong>池中的任意一个武器卡片，被点击的武器会替换掉<strong
+                        class="emphasis2">五星非Up</strong>池中的任意一个武器卡片，被点击的武器会成为<strong
                         class="emphasis2">五星Up</strong>池中的<strong
-                        class="emphasis1">最后一个武器</strong>，成为未选择的定轨武器；被替换的武器会被附加到<strong
-                        class="emphasis2">五星非Up</strong>池的末尾。
+                        class="emphasis1">最后一个武器</strong>，成为未选择的定轨武器；原来的五星Up池中的后一个武器会<strong
+                        class="emphasis1">顶替</strong>前一个武器；被顶替的武器会被附加到<strong class="emphasis2">五星非Up</strong>池的末尾。
                 </p>
                 <p class="instructions">󰓥武器祈愿的其他卡片移动规则同上。
                 </p>
@@ -175,9 +177,11 @@
             </select>
             <select name="ChronicledpoolSelection" id="chronicledPoolSelect" class="ChronicleSpecialized"
                 onchange="updateChronicle();randomArtworkBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
-                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义集录卡池</option>
+                <option value="none_C" title="选中该选项后，所有卡片重归原位">󰃣自定义集录卡池--定轨角色</option>
+                <option value="none_W" title="选中该选项后，所有卡片重归原位">󰃣自定义集录卡池--定轨武器</option>
                 <!-- 4.5 -->
-                <option value="wish_4_5_1">v4.5【铓锋锦间裁】“晨风之诗”：2024年03月13日</option>
+                <option value="wish_4_5_1_C">v4.5【铓锋锦间裁】“晨风之诗”：2024年03月13日--定轨角色</option>
+                <option value="wish_4_5_1_W">v4.5【铓锋锦间裁】“晨风之诗”：2024年03月13日--定轨武器</option>
             </select>
         </form>
         <p class="instructions">点击下拉菜单可快捷选中游戏中出现（过）的卡池。</p>
@@ -194,7 +198,7 @@
         <p class="instructions centerized TipTitle">武器祈愿：可定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">󰀖集录：可定轨五星池</p>
+        <p class="instructions centerized TipTitle">󰀖集录：可定轨五星物品</p>
     </div>
     <div title="候选五星Up池" class="PoolBox ChronicledBox SBox WeaponSpecialized ChronicleSpecialized"
         id="Chronicled_Sup_PoolBox"></div>
@@ -207,7 +211,7 @@
         <p class="instructions centerized TipTitle">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">󰯏集录：已定轨五星池</p>
+        <p class="instructions centerized TipTitle">󰯏集录：已定轨五星物品</p>
     </div>
     <div title="五星Up物品池【只允许1个物品】" class="PoolBox UpBox SBox" id="Sup_PoolBox"></div>
 
@@ -219,7 +223,7 @@
         <p class="instructions centerized TipTitle">武器祈愿：定轨候选或常驻五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">󰓼集录：普通概率五星池</p>
+        <p class="instructions centerized TipTitle">󰓼集录：普通概率五星物品</p>
     </div>
     <div title="五星非Up池（常驻五星池）（歪池）" class="PoolBox CommonBox SBox" id="Scommon_PoolBox"></div>
 
@@ -231,7 +235,7 @@
         <p class="instructions centerized TipTitle">不参与祈愿的五星武器：</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">不参与集录祈愿的五星角色：</p>
+        <p class="instructions centerized TipTitle">不参与集录祈愿的五星物品：</p>
     </div>
     <div title="未参与到本次祈愿中的五星" class="PoolBox NonBox SBox" id="Snon_PoolBox"></div>
     </div>
@@ -246,7 +250,7 @@
     </div>
 
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">参与集录祈愿的四星角色</p>
+        <p class="instructions centerized TipTitle">参与集录祈愿的四星物品</p>
     </div>
     <div title="四星Up池【仅3个角色】" class="PoolBox UpBox RBox" id="Rup_PoolBox"></div>
     <p class="instructions centerized TipTitle ChronicleDisabled">四星非Up池（常驻四星池）</p>
@@ -259,7 +263,7 @@
         <p class="instructions centerized TipTitle">不参与祈愿的四星角色、武器：</p>
     </div>
     <div class="ChronicleSpecialized">
-        <p class="instructions centerized TipTitle">不参与集录祈愿的四星角色：</p>
+        <p class="instructions centerized TipTitle">不参与集录祈愿的四星物品：</p>
     </div>
     <div title="未参与到本次祈愿中的四星角色" class="PoolBox NonBox RBox" id="Rnon_PoolBox"></div>
 
@@ -301,12 +305,14 @@
                                 title="命定值" min="0" max="2" step="1" value="0"><br>
                         </div>
                     </div>
-                    <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio"
-                        id="uc_option2_1" value="uncert" checked="true">
-                    <label for="uc_option2_1" title="上一次抽到的四星物品是卡池的UP四星角色">当前处于四星小保底</label><br>
-                    <input class="radio_type" type="radio" title="选择：当前处于四星大保底" name="IsRUpCertainRadio"
-                        id="uc_option2_2" value="cert">
-                    <label for="uc_option2_2" title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
+                    <div class="ChronicleDisabled">
+                        <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio"
+                            id="uc_option2_1" value="uncert" checked="true">
+                        <label for="uc_option2_1" title="上一次抽到的四星物品是卡池的UP四星角色">当前处于四星小保底</label><br>
+                        <input class="radio_type" type="radio" title="选择：当前处于四星大保底" name="IsRUpCertainRadio"
+                            id="uc_option2_2" value="cert">
+                        <label for="uc_option2_2" title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
+                    </div>
                     <p>󰐍单轮抽数(1≤x≤100000)：</p><input id="GachaTimes" type="number"
                         title="单轮抽数&#10;允许的最大值为100000。&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。" min="1"
                         max="100000" step="1"><br>
@@ -343,8 +349,10 @@
                 <p class="instructions centerized"><strong>󱙩高级祈愿配置󱙩</strong></p><br>
                 <div id="SpecialGachaForm_detail">
                     <form name="specialGacha" id="SpecialGachaForm" class="GachaForm">
-                        <p>󰧾十连抽内<span class="CharacterSpecialized ChronicleSpecialized">角色</span><span class="WeaponSpecialized ChronicleSpecialized">武器</span>数(0≤x≤8)：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为7。"
-                            min="0" max="8" step="1" value="5"><br>
+                        <p>󰧾十连抽内<span class="CharacterSpecialized ChronicleDisabled">角色</span><span
+                                class="WeaponSpecialized ChronicleDisabled">武器</span><span
+                                class="ChronicleSpecialized">角色或武器</span>数(0≤x≤8)：</p><input id="CharaNumberInTen"
+                            type="number" title="十连抽内角色数&#10;最大值为7。" min="0" max="8" step="1" value="5"><br>
                         <input class="radio_type" type="radio" title="选择：等于当前输入的物品数"
                             name="IsEqualToCharacterQuantityRadio" id="sgf_option1_1" value="true" checked="true">
                         <label for="sgf_option1_1" title="等于当前输入的物品数">等于当前输入的物品数</label><br>

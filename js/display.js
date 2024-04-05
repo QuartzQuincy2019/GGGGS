@@ -105,7 +105,7 @@ function gachaModeAreaControl() {
             characterSpecialized_matches[i].style.display = "";
         }
         document.getElementById("StartSDrop").max = 89;
-        document.getElementById("GachaModeSwitch").innerHTML = "前往武器祈愿";
+        document.getElementById("GachaModeSwitch").innerHTML = "前往󰓥武器祈愿";
         return;
     }
     if (_GACHA_MODE == "weapon") {
@@ -116,7 +116,7 @@ function gachaModeAreaControl() {
             characterSpecialized_matches[i].style.display = "none";
         }
         document.getElementById("StartSDrop").max = 79;
-        document.getElementById("GachaModeSwitch").innerHTML = "前往角色祈愿";
+        document.getElementById("GachaModeSwitch").innerHTML = "前往󰮖角色祈愿";
         return;
     }
 }
@@ -144,6 +144,7 @@ function chronicledAreaControl() {
             Normal_matches[i].style.display = "";
         }
         _E_ModeSwitch.innerHTML = "进入集录祈愿模式";
+        gachaModeAreaControl();
         return;
     }
 }

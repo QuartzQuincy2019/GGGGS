@@ -87,6 +87,7 @@ var lastInfo = [0, 0, 0, false, false];
 /**
  * Character：0总抽数，1五星垫数，2四星垫数，3五星Up保底，4四星Up保底
  * Weapon：0总抽数，1五星垫数，2四星垫数，3命定值，4五星Up保底，5四星Up保底
+ * chronicle：0总抽数，1五星垫数，2四星垫数，3命定值
  */
 var newInfo = [0, 0, 0, false, false];
 
@@ -143,11 +144,10 @@ function selectWishPool(wishPool) {
         }
     }
     if (_CHRONICLE_MODE == true) {
-        ChronicledSup = doValue(wishPool[0]);
         Sup = [];
-        Scommon = doValue(wishPool[0]);
-        Rup = doValue(wishPool[1]);
-        Rcommon = [];
+        Scommon = doValue(wishPool[0]);//待定轨
+        Rup = doValue(wishPool[1].concat(wishPool[2]));
+        Rcommon = [];//Rcommon在集录中无效
     }
 }
 
@@ -231,8 +231,6 @@ function checkPools() {
 function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), isSC, isRC];
     containerInfo = [null];//清空
-    obtainedNormal = 0;
-    obtainedRWeapons = 0;
     _TotalWishTimes = totalWishes;
     _S_DropCalc = startSDrop;
     _R_DropCalc = startRDrop;
@@ -252,7 +250,6 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
             level = "N";
         }
         if (level == "N") {//抽到了普通等级
-            obtainedNormal++;
             _S_DropCalc++;
             _R_DropCalc++;
             level = "";
@@ -285,7 +282,6 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
                     containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
                 }
             } else {//抽到四星武器
-                obtainedRWeapons++;
                 _IsRupCertain = true;
                 if (Rcommon_W.length != 0) {
                     let _ch = getRandomElement(Rcommon_W);
@@ -303,8 +299,6 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
 function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
     lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isSC, isRC];
     containerInfo = [null];//清空
-    obtainedNormal = 0;
-    obtainedRWeapons = 0;
     fp = Number(fp);
     _FatePoint = fp;
     var maxFatePoint = 2;
@@ -327,7 +321,6 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
             level = "N";
         }
         if (level == "N") {//抽到了普通等级
-            obtainedNormal++;
             _S_DropCalc++;
             _R_DropCalc++;
             level = "";
@@ -378,21 +371,23 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
     newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsSupCertain, _IsRupCertain];
 }
 
-function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
-    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isRC];
+function chronicledWish(totalWishes, startSDrop, startRDrop, fp) {
+    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp];
     containerInfo = [null];
-    obtainedNormal = 0;
-    obtainedRWeapons = 0;
     var maxFatePoint = 1;
     _TotalWishTimes = totalWishes;
     _S_DropCalc = startSDrop;
-    _R_DropCalc = startRDrop;
     if (fp == maxFatePoint) {
         _IsSupCertain = true;
     } else {
         _IsSupCertain = false;
     }
-    _IsRupCertain = isRC;
+    var chronicleType = "";//是定轨角色还是定轨武器
+    if (getItemType(Sup[0]) == "character") {
+        chronicleType = 'C';
+    } else {
+        chronicleType = 'W';
+    }
     var level = "";
     var wished = 1;//当前祈愿次数
     for (; wished <= _TotalWishTimes; wished++) {
@@ -407,7 +402,6 @@ function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
             level = "N";
         }
         if (level == "N") {//抽到了普通等级
-            obtainedNormal++;
             _S_DropCalc++;
             _R_DropCalc++;
             level = "";
@@ -416,29 +410,35 @@ function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
             if (_IsSupCertain || getRandomDecimal() <= 0.5) {
                 _IsSupCertain = false;
                 _FatePoint = 0;
-                containerInfo.push(new ContainerInfo("character", Sup[0], wished, Number(_S_DropCalc) + 1));
+                if (chronicleType == 'C') {
+                    containerInfo.push(new ContainerInfo("character", Sup[0], wished, Number(_S_DropCalc) + 1));
+                } else {
+                    containerInfo.push(new ContainerInfo("weapon", Sup[0], wished, Number(_S_DropCalc) + 1));
+                }
             } else {
                 let _ch = getRandomElement(Scommon);
                 _FatePoint += 1;
                 if (_FatePoint == maxFatePoint) _IsSupCertain = true;
-                containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
+                if (chronicleType == 'C') {
+                    containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
+                } else {
+                    containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
+                }
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
         }
         if (level == "R") {
-            if (_IsRupCertain || getRandomDecimal() <= 0.5) {
-                let _ch = getRandomElement(Rup);
+            let _ch = getRandomElement(Rup);
+            if (getItemType(_ch) == 'character') {
                 containerInfo.push(new ContainerInfo("character", _ch, wished, Number(_S_DropCalc) + 1));
-                _IsRupCertain = false;
-            } else {//抽到四星武器
-                obtainedRWeapons++;
-                _IsRupCertain = true;
+            } else {
+                containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
             }
             _S_DropCalc++;
             _R_DropCalc = 0;
         }
     }
     _TOKEN += _TotalWishTimes;
-    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsRupCertain];
+    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint)];
 }

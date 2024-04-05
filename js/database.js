@@ -711,8 +711,14 @@ const weaponPools = {
 
 //混池
 var chronicledPools = {
-    wish_4_5_1: [
+    wish_4_5_1_C: [
         ["albedo", "diluc", "eula", "jean", "klee", "mona"],
-        ["amber", "barbara", "bennett", "diona", "fischl", "kaeya", "lisa", "mika", "noelle", "razor", "rosaria", "sucrose"]
+        ["amber", "barbara", "bennett", "diona", "fischl", "kaeya", "lisa", "mika", "noelle", "razor", "rosaria", "sucrose"],
+        ["Alley_Hunter", "Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Mitternachts_Waltz", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Alley_Flash", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith", "Wine_and_Song"]
+    ],
+    wish_4_5_1_W: [
+        ["Aquila_Favonia", "Beacon_of_the_Reed_Sea", "Hunter's_Path", "Lost_Prayer_to_the_Sacred_Winds", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Song_of_Broken_Pines", "Wolf's_Gravestone"],
+        ["amber", "barbara", "bennett", "diona", "fischl", "kaeya", "lisa", "mika", "noelle", "razor", "rosaria", "sucrose"],
+        ["Alley_Hunter", "Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Mitternachts_Waltz", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Alley_Flash", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith", "Wine_and_Song"]
     ]
 }

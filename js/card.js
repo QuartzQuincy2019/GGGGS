@@ -41,6 +41,8 @@ var E_RWnonBox = document.getElementById("RWnon_PoolBox");
 
 var inventory = document.getElementById("inventory");
 
+var E_SEL_CH = document.getElementById("chronicledPoolSelect")
+
 var E_StartSDrop = document.getElementById("StartSDrop");
 var E_StartRDrop = document.getElementById("StartRDrop");
 var E_uc_option1_1 = document.getElementById("uc_option1_1");
@@ -51,6 +53,10 @@ var E_GachaTimes = document.getElementById("GachaTimes");
 var E_GachaForm = document.getElementById("GachaForm");
 
 var E_SBoxes = document.querySelectorAll(".SBox");
+
+function getSelectValue(element) {
+    return element.value;
+}
 
 /**
  * 物品是?星
@@ -316,6 +322,29 @@ function initializeAllCard() {
                 if (_weapon.star == 5) initializeWeaponCard(_weapon, E_SnonBox);
             }
         }
+    } else {
+        if (getSelectValue(E_SEL_CH) == "none_C") {//定轨角色的记录卡池
+            for (var i = 0; i < CHARACTER_NAMES.length; i++) {
+                var _chara = findCharacter(CHARACTER_NAMES[i]);
+                if (_chara.star == 5) initializeCharacterCard(_chara, E_SnonBox);
+                if (_chara.star == 4) initializeCharacterCard(_chara, E_RnonBox);
+            }
+            for (var i = 0; i < WEAPON_NAMES.length; i++) {
+                var _weapon = findWeapon(WEAPON_NAMES[i]);
+                if (_weapon.star == 4) initializeWeaponCard(_weapon, E_RnonBox);
+            }
+        }
+        if (getSelectValue(E_SEL_CH) == "none_W") {//定轨武器的集录卡池
+            for (var i = 0; i < CHARACTER_NAMES.length; i++) {
+                var _chara = findCharacter(CHARACTER_NAMES[i]);
+                if (_chara.star == 4) initializeCharacterCard(_chara, E_RnonBox);
+            }
+            for (var i = 0; i < WEAPON_NAMES.length; i++) {
+                var _weapon = findWeapon(WEAPON_NAMES[i]);
+                if (_weapon.star == 4) initializeWeaponCard(_weapon, E_RnonBox);
+                if (_weapon.star == 5) initializeWeaponCard(_weapon, E_SnonBox);
+            }
+        }
     }
 }
 
@@ -445,14 +474,15 @@ function moveCard(element) {
             destination = E_ScommonBox;
             origin.removeChild(passenger);
             generateCard(passengerName, destination);
+            generateCard(passengerName, E_SChBox);
         }
         if (origin.id == E_RcommonBox.id && passengerType == "character") {
-            destination = E_RupBox;
+            destination = E_RnonBox;
             origin.removeChild(passenger);
             generateCard(passengerName, destination);
         }
         if (origin.id == E_RcommonBox.id && passengerType == "weapon") {
-            destination = E_RnonBox;
+            destination = E_RupBox;
             origin.removeChild(passenger);
             generateCard(passengerName, destination);
         }
@@ -465,6 +495,80 @@ function moveCard(element) {
             destination = E_RcommonBox;
             origin.removeChild(passenger);
             generateCard(passengerName, destination);
+        }
+    }
+    if (_CHRONICLE_MODE == true) {
+        if (getSelectValue(E_SEL_CH).slice(-1) == 'C') {//定轨角色
+            if (origin.id == E_ScommonBox.id) {//起点是Scommon，应前往Sup，若当前有Sup，替换掉当前Sup
+                destination = E_SupBox;
+                var opposite;
+                if (destination.children.length == 1) {
+                    opposite = destination.children[0].id.slice(5);
+                    destination.removeChild(destination.children[0]);
+                    generateCard(opposite, origin);
+                }
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_SupBox.id) {//起点是Sup，应前往Snon
+                destination = E_SnonBox;
+                origin.removeChild(passenger);
+                E_SChBox.removeChild(document.getElementById("card_chronicled_" + passengerName));
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_SnonBox.id) {//起点是Snon，应前往Scommon
+                destination = E_ScommonBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+                generateCard(passengerName, E_SChBox);
+            }
+            if (origin.id == E_RupBox.id) {
+                destination = E_RnonBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_RnonBox.id) {
+                destination = E_RupBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
+        }
+        if (getSelectValue(E_SEL_CH).slice(-1) == 'W') {
+            if (origin.id == E_ScommonBox.id) {//起点是Scommon，应前往Sup，若当前有Sup，替换掉当前Sup
+                destination = E_SupBox;
+                var opposite;
+                if (destination.children.length == 1) {
+                    opposite = destination.children[0].id.slice(5);
+                    destination.removeChild(destination.children[0]);
+                    generateCard(opposite, origin);
+                }
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_SupBox.id) {//起点是Sup，应前往Snon
+                destination = E_SnonBox;
+                origin.removeChild(passenger);
+                if (E_SChBox.children.length != 0) {
+                    E_SChBox.removeChild(document.getElementById("card_chronicled_" + passengerName));
+                }
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_SnonBox.id) {//起点是Snon，应前往Scommon
+                destination = E_ScommonBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+                generateCard(passengerName, E_SChBox);
+            }
+            if (origin.id == E_RupBox.id) {
+                destination = E_RnonBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
+            if (origin.id == E_RnonBox.id) {
+                destination = E_RupBox;
+                origin.removeChild(passenger);
+                generateCard(passengerName, destination);
+            }
         }
     }
     tidyPoolArray();
@@ -537,7 +641,7 @@ function analizeCardSet() {
                 generateCard(Scommon[i], E_ScommonBox);
             }
             for (var i = 0; i < Rcommon.length; i++) {
-                generateCard(Rcommon[i], E_RcommonBox);
+                if (!Rup.includes(Rcommon[i])) generateCard(Rcommon[i], E_RcommonBox);
             }
             //将已参与的物品卡片全部安置完毕
             //未参与的物品：仅限于四星武器、四星角色和五星角色
@@ -559,8 +663,47 @@ function analizeCardSet() {
                 generateCard(Scommon[i], E_SChBox);
             }
             for (var i = 0; i < Rcommon.length; i++) {
-                generateCard(Rcommon[i], E_RcommonBox);
+                if (!Rup.includes(Rcommon[i])) generateCard(Rcommon[i], E_RcommonBox);
             }
+            //未参与的物品：仅限于四星武器、五星武器以及四星角色
+            for (var i = 0; i < outsiders.length; i++) {
+                if (isStar(4, outsiders[i])) generateCard(outsiders[i], E_RnonBox);
+                if (isStar(5, outsiders[i]) && getItemType(outsiders[i]) == "weapon") generateCard(outsiders[i], E_SnonBox);
+            }
+        }
+    } else {//集录模式
+        var participants = Sup.concat(Rup.concat(Scommon.concat(Rcommon)));
+        let outsiders = [];
+        let all = doValue(CHARACTER_NAMES);
+        all = all.concat(WEAPON_NAMES);//all为一切物品之和
+        outsiders = all.filter(item => !participants.includes(item));
+        //集录模式：五星武器或角色+四星武器+四星角色
+        if (getSelectValue(E_SEL_CH).slice(-1) == 'C') {//定轨角色
+            //Sup是空的
+            for (var i = 0; i < Rup.length; i++) {
+                generateCard(Rup[i], E_RupBox);
+            }
+            for (var i = 0; i < Scommon.length; i++) {
+                generateCard(Scommon[i], E_ScommonBox);
+                generateCard(Scommon[i], E_SChBox);
+            }
+            //Rup在集录中无效
+            //将已参与的物品卡片全部安置完毕
+            //未参与的物品：仅限于四星武器、四星角色和五星角色
+            for (var i = 0; i < outsiders.length; i++) {
+                if (isStar(4, outsiders[i])) generateCard(outsiders[i], E_RnonBox);
+                if (isStar(5, outsiders[i]) && getItemType(outsiders[i]) == "character") generateCard(outsiders[i], E_SnonBox);
+            }
+        }
+        if (getSelectValue(E_SEL_CH).slice(-1) == 'W') {//定轨武器
+            for (var i = 0; i < Rup.length; i++) {
+                generateCard(Rup[i], E_RupBox);
+            }
+            for (var i = 0; i < Scommon.length; i++) {
+                generateCard(Scommon[i], E_ScommonBox);
+                generateCard(Scommon[i], E_SChBox);
+            }
+            //Rup在集录中无效
             //未参与的物品：仅限于四星武器、五星武器以及四星角色
             for (var i = 0; i < outsiders.length; i++) {
                 if (isStar(4, outsiders[i])) generateCard(outsiders[i], E_RnonBox);
@@ -600,34 +743,37 @@ function updateCards() {
 
 function updateChronicle() {
     if (_CHRONICLE_MODE == false) return;
-    var chronicledPoolSelect = document.getElementById("chronicledPoolSelect");
-    var selectedPool = chronicledPoolSelect.value;
-    if (selectedPool == "none") {
+    if (getSelectValue(E_SEL_CH) == "none_C" || getSelectValue(E_SEL_CH) == "none_W") {
         initializeAllCard();
         return;
     }
-    selectWishPool(chronicledPools[selectedPool]);
+    selectWishPool(chronicledPools[getSelectValue(E_SEL_CH)]);
     analizeCardSet();
 }
 
 function outputObtained() {
     inventory.innerHTML = "";
     checkPools();
+    var chSelVal = getSelectValue(E_SEL_CH).slice(-1);
     for (var i = 1; i < containerInfo.length + 1; i++) {
         if (containerInfo[i] == undefined) return;
         var _container = document.createElement("div");
         _container.classList.add("container");
         if (containerInfo[i].type == "character") {
-            if (_GACHA_MODE == "character") {
+            if (_GACHA_MODE == "character" || (_CHRONICLE_MODE == true && chSelVal == 'C')) {
                 if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
-                if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+                if (_CHRONICLE_MODE == false) {
+                    if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+                }
             }
             inventory.appendChild(_container);
             initializeCharacterCard(findCharacter(containerInfo[i].name), _container);
         } else {
-            if (_GACHA_MODE == "weapon") {
+            if (_GACHA_MODE == "weapon" || (_CHRONICLE_MODE == true && chSelVal == 'W')) {
                 if (Sup[0] == (containerInfo[i].name) && isStar(5, containerInfo[i].name)) _container.classList.add("SUpContainer");
-                if (isUp(containerInfo[i].name) && isStar(4, containerInfo[i].name)) _container.classList.add("RUpContainer");
+                if (_CHRONICLE_MODE == false) {
+                    if (isUp(containerInfo[i].name) && isStar(4, containerInfo[i].name)) _container.classList.add("RUpContainer");
+                }
             }
             inventory.appendChild(_container);
             initializeWeaponCard(findWeapon(containerInfo[i].name), _container);

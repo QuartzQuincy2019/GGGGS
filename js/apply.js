@@ -77,16 +77,16 @@ function readNewInfo() {
             fp = document.getElementById("FatePointInput").value;
             newInfo[3] = fp;//命定值
         }
+        var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
+        if (_GACHA_MODE == "character") {
+            isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
+        }
+        if (_GACHA_MODE == "weapon") {
+            isRC_val == "cert" ? newInfo[5] = true : newInfo[5] = false;
+        }
     } else {
         fp = document.getElementById("FatePointInput").value;
         newInfo[3] = fp;
-    }
-    var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
-    if (_GACHA_MODE == "character") {
-        isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
-    }
-    if (_GACHA_MODE == "weapon") {
-        isRC_val == "cert" ? newInfo[5] = true : newInfo[5] = false;
     }
 
     if ((isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) == true) {
@@ -320,17 +320,31 @@ function luckTest() {
     }
     var IsEqualToCharacterQuantityRadio_val = document.querySelector('input[name="IsEqualToCharacterQuantityRadio"]:checked').value;
     IsEqualToCharacterQuantityRadio_val = convertBoolean(IsEqualToCharacterQuantityRadio_val);
+    var chSelVal = getSelectValue(E_SEL_CH).slice(-1);
     if (IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            if (_GACHA_MODE == "character") {
-                let temp = doValue(containerInfo);
-                temp.shift();
-                num = temp.filter(item => item.type == "character").length;
-            } else {
-                let temp = doValue(containerInfo);
-                temp.shift();
-                num = temp.filter(item => item.type == "weapon").length;
+            if (_CHRONICLE_MODE == false) {
+                if (_GACHA_MODE == "character") {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "character").length;
+                } else {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "weapon").length;
+                }
+            }
+            if (_CHRONICLE_MODE == true) {
+                if (chSelVal == 'C') {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "character").length;
+                } else {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "weapon").length;
+                }
             }
             times++;
             if (times % interval == 0) {
@@ -347,14 +361,27 @@ function luckTest() {
     if (!IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            if (_GACHA_MODE == "chatacter") {
-                let temp = doValue(containerInfo);
-                temp.shift();
-                num = temp.filter(item => item.type == "character").length;
-            } else {
-                let temp = doValue(containerInfo);
-                temp.shift();
-                num = temp.filter(item => item.type == "weapon").length;
+            if (_CHRONICLE_MODE == false) {
+                if (_GACHA_MODE == "character") {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "character").length;
+                } else {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "weapon").length;
+                }
+            }
+            if (_CHRONICLE_MODE == true) {
+                if (chSelVal == 'C') {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "character").length;
+                } else {
+                    let temp = doValue(containerInfo);
+                    temp.shift();
+                    num = temp.filter(item => item.type == "weapon").length;
+                }
             }
             times++;
             if (times % interval == 0) {
