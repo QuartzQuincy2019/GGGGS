@@ -4,11 +4,6 @@
     src: url(../fonts/TinosNerdFontPropo-Regular.ttf);
 }
 
-@font-face {
-    font-family: "Source Han Serif";
-    src: url("../fonts/SourceHanSerifSC-VF.ttf");
-}
-
 :root {
     --color-A: #aaaaaa;
     --color-B: #bbbbbb;
@@ -159,7 +154,7 @@ form.GachaForm {
 
 form.GachaForm * {
     font-size: var(--universal-font-size);
-    font-family: Arial, "Tinos Nerd Propo", 'Source Han Serif';
+    font-family: Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
 }
 
 div#GachaFormInstructionArea *,
@@ -180,7 +175,7 @@ p.TipTitle {
 
 p.instructions {
     font-size: var(--universal-font-size);
-    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", 'Source Han Serif';
+    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
     transition-property: all;
     transition-duration: 0.3s;
 }
@@ -196,7 +191,7 @@ p.instructions .emphasis2 {
 }
 
 .centerized {
-    font-family: Arial, "Tinos Nerd Propo", 'Source Han Serif';
+    font-family: Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
     text-align: center;
     transition-property: all;
     transition-duration: 0.3s;
@@ -218,7 +213,7 @@ p.instructions .emphasis2 {
     padding: 1vh;
     -webkit-user-select: none;
     user-select: none;
-    font-family: Arial, "Tinos Nerd Propo", 'Source Han Serif';
+    font-family: Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
     background-blend-mode: screen;
     border-style: solid;
     border-radius: 1.4vh;
