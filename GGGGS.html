@@ -343,28 +343,28 @@
                 <p class="instructions centerized"><strong>󱙩高级祈愿配置󱙩</strong></p><br>
                 <div id="SpecialGachaForm_detail">
                     <form name="specialGacha" id="SpecialGachaForm" class="GachaForm">
-                        <p>󰧾十连抽内角色数(0≤x≤8)：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为7。"
+                        <p>󰧾十连抽内<span class="CharacterSpecialized ChronicleSpecialized">角色</span><span class="WeaponSpecialized ChronicleSpecialized">武器</span>数(0≤x≤8)：</p><input id="CharaNumberInTen" type="number" title="十连抽内角色数&#10;最大值为7。"
                             min="0" max="8" step="1" value="5"><br>
-                        <input class="radio_type" type="radio" title="选择：等于当前输入的角色数"
+                        <input class="radio_type" type="radio" title="选择：等于当前输入的物品数"
                             name="IsEqualToCharacterQuantityRadio" id="sgf_option1_1" value="true" checked="true">
-                        <label for="sgf_option1_1" title="等于当前输入的角色数">等于当前输入的角色数</label><br>
-                        <input class="radio_type" type="radio" title="选择：大于或等于输入的角色数"
+                        <label for="sgf_option1_1" title="等于当前输入的物品数">等于当前输入的物品数</label><br>
+                        <input class="radio_type" type="radio" title="选择：大于或等于输入的物品数"
                             name="IsEqualToCharacterQuantityRadio" id="sgf_option1_2" value="false">
-                        <label for="sgf_option1_2" title="大于或等于输入的角色数">大于或等于输入的角色数</label><br>
-                        <div id="luck_wish" title="我抽几次十连会出现多个角色？" class="interface_button" onclick="luckTest();">
-                            󰀏十连多角色测试
+                        <label for="sgf_option1_2" title="大于或等于输入的物品数">大于或等于输入的物品数</label><br>
+                        <div id="luck_wish" title="我抽几次十连会出现多个物品？" class="interface_button" onclick="luckTest();">
+                            󰀏十连多物品测试
                         </div>
                         <hr>
-                        <input class="radio_type" type="radio" title="选择：获得的五星角色必须均为五星Up角色" name="IsAllSup"
+                        <input class="radio_type" type="radio" title="选择：获得的五星物品必须均为五星Up物品" name="IsAllSup"
                             id="sgf_option2_1" value="All_Up" checked="true">
-                        <label for="sgf_option2_1" title="不准歪&#10;若选择此项，则“双”“三”只指五星Up角色。">获得的五星角色必须全部为五星Up角色</label><br>
-                        <input class="radio_type" type="radio" title="选择：获得的五星角色中可以有五星非Up角色" name="IsAllSup"
+                        <label for="sgf_option2_1" title="不准歪&#10;若选择此项，则“双”“三”只指五星Up物品。">获得的五星物品必须全部为五星Up角色</label><br>
+                        <input class="radio_type" type="radio" title="选择：获得的五星物品中可以有五星非Up物品" name="IsAllSup"
                             id="sgf_option2_2" value="Not_All_Up">
-                        <label for="sgf_option2_2" title="允许歪">获得的五星角色中可以有五星非Up角色</label><br>
-                        <input class="radio_type" type="radio" title="选择：获得的五星角色必须全部为五星非Up角色" name="IsAllSup"
+                        <label for="sgf_option2_2" title="允许歪">获得的五星物品中可以有五星非Up物品</label><br>
+                        <input class="radio_type" type="radio" title="选择：获得的五星物品必须全部为五星非Up物品" name="IsAllSup"
                             id="sgf_option2_3" value="All_Common">
                         <label for="sgf_option2_3"
-                            title="多歪&#10;若选择此项，则“双”“三”只指一次十连中五星非Up角色的数量。">参与统计的只有五星非Up角色</label><br>
+                            title="多歪&#10;若选择此项，则“双”“三”只指一次十连中五星非Up物品的数量。">参与统计的只有五星非Up物品</label><br>
                         <div id="doubleSup_wish" title="我抽几次十连会双黄且不歪/双黄/连续歪两次？" class="interface_button"
                             onclick="multipleSTest(2);">
                             󰎩十连双黄测试

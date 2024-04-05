@@ -355,7 +355,6 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
             _R_DropCalc++;
         }
         if (level == "R") {
-            console.log("抽到R", _IsSupCertain);
             if (_IsRupCertain || getRandomDecimal() <= 0.75) {
                 let _ch = getRandomElement(Rup_W);
                 _IsRupCertain = false;
@@ -370,14 +369,12 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
                     containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
                 }
             }
-            console.log("R决定完毕", _IsSupCertain);
             _S_DropCalc++;
             _R_DropCalc = 0;
         }
     }
     _FatePoint = fp;
     _TOKEN += _TotalWishTimes;
-    console.log(_IsSupCertain);
     newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsSupCertain, _IsRupCertain];
 }
 

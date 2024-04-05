@@ -179,7 +179,7 @@ function auxiliaryMultipleSTest(isAllUp, SQty) {
         if (isAllUp == 'All_Up') {
             do {
                 newWish();
-                num = checkSUpCharacter();
+                num = check([Sup[0]]);
                 times++;
             } while (num != t);
             outputObtained();
@@ -188,9 +188,10 @@ function auxiliaryMultipleSTest(isAllUp, SQty) {
             refreshTotalCounter();
         }
         else if (isAllUp == 'Not_All_Up') {
+            var S = Sup.concat(Scommon);
             do {
                 newWish();
-                num = checkSCharacter();
+                num = check(S);
                 times++;
             } while (num != t);
             outputObtained();
@@ -200,7 +201,7 @@ function auxiliaryMultipleSTest(isAllUp, SQty) {
         } else {
             do {
                 newWish();
-                num = checkSCommonCharacter();
+                num = check(Scommon);
                 times++;
             } while (num != t);
             outputObtained();
@@ -213,10 +214,10 @@ function auxiliaryMultipleSTest(isAllUp, SQty) {
         if (isAllUp) {
             do {
                 newWish();
-                num = checkSUpCharacter();
+                num = check([Sup[0]]);
                 times++;
                 if (times % interval == 0) {
-                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星Up角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星Up物品。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
                     if (!res) break;
                 }
             } while (num <= max);
@@ -225,12 +226,13 @@ function auxiliaryMultipleSTest(isAllUp, SQty) {
             refreshLastWishText();
             refreshTotalCounter();
         } else {
+            var S = Sup.concat(Scommon);
             do {
                 newWish();
-                num = checkSCharacter();
+                num = check(S);
                 times++;
                 if (times % interval == 0) {
-                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                    var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中大于" + max + "个五星物品。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
                     if (!res) break;
                 }
             } while (num <= max);
@@ -269,7 +271,7 @@ function multipleSTest(_SMODE) {
         } else if (IsAllSup_val == 'Not_All_Up') {
             alert("第" + times + "次十连获得双黄！");
         } else {
-            alert("幸运女神眷顾！第" + times + "次十连同时获得2个五星非Up角色！");
+            alert("幸运女神眷顾！第" + times + "次十连同时获得2个五星非Up物品！");
         }
     }
     if (_SMODE == 3) {
@@ -284,15 +286,15 @@ function multipleSTest(_SMODE) {
         var res = auxiliaryMultipleSTest(IsAllSup_val, "Super");
         if (IsAllSup_val) {
             if (res[0] == true) {
-                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星Up角色！");
+                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星Up物品！");
             } else {
-                alert(res[1] + "次十连内没有十连多于3个五星Up角色的记录。");
+                alert(res[1] + "次十连内没有十连多于3个五星Up物品的记录。");
             }
         } else {
             if (res[0] == true) {
-                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星角色！");
+                alert("热烈祝贺！第" + res[1] + "次十连实现多于3个五星物品！");
             } else {
-                alert(res[1] + "次十连内没有十连多于3个五星角色的记录。");
+                alert(res[1] + "次十连内没有十连多于3个五星物品的记录。");
             }
         }
     }
@@ -302,7 +304,7 @@ function luckTest() {
     var _MODE = document.getElementById("CharaNumberInTen").value;
     console.log(_MODE);
     if (_MODE == undefined || !isFormNumberValueLegal(document.getElementById("CharaNumberInTen"))) {
-        alert("未指定角色数或角色数不正确！");
+        alert("未指定角色/武器数或角色/武器数不正确！");
         return;
     }
     _TotalWishTimes = 10;
@@ -321,33 +323,49 @@ function luckTest() {
     if (IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            num = containerInfo.length - 1;
+            if (_GACHA_MODE == "character") {
+                let temp = doValue(containerInfo);
+                temp.shift();
+                num = temp.filter(item => item.type == "character").length;
+            } else {
+                let temp = doValue(containerInfo);
+                temp.shift();
+                num = temp.filter(item => item.type == "weapon").length;
+            }
             times++;
             if (times % interval == 0) {
-                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色/武器。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
                 if (!res) break;
             }
         } while (num != _MODE);
         if (num == _MODE) {
-            alert("第" + times + "次十连同时获得了" + _MODE + "个角色！");
+            alert("第" + times + "次十连同时获得了" + _MODE + "个角色/武器！");
         } else {
-            alert(times + "次十连内没有同时获得" + _MODE + "个角色的记录……");
+            alert(times + "次十连内没有同时获得" + _MODE + "个角色/武器的记录……");
         }
     }
     if (!IsEqualToCharacterQuantityRadio_val) {
         do {
             newWish();
-            num = containerInfo.length - 1;
+            if (_GACHA_MODE == "chatacter") {
+                let temp = doValue(containerInfo);
+                temp.shift();
+                num = temp.filter(item => item.type == "character").length;
+            } else {
+                let temp = doValue(containerInfo);
+                temp.shift();
+                num = temp.filter(item => item.type == "weapon").length;
+            }
             times++;
             if (times % interval == 0) {
-                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
+                var res = confirm("当前已进行" + times / 10000 + "万次十连，都未实现十连中出现" + _MODE + "位角色/武器。\n该提示每" + interval / 10000 + "万次十连出现一次。\n若要继续，请单击“确认”；若要中止此次祈愿，请单击“取消”。");
                 if (!res) break;
             }
         } while (num < _MODE);
         if (num >= _MODE) {
-            alert("第" + times + "次十连实现了同时获得不少于" + _MODE + "个角色！");
+            alert("第" + times + "次十连实现了同时获得不少于" + _MODE + "个角色/武器！");
         } else {
-            alert(times + "次十连内没有实现同时获得不少于" + _MODE + "个角色的记录……");
+            alert(times + "次十连内没有实现同时获得不少于" + _MODE + "个角色/武器的记录……");
         }
     }
     outputObtained();

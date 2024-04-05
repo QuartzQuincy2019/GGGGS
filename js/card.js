@@ -134,6 +134,19 @@ function checkSCharacter() {
     return num;
 }
 
+
+function check(array) {
+    var num = 0;
+    if (containerInfo.length > 1) {
+        for (var i = 1; i < containerInfo.length; i++) {
+            if (array.includes(containerInfo[i].name)) {
+                num += 1;
+            }
+        }
+    }
+    return num;
+}
+
 function checkSUpCharacter() {
     var obtainedCharacters = [];
     if (containerInfo.length > 1) {
