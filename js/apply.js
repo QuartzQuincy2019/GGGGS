@@ -8,7 +8,7 @@ function newWish() {
             wish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
         }
         if (_GACHA_MODE == "weapon") {
-            weaponWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
+            weaponWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5]);
         }
     } else {
         chronicledWish(newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4]);
@@ -21,7 +21,7 @@ function lastWish() {
             wish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
         }
         if (_GACHA_MODE == "weapon") {
-            weaponWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
+            weaponWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4], lastInfo[5]);
         }
     } else {
         chronicledWish(lastInfo[0], lastInfo[1], lastInfo[2], lastInfo[3], lastInfo[4]);
@@ -69,13 +69,26 @@ function readNewInfo() {
     let fp;
     if (_CHRONICLE_MODE == false) {
         isSC_val = document.querySelector('input[name="IsSUpCertainRadio"]:checked').value;
-        isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
+        if (_GACHA_MODE == "character") {
+            isSC_val == "cert" ? newInfo[3] = true : newInfo[3] = false;
+        }
+        if (_GACHA_MODE == "weapon") {
+            isSC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
+            fp = document.getElementById("FatePointInput").value;
+            newInfo[3] = fp;//命定值
+        }
     } else {
         fp = document.getElementById("FatePointInput").value;
         newInfo[3] = fp;
     }
     var isRC_val = document.querySelector('input[name="IsRUpCertainRadio"]:checked').value;
-    isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
+    if (_GACHA_MODE == "character") {
+        isRC_val == "cert" ? newInfo[4] = true : newInfo[4] = false;
+    }
+    if (_GACHA_MODE == "weapon") {
+        isRC_val == "cert" ? newInfo[5] = true : newInfo[5] = false;
+    }
+
     if ((isFormNumberValueLegal(E_StartSDrop) && isFormNumberValueLegal(E_StartRDrop)) == true) {
         if (E_StartRDrop.value == 10) {
             if (E_StartSDrop.value != 0) {
@@ -102,13 +115,22 @@ function throwNewInfo() {
     E_StartSDrop.value = newInfo[1];
     E_StartRDrop.value = newInfo[2];
     if (_CHRONICLE_MODE == false) {
-        newInfo[3] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
-        console.log(newInfo[3]);
-        document.getElementById("FatePointInput").value = newInfo[3];
+        if (_GACHA_MODE == "weapon") {
+            document.getElementById("FatePointInput").value = newInfo[3];//命定值
+            newInfo[4] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;//五星保底单选
+            if (newInfo[5] == undefined) {
+                E_uc_option2_1.checked = false;
+            } else {
+                newInfo[5] == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;//四星保底单选
+            }
+        }
+        if (_GACHA_MODE == "character") {
+            newInfo[3] == false ? E_uc_option1_1.checked = true : E_uc_option1_2.checked = true;
+            newInfo[4] == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
+        }
     } else {
         document.getElementById("FatePointInput").value = newInfo[3];
     }
-    newInfo[4] == false ? E_uc_option2_1.checked = true : E_uc_option2_2.checked = true;
 }
 
 function resetForm() {

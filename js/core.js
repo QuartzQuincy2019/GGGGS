@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v4.0.4ud";
+var __VERSION = "v5.0.0.240405_beta_e3";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -171,8 +171,8 @@ function getGameObject(name) {
  * 将混乱的数组排序
  * @returns 
  */
-function rearrangeItem(arrayInMess){
-  const cElements = arrayInMess.filter(item => getItemType(item) == "character");
-  const wElements = arrayInMess.filter(item => getItemType(item) == "weapon");
-  return [...cElements, ...wElements];
+function rearrangeItem(arrayInMess) {
+    const cElements = arrayInMess.filter(item => getItemType(item) == "character");
+    const wElements = arrayInMess.filter(item => getItemType(item) == "weapon");
+    return [...cElements, ...wElements];
 }

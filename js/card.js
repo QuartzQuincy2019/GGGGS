@@ -556,80 +556,6 @@ function analizeCardSet() {
         }
     }
     tidyPoolArray();
-    /*
-        let non = [];
-        let all = [];
-        all = doValue(CHARACTER_NAMES);//录入所有角色名
-        all.deleteElement(Sup[0]);//删除五星Up集
-        for (var i = 0; i < Scommon.length; i++) {
-            all.deleteElement(Scommon[i]);
-        }//从所有角色名中删除 常驻五星
-        for (var i = 0; i < Rup.length; i++) {
-            all.deleteElement(Rup[i]);
-        }
-        for (var i = 0; i < Rcommon.length; i++) {
-            all.deleteElement(Rcommon[i]);
-        }
-        if (_CHRONICLE_MODE == true) {
-            for (var i = 0; i < ChronicledSup.length; i++) {
-                all.deleteElement(ChronicledSup[i]);
-            }
-        }
-        non = all;//令未选中的角色为删除操作后的所有角色
-        //角色all处理完毕
-    
-    
-        for (var i = 0; i < non.length; i++) {
-            if (findCharacter(non[i]).star === 4) R_Non.push(non[i]);
-            if (findCharacter(non[i]).star === 5) S_Non.push(non[i]);
-        }//将所有未选中的角色安置
-        if (_CHRONICLE_MODE == true) {
-            for (var i = 0; i < ChronicledSup.length; i++) {
-                initializeCharacterCard(findCharacter(ChronicledSup[i]), E_SChBox);
-            }
-        }
-        if (_CHRONICLE_MODE == false) {
-            initializeCharacterCard(findCharacter(Sup[0]), E_SupBox);
-        }
-        for (var i = 0; i < Scommon.length; i++) {
-            initializeCharacterCard(findCharacter(Scommon[i]), E_ScommonBox);
-        }
-        for (var i = 0; i < Rup.length; i++) {
-            initializeCharacterCard(findCharacter(Rup[i]), E_RupBox);
-        }
-        if (_CHRONICLE_MODE == false) {
-            for (var i = 0; i < Rcommon.length; i++) {
-                initializeCharacterCard(findCharacter(Rcommon[i]), document.getElementById("Rcommon_PoolBox"));
-            }
-        }
-        for (var i = 0; i < S_Non.length; i++) {
-            initializeCharacterCard(findCharacter(S_Non[i]), E_SnonBox);
-        }
-        for (var i = 0; i < R_Non.length; i++) {
-            initializeCharacterCard(findCharacter(R_Non[i]), E_RnonBox);
-        }
-    
-        //----------------角色结束------武器开始------------------
-    
-        all = doValue(WEAPON_NAMES);//录入所有武器名
-        if (_GACHA_MODE == "character") {
-            for (var i = 0; i < RW.length; i++) {
-                all.deleteElement(RW[i]);
-            }
-        }
-        non = all;
-        //武器all处理完毕
-        for (var i = 0; i < non.length; i++) {
-            if (findWeapon(non[i]).star === 4) RW_Non.push(non[i]);
-        }
-        //将所有未选中的武器安置在数组中
-        for (var i = 0; i < RW.length; i++) {
-            initializeWeaponCard(findWeapon(RW[i]), E_RWBox);
-        }
-        for (var i = 0; i < RW_Non.length; i++) {
-            initializeWeaponCard(findWeapon(RW_Non[i]), E_RWnonBox);
-        }
-        */
 }
 
 /**
@@ -679,11 +605,17 @@ function outputObtained() {
         var _container = document.createElement("div");
         _container.classList.add("container");
         if (containerInfo[i].type == "character") {
-            if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
-            if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+            if (_GACHA_MODE == "character") {
+                if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
+                if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+            }
             inventory.appendChild(_container);
             initializeCharacterCard(findCharacter(containerInfo[i].name), _container);
         } else {
+            if (_GACHA_MODE == "weapon") {
+                if (Sup[0] == (containerInfo[i].name) && isStar(5, containerInfo[i].name)) _container.classList.add("SUpContainer");
+                if (isUp(containerInfo[i].name) && isStar(4, containerInfo[i].name)) _container.classList.add("RUpContainer");
+            }
             inventory.appendChild(_container);
             initializeWeaponCard(findWeapon(containerInfo[i].name), _container);
         }

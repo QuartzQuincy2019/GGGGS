@@ -1,5 +1,6 @@
 // wish.js
 // 第三版 祈愿逻辑（2024/3/23）
+// 第四版 祈愿逻辑（2024/4/5）更新武器逻辑，集录卡池逻辑等待下一次整改
 // 祈愿。储存祈愿逻辑。
 
 /**
@@ -82,6 +83,11 @@ var obtainedNormal = 0;
 var obtainedRWeapons = 0;
 
 var lastInfo = [0, 0, 0, false, false];
+
+/**
+ * Character：0总抽数，1五星垫数，2四星垫数，3五星Up保底，4四星Up保底
+ * Weapon：0总抽数，1五星垫数，2四星垫数，3命定值，4五星Up保底，5四星Up保底
+ */
 var newInfo = [0, 0, 0, false, false];
 
 
@@ -159,21 +165,21 @@ function refreshRProbability() {
 }
 
 function refreshWSProbability() {
-    if (_S_DropCalc <= 62) S_Probability = 0.007;
-    if (_S_DropCalc > 62 && _S_DropCalc <= 71) {
+    if (_S_DropCalc <= 61) S_Probability = 0.007;
+    if (_S_DropCalc > 61 && _S_DropCalc <= 70) {
         S_Probability = 0.007 + 0.07 * (_S_DropCalc - 62);
     }
-    if (_S_DropCalc > 71 && _S_DropCalc <= 79) {
+    if (_S_DropCalc > 70 && _S_DropCalc <= 78) {
         S_Probability = 0.637 + 0.035 * (_S_DropCalc - 71);
     }
-    if (_S_DropCalc == 80) S_Probability = 1;
+    if (_S_DropCalc == 79) S_Probability = 1;
 }
 
 function refreshWRProbability() {
-    if (_R_DropCalc <= 7) R_Probability = 0.06;
-    if (_R_DropCalc == 8) R_Probability = 0.66;
-    if (_R_DropCalc == 9) R_Probability = 0.96;
-    if (_R_DropCalc >= 10) _R_DropCalc = 1;
+    if (_R_DropCalc <= 6) R_Probability = 0.06;
+    if (_R_DropCalc == 7) R_Probability = 0.66;
+    if (_R_DropCalc == 8) R_Probability = 0.96;
+    if (_R_DropCalc >= 9) _R_DropCalc = 1;
 }
 
 /**
@@ -205,6 +211,12 @@ function checkPools() {
         if (Scommon.length == 0 || Rcommon.length == 0) {
             alert("非UP卡池为空！");
             throw new Error("非UP卡池为空！");
+        }
+        if (_GACHA_MODE == "weapon") {
+            if (Sup.length != 2) {
+                alert("神铸定轨武器数量不合法！当前为" + Sup.length + "个，应该为2个。\n【武器祈愿：已选择定轨&未选择定轨五星武器】池 中必须要有2个五星武器卡片。\n这两个武器是参与【神铸定轨】的武器。\n其中前一个是您定轨的武器，后一个是您未定轨的武器。");
+                throw new Error("神铸定轨武器数量不合法！");
+            }
         }
     } else {
         if (Scommon.length == 0) {
@@ -288,16 +300,18 @@ function wish(totalWishes, startSDrop, startRDrop, isSC, isRC) {
     newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), _IsSupCertain, _IsRupCertain];
 }
 
-function weaponWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
-    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isRC];
+function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
+    lastInfo = [Number(totalWishes), Number(startSDrop), Number(startRDrop), fp, isSC, isRC];
     containerInfo = [null];//清空
     obtainedNormal = 0;
     obtainedRWeapons = 0;
+    fp = Number(fp);
     _FatePoint = fp;
     var maxFatePoint = 2;
     _TotalWishTimes = totalWishes;
     _S_DropCalc = startSDrop;
     _R_DropCalc = startRDrop;
+    _IsSupCertain = isSC;
     _IsRupCertain = isRC;
     var level = "";
     var wished = new Number(1);//当前祈愿次数
@@ -319,7 +333,7 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
             level = "";
         }
         if (level == "S") {//抽到五星
-            if (_IsSupCertain || getRandomDecimal() <= 0.75) {//Sup/Scommon
+            if (fp == maxFatePoint || _IsSupCertain || getRandomDecimal() <= 0.75) {//Sup/Scommon
                 //抽到本期定轨的两个之一
                 if (fp == maxFatePoint || getRandomDecimal() <= 0.5) {
                     //抽到定轨的武器
@@ -334,14 +348,14 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
             } else {
                 let _ch = getRandomElement(Scommon_W);
                 fp += 1;
-                if (fp == maxFatePoint) _IsSupCertain = true;
+                _IsSupCertain = true;
                 containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
             }
             _S_DropCalc = 0;
             _R_DropCalc++;
         }
         if (level == "R") {
-            console.log("断点在此");
+            console.log("抽到R", _IsSupCertain);
             if (_IsRupCertain || getRandomDecimal() <= 0.75) {
                 let _ch = getRandomElement(Rup_W);
                 _IsRupCertain = false;
@@ -356,13 +370,15 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isRC) {
                     containerInfo.push(new ContainerInfo("weapon", _ch, wished, Number(_S_DropCalc) + 1));
                 }
             }
+            console.log("R决定完毕", _IsSupCertain);
+            _S_DropCalc++;
+            _R_DropCalc = 0;
         }
-        _S_DropCalc++;
-        _R_DropCalc = 0;
     }
     _FatePoint = fp;
     _TOKEN += _TotalWishTimes;
-    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsRupCertain];
+    console.log(_IsSupCertain);
+    newInfo = [Number(_TotalWishTimes), Number(_S_DropCalc), Number(_R_DropCalc), Number(_FatePoint), _IsSupCertain, _IsRupCertain];
 }
 
 function chronicledWish(totalWishes, startSDrop, startRDrop, fp, isRC) {

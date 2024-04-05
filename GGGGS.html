@@ -32,7 +32,7 @@
     <div class="section" id="section_1">
         <audio controls loop preload="metadata" src=".\mus\shed_a_light.mp3"></audio>
         <p class="instructions centerized"><strong>使用说明</strong></p>
-        <p class="instructions">步骤󰲡：移步“󰛊卡池操作󰛊”区域，点击“󰃣自定义卡池”下拉菜单，选择卡池。</p>
+        <p class="instructions">步骤󰲡：移步“󰛊卡池操作󰛊”区域，点击“󰃣自定义角色卡池”下拉菜单，选择卡池。</p>
         <p class="instructions">步骤󰲣：移步“祈愿表单”区域，填写祈愿数据信息，点击“开始/继续祈愿”以开始抽取。</p>
         <p class="instructions">步骤󰲥：阅读相关说明，探索卡池“󰃣自定义”、“󱙩高级祈愿配置”等其他功能。</p>
         <!-- 按Control键以切换皮肤 -->
@@ -51,9 +51,34 @@
         <div class="ChronicleDisabled">
             <p class="instructions">卡池分为󰰣五星和󰰠四星两大组，每一大组有三个小组。6个小组从上到下依次是：五星UP池、五星非UP池、未参与五星卡池、四星UP池、四星非UP池、未参与四星卡池。
             </p>
-            <p class="instructions">󰲡点击“UP池”中的角色卡片可将其移放至“不参与祈愿”区域。</p>
-            <p class="instructions">󰲣点击“不参与祈愿”区域中的角色卡片可将其移放至“非UP池”。</p>
-            <p class="instructions">󰲥点击“非UP池”中的角色卡片可将其移放至“UP池”。</p>
+            <p class="instructions"><strong class="emphasis2">卡片排序</strong>：被点击的卡片会被附加在目的地卡池的<strong
+                    class="emphasis1">末尾</strong>，您可以通过此移动规则实现卡池中<strong class="emphasis1">卡片的排序</strong>。</p>
+            </p>
+            <p class="instructions">󰲡点击“UP池”中的卡片可将其移放至“不参与祈愿”区域。</p>
+            <p class="instructions">󰲣点击“不参与祈愿”区域中的卡片可将其移放至“非UP池”。</p>
+            <p class="instructions">󰲥点击“非UP池”（常驻）中的卡片可将其移放至“UP池”。</p>
+            <p class="instructions">综上：【Up池】-->【不参与池】-->【非Up池】-->【Up池】</p>
+            <div class="WeaponSpecialized">
+                <p class="instructions">󰓥武器祈愿的“<strong
+                        class="emphasis2">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</strong>”池（称为五星Up池）要求<strong
+                        class="emphasis1">2个五星武器卡片</strong>同时存在，表示这两个武器是在该版本武器祈愿中<strong
+                        class="emphasis1">参与神铸定轨</strong>的武器。<strong class="emphasis1">前</strong>一个卡片是您<strong
+                        class="emphasis1">选择定轨</strong>的武器，<strong class="emphasis1">后</strong>一个卡片是您<strong
+                        class="emphasis1">未选择定轨</strong>的武器。
+                </p>
+                <p class="instructions">󰓥武器祈愿的“<strong
+                        class="emphasis2">武器祈愿：定轨候选或常驻五星武器</strong>”池（称为五星非Up池）包括<strong
+                        class="emphasis1">不参与神铸定轨但能抽取到</strong>的武器，即<strong class="emphasis1">常驻五星武器</strong>。
+                </p>
+                <p class="instructions">在󰓥武器祈愿的<strong class="emphasis2">五星Up</strong>池中已经有2个武器卡片的情况下，如果您点击<strong
+                        class="emphasis2">五星非Up</strong>池中的任意一个武器卡片，被点击的武器会替换掉<strong
+                        class="emphasis2">五星Up</strong>池中的<strong
+                        class="emphasis1">最后一个武器</strong>，成为未选择的定轨武器；被替换的武器会被附加到<strong
+                        class="emphasis2">五星非Up</strong>池的末尾。
+                </p>
+                <p class="instructions">󰓥武器祈愿的其他卡片移动规则同上。
+                </p>
+            </div>
         </div>
         <div class="ChronicleSpecialized">
             <p class="instructions">“󰀖<strong>集录</strong>祈愿可定轨五星池”展示本次集录祈愿可以定轨的五星角色，仅供展示，用户不能在此区域进行操作。</p>
@@ -66,7 +91,7 @@
         <form>
             <select name="ItempoolSelection" id="characterPoolSelect" class="ChronicleDisabled CharacterSpecialized"
                 onchange="updateCards();updateBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
-                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义卡池</option>
+                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义角色卡池</option>
                 <!-- 4.5 -->
                 <option value="wish_4_5_3">v4.5【铓锋锦间裁】后半：2024年04月02日-3——那维莱特</option>
                 <option value="wish_4_5_4">v4.5【铓锋锦间裁】后半：2024年04月02日-4——枫原万叶</option>
@@ -143,8 +168,9 @@
                 <option value="wish_3_0_1">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-1——提纳里</option>
                 <option value="wish_3_0_2">v3.0【千朵玫瑰带来的黎明】前半：2022年08月24日-2——钟离</option>
             </select>
-            <select name="WeaponpoolSelection" id="weaponPoolSelect" class="ChronicleDisabled WeaponSpecialized" onchange="updateCards();updateBanner();">
-                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义武器池</option>
+            <select name="WeaponpoolSelection" id="weaponPoolSelect" class="ChronicleDisabled WeaponSpecialized"
+                onchange="updateCards();updateBanner();" title="选择武器卡池">
+                <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义武器卡池</option>
                 <option value="wish_4_5_2">v4.5【铓锋锦间裁】后半：2024年04月02日-2——那维莱特&枫原万叶</option>
             </select>
             <select name="ChronicledpoolSelection" id="chronicledPoolSelect" class="ChronicleSpecialized"
@@ -156,7 +182,7 @@
         </form>
         <p class="instructions">点击下拉菜单可快捷选中游戏中出现（过）的卡池。</p>
         <p class="instructions">点击角色卡片可以将该卡片调换至另一个卡池中，从而进行卡池的󰃣自定义。</p>
-        <p class="instructions">重新选中“󰃣自定义[集录]卡池”或点击“重置卡池”可重置卡池。</p>
+        <p class="instructions">重新选中“󰃣自定义(集录/角色/武器)卡池”或点击“重置卡池”可重置卡池。</p>
         <div id="reset_button" class="interface_button" onclick="initializeAllCard();">重置卡池</div>
         <p class="instructions">注意：若五星UP池中的角色多于1个，则五星UP池中第一个角色参与五星UP池，剩余角色视为未参与卡池。</p>
     </div>
@@ -164,23 +190,21 @@
     <!-- 卡池展示部分 -->
 
     <!-- 五星Up定轨展示板区域 -->
-    <div class="ChronicleDisabled CharacterSpecialized">
-        <p class="instructions centerized TipTitle">角色祈愿：可定轨五星角色</p>
-    </div>
     <div class="ChronicleDisabled WeaponSpecialized">
         <p class="instructions centerized TipTitle">武器祈愿：可定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">󰀖集录：可定轨五星池</p>
     </div>
-    <div title="候选五星Up池" class="PoolBox ChronicledBox SBox WeaponSpecialized ChronicleSpecialized" id="Chronicled_Sup_PoolBox"></div>
+    <div title="候选五星Up池" class="PoolBox ChronicledBox SBox WeaponSpecialized ChronicleSpecialized"
+        id="Chronicled_Sup_PoolBox"></div>
 
     <!-- 五星Up区域 -->
     <div class="ChronicleDisabled CharacterSpecialized">
-        <p class="instructions centerized TipTitle">󰯏角色祈愿：已定轨五星角色</p>
+        <p class="instructions centerized TipTitle">󰯏角色祈愿：五星Up角色</p>
     </div>
     <div class="ChronicleDisabled WeaponSpecialized">
-        <p class="instructions centerized TipTitle">󰯏武器祈愿：已定轨&未定轨五星武器</p>
+        <p class="instructions centerized TipTitle">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">󰯏集录：已定轨五星池</p>
@@ -192,7 +216,7 @@
         <p class="instructions centerized TipTitle">角色祈愿：常驻五星角色</p>
     </div>
     <div class="ChronicleDisabled WeaponSpecialized">
-        <p class="instructions centerized TipTitle">武器祈愿：待定轨和常驻五星武器</p>
+        <p class="instructions centerized TipTitle">武器祈愿：定轨候选或常驻五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">󰓼集录：普通概率五星池</p>
@@ -255,15 +279,16 @@
             <div class="section FormSection">
                 <p class="FormInstructions instructions centerized"><strong>󱙌基本祈愿配置󱙌</strong></p><br>
                 <form name="gacha" id="GachaForm" class="GachaForm">
-                    <p>󰰣五星已垫数量(0≤x≤89)：</p><input id="StartSDrop" type="number"
+                    <p class="CharacterSpecialized">󰰣五星已垫数量(0≤x≤89)：</p>
+                    <p class="WeaponSpecialized">󰰣五星已垫数量(0≤x≤79)：</p><input id="StartSDrop" type="number"
                         title="五星已垫数量，即自上一次抽出五星之后的总抽数。&#10;允许的值为0 - 89（均包含）。&#10;若连续89抽都未获得五星角色，则第90抽必定获得五星角色。" min="0"
                         max="89" step="1" value="0"><br>
                     <!-- 真的会有人填10吗 -->
                     <p>󰰠四星已垫数量(0≤x≤10)：</p><input id="StartRDrop" type="number"
-                        title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;允许的值为0 - 10（均包含）。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;正常情况下该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
+                        title="四星已垫数量，即自上一次抽出四星之后的总抽数。&#10;允许的值为0 - 10（均包含）。&#10;若连续9抽都未获得四星物品，则第10抽必定获得四星物品。&#10;角色祈愿中该值不超过9。当且仅当上一次抽出五星是在第90抽（非酋中的欧皇）且抽之前四星垫数为9时，该值才为10。"
                         min="0" max="10" step="1" value="0"><br>
                     <div>
-                        <div id="SupSwitchDeterminationMode" class="CharacterSpecialized">
+                        <div id="SupSwitchDeterminationMode" class="ChronicleDisabled">
                             <input class="radio_type" type="radio" title="选择：当前处于五星小保底" name="IsSUpCertainRadio"
                                 id="uc_option1_1" value="uncert" checked="true">
                             <label for="uc_option1_1" title="上一次抽到的五星角色是卡池的UP五星角色">当前处于五星小保底</label><br>
@@ -272,8 +297,8 @@
                             <label for="uc_option1_2" title="上一次抽到的五星角色不是卡池的UP五星角色">当前处于五星大保底</label><br>
                         </div>
                         <div id="SupFatePointDeterminationMode" class="WeaponSpecialized ChronicleSpecialized">
-                            <p>当前<strong>命定值</strong>(0≤x≤1or2)：</p><input id="FatePointInput" type="number" title="命定值"
-                                min="0" max="2" step="1" value="0"><br>
+                            <p>当前<strong>命定值</strong>(0≤x≤1or2)：</p><input id="FatePointInput" type="number"
+                                title="命定值" min="0" max="2" step="1" value="0"><br>
                         </div>
                     </div>
                     <input class="radio_type" type="radio" title="选择：当前处于四星小保底" name="IsRUpCertainRadio"
@@ -308,6 +333,11 @@
                     显示/隐藏表单说明文本</div>
                 <div class="interface_button" id="SpecialGachaControl" onclick="areaControl('Column_SpecialGacha');">
                     显示/隐藏󱙩高级祈愿配置</div>
+                <div class="interface_button CharacterSpecialized" id="WeaponCardControl"
+                    onclick="switchWeaponCardControl();">
+                    显示/隐藏󰓥武器卡片</div>
+                <div class="interface_button" id="StarRCardControl" onclick="switchStarRCardControl();">
+                    显示/隐藏󰰠四星卡片</div>
             </div>
             <div class="section FormSection" id="Column_SpecialGacha" style="display: none;">
                 <p class="instructions centerized"><strong>󱙩高级祈愿配置󱙩</strong></p><br>
@@ -364,6 +394,9 @@
     <p class="instructions centerized TipTitle">󰏖背包</p>
     <div class="PoolBox InventoryBox" id="inventory" title="背包：抽到的角色和祈愿信息&#10;注意：四星武器一律不予展示。"></div>
     <!-- FOOTER部分 -->
+    <div class="section">
+        <p class="instructions">GGGGS - Genshin-Impact Global Graphic Gacha Simulator - 图形化《原神》全局抽卡模拟器</p>
+    </div>
     <div class="section">
         <p class="rights"><strong>&copy;Quartz Studio (<em><a href="https://github.com/QuartzQuincy2019"> @Quincy
                         K.</a></em>) 2019-2024 &nbsp;&nbsp;&nbsp;<em><span>All Rights Reserved</span></em></strong></p>

@@ -42,25 +42,81 @@ function areaControl(elementId) {
     }
 }
 
-function gachaModeAreaControl(){
+var areWeaponCardsVisible = true;
+function weaponCardControl() {
+    var weaponCard_matches = document.querySelectorAll(".weaponCard");
+    if (areWeaponCardsVisible == true) {
+        for (var i = 0; i < weaponCard_matches.length; i++) {
+            if (weaponCard_matches[i].parentNode.parentNode.id == inventory.id) {
+                weaponCard_matches[i].parentNode.style.display = "";
+            }
+        }
+    } else {
+        for (var i = 0; i < weaponCard_matches.length; i++) {
+            if (weaponCard_matches[i].parentNode.parentNode.id == inventory.id) {
+                weaponCard_matches[i].parentNode.style.display = "none";
+            }
+        }
+    }
+}
+function switchWeaponCardControl() {
+    if (areWeaponCardsVisible) {
+        areWeaponCardsVisible = false;
+    } else {
+        areWeaponCardsVisible = true;
+    }
+    weaponCardControl();
+}
+
+var areStarRCardsVisible = true;
+function starRCardControl() {
+    var starRCard_matches = document.querySelectorAll(".starR");
+    if (areStarRCardsVisible == true) {
+        for (var i = 0; i < starRCard_matches.length; i++) {
+            if (starRCard_matches[i].parentNode.parentNode.id == inventory.id) {
+                starRCard_matches[i].parentNode.style.display = "";
+            }
+        }
+    } else {
+        for (var i = 0; i < starRCard_matches.length; i++) {
+            if (starRCard_matches[i].parentNode.parentNode.id == inventory.id) {
+                starRCard_matches[i].parentNode.style.display = "none";
+            }
+        }
+    }
+}
+function switchStarRCardControl() {
+    if (areStarRCardsVisible) {
+        areStarRCardsVisible = false;
+    } else {
+        areStarRCardsVisible = true;
+    }
+    starRCardControl();
+}
+
+function gachaModeAreaControl() {
     var weaponSpecialized_matches = document.querySelectorAll(".WeaponSpecialized");
     var characterSpecialized_matches = document.querySelectorAll(".CharacterSpecialized");
-    if(_GACHA_MODE == "character"){
+    if (_GACHA_MODE == "character") {
         for (var i = 0; i < weaponSpecialized_matches.length; ++i) {
             weaponSpecialized_matches[i].style.display = "none";
         }
         for (var i = 0; i < characterSpecialized_matches.length; ++i) {
             characterSpecialized_matches[i].style.display = "";
         }
+        document.getElementById("StartSDrop").max = 89;
+        document.getElementById("GachaModeSwitch").innerHTML = "前往武器祈愿";
         return;
     }
-    if(_GACHA_MODE == "weapon"){
+    if (_GACHA_MODE == "weapon") {
         for (var i = 0; i < weaponSpecialized_matches.length; ++i) {
             weaponSpecialized_matches[i].style.display = "";
         }
         for (var i = 0; i < characterSpecialized_matches.length; ++i) {
             characterSpecialized_matches[i].style.display = "none";
         }
+        document.getElementById("StartSDrop").max = 79;
+        document.getElementById("GachaModeSwitch").innerHTML = "前往角色祈愿";
         return;
     }
 }
@@ -95,7 +151,7 @@ chronicledAreaControl();
 gachaModeAreaControl();
 
 function setBanner(url) {
-    var text = 'url(\"'+url+'\")';
+    var text = 'url(\"' + url + '\")';
     E_header.style.backgroundImage = text;
 }
 
@@ -105,10 +161,10 @@ function setBanner(url) {
  */
 function updateBanner() {
     var selector;
-    if(_GACHA_MODE=="character"){
+    if (_GACHA_MODE == "character") {
         selector = document.getElementById("characterPoolSelect");
     }
-    if(_GACHA_MODE=="weapon"){
+    if (_GACHA_MODE == "weapon") {
         selector = document.getElementById("weaponPoolSelect");
     }
     var selectedPool = selector.value;

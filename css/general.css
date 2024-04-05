@@ -180,6 +180,16 @@ p.instructions {
     transition-duration: 0.3s;
 }
 
+p.instructions .emphasis1 {
+    color: #ff0000;
+    text-shadow: 1px 1px 0 #ffff00, -1px -1px #ff7300;
+}
+
+p.instructions .emphasis2 {
+    color: #0000ff;
+    text-shadow: 1px 1px 0 #3fffff, -1px -1px #1fff00;
+}
+
 .centerized {
     font-family: Arial, "Tinos Nerd Propo", '华文中宋', '宋体';
     text-align: center;
