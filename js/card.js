@@ -394,6 +394,17 @@ function tidyPoolArray() {
     }
     Rcommon_C = Rcommon.filter(item => getItemType(item) == "character");
     Rcommon_W = Rcommon.filter(item => getItemType(item) == "weapon");
+
+    if (_CHRONICLE_MODE == false && _GACHA_MODE == "weapon") {
+        var E = document.getElementById("EpitomizationClaim");
+        if (Sup.length == 0) {
+            E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>一</strong>把武器）";
+        } else if(Sup.length == 1) {
+            E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>二</strong>把武器）";
+        }else{
+            E.innerHTML = "󰯏神铸定轨：【已定轨<strong>" + findWeapon(Sup[0]).nameChs + "</strong>】";
+        }
+    }
 }
 
 

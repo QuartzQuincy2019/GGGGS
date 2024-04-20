@@ -59,7 +59,7 @@
             </p>
             <div class="WeaponSpecialized">
                 <p class="instructions">󰓥武器祈愿的“<strong
-                        class="emphasis2">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</strong>”池（称为五星Up池）要求<strong
+                        class="emphasis2">󰯏神铸定轨：已选择定轨&未选择定轨五星武器</strong>”池（称为五星Up池）要求<strong
                         class="emphasis1">2个五星武器卡片</strong>同时存在，表示这两个武器是在该版本武器祈愿中<strong
                         class="emphasis1">参与神铸定轨</strong>的武器。<strong class="emphasis1">前</strong>一个卡片是您<strong
                         class="emphasis1">选择定轨</strong>的武器，<strong class="emphasis1">后</strong>一个卡片是您<strong
@@ -171,6 +171,9 @@
                 onchange="updateCards();updateBanner();" title="选择武器卡池">
                 <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义武器卡池</option>
                 <option value="wish_4_5_2">v4.5【铓锋锦间裁】后半：2024年04月02日-2——那维莱特&枫原万叶</option>
+                <option value="wish_4_5_1">v4.5【铓锋锦间裁】前半：2024年03月13日-1——千织&荒泷一斗</option>
+                <option value="wish_4_4_2">v4.4【彩鹞栉春风】后半：2024年02月20日-2——魈&八重神子</option>
+                <option value="wish_4_4_1">v4.4【彩鹞栉春风】前半：2024年01月31日-1——闲云&纳西妲</option>
             </select>
             <select name="ChronicledpoolSelection" id="chronicledPoolSelect" class="ChronicleSpecialized"
                 onchange="updateChronicle();randomArtworkBanner();" title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
@@ -205,7 +208,7 @@
         <p class="instructions centerized TipTitle">󰯏角色祈愿：五星Up角色</p>
     </div>
     <div class="ChronicleDisabled WeaponSpecialized">
-        <p class="instructions centerized TipTitle">󰯏武器祈愿：已选择定轨&未选择定轨五星武器</p>
+        <p class="instructions centerized TipTitle" id="EpitomizationClaim">󰯏神铸定轨：已选择定轨&未选择定轨五星武器</p>
     </div>
     <div class="ChronicleSpecialized">
         <p class="instructions centerized TipTitle">󰯏集录：已定轨五星物品</p>

@@ -205,6 +205,14 @@ p.instructions .emphasis2 {
     content: "----------";
 }
 
+#EpitomizationClaim strong::before {
+    content: "";
+}
+
+#EpitomizationClaim strong::after {
+    content: "";
+}
+
 .interface_button {
     margin: 0.3vh;
     display: inline-block;
