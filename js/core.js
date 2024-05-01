@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v5.0.5";
+var __VERSION = "v5.0.7";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -106,7 +106,14 @@ function refreshTotalCounter() {
         var q = getQuotient(_TOKEN, 100000000);
         E_TotalCounter.children[0].innerHTML = "自打开页面以来已进行" + _TOKEN + "次（" + q + "亿" + o + "万次）祈愿";
     }
-    E_TotalCounter.children[0].innerHTML += " 合" + Number(_TOKEN * 16 / 10000) + "万元";
+    var cost = Number(_TOKEN * 16);//花费金额
+    if (cost < 100000000) {
+        E_TotalCounter.children[0].innerHTML += " 合" + Number(cost / 10000) + "万元";
+    } else {
+        var o = cost % 100000000 / 10000;
+        var q = getQuotient(cost, 100000000);
+        E_TotalCounter.children[0].innerHTML += " 合" + q + "亿" + o + "万元";
+    }
 }
 refreshTotalCounter();
 

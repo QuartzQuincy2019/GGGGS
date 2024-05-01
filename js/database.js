@@ -154,6 +154,8 @@ var CHARACTER_LIST = [
     new Character("charlotte", 4, "朗镜索真", Element.cryo, "夏洛蒂"),
     new Character("navia", 5, "明花蔓舵", Element.geo, "娜维娅"),
     new Character("chevreuse", 4, "明律决罚", Element.pyro, "夏沃蕾"),
+    new Character("arlecchino", 5, "孤暝厄月", Element.pyro, "阿蕾奇诺"),
+    //
     new Character("tartaglia", 5, "「公子」", Element.hydro, "达达利亚")
 ];
 
@@ -178,6 +180,7 @@ var WEAPON_LIST = [
     new Weapon("Calamity_Queller", 5, WeaponType.polearm, "息灾"),
     new Weapon("Cashflow_Supervision", 5, WeaponType.catalyst, "金流监督"),
     new Weapon("Crane's_Echoing_Call", 5, WeaponType.catalyst, "鹤鸣余音"),
+    new Weapon("Crimson_Moon's_Semblance", 5, WeaponType.polearm, "赤月之形"),
     new Weapon("Elegy_for_the_End", 5, WeaponType.bow, "终末嗟叹之诗"),
     new Weapon("Engulfing_Lightning", 5, WeaponType.polearm, "薙草之稻光"),
     new Weapon("Everlasting_Moonglow", 5, WeaponType.catalyst, "不灭月华"),
@@ -264,6 +267,21 @@ for (var i = 0; i < WEAPON_LIST.length; i++) {
 }
 
 const itemPools = {
+    //4.6
+    wish_4_6_1: [
+        ["arlecchino"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["freminet", "lynette", "xiangling"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_4_6_2: [
+        ["lyney"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["freminet", "lynette", "xiangling"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
     //4.5
     wish_4_5_3: [
         ["neuvillette"],
@@ -700,6 +718,13 @@ const itemPools = {
 }
 
 const weaponPools = {
+    wish_4_6_1: [
+        ["Crimson_Moon's_Semblance", "The_First_Great_Magic"],
+        ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
+        ["The_Dockhand's_Assistant", "Portable_Power_Saw", "Dragon's_Bane", "Eye_of_Perception", "Favonius_Warbow"],
+        ["Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+    ],
     wish_4_5_2: [
         ["Tome_of_the_Eternal_Flow", "Freedom-Sworn"],
         ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
