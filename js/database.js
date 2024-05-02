@@ -715,6 +715,123 @@ const itemPools = {
         ["sayu", "heizo", "sucrose", "chongyun", "rosaria", "beidou", "sara", "shinobu", "razor", "gorou", "ningguang", "noelle", "yunjin", "barbara", "xingqiu", "bennett", "thoma", "xiangling", "xinyan", "yanfei"],
         ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
     ],
+    //2.8
+    wish_2_8_3: [
+        ["yoimiya"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["bennett", "xinyan", "yunjin"],
+        ["barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "sara", "shinobu", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "yanfei"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_8_1: [
+        ["kazuha"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["heizo", "ningguang", "thoma"],
+        ["barbara", "beidou", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "shinobu", "noelle", "razor", "rosaria", "sayu", "sucrose", "xiangling", "xingqiu", "xinyan", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_8_2: [
+        ["klee"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["heizo", "ningguang", "thoma"],
+        ["barbara", "beidou", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "shinobu", "noelle", "razor", "rosaria", "sayu", "sucrose", "xiangling", "xingqiu", "xinyan", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    //2.7
+    wish_2_7_3: [
+        ["itto"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["shinobu", "chongyun", "gorou"],
+        ["barbara", "beidou", "bennett", "diona", "fischl", "sara", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_7_1: [
+        ["yelan"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["barbara", "yanfei", "noelle"],
+        ["beidou", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "ningguang", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_7_2: [
+        ["xiao"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["barbara", "yanfei", "noelle"],
+        ["beidou", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "ningguang", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    //2.6
+    wish_2_6_3: [
+        ["ayaka"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["razor", "rosaria", "sayu"],
+        ["bennett", "xinyan", "sara", "barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "ningguang", "noelle", "sucrose", "thoma", "xiangling", "xingqiu", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_6_1: [
+        ["ayato"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["sucrose", "xiangling", "yunjin"],
+        ["bennett", "xinyan", "sara", "barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "ningguang", "noelle", "razor", "rosaria", "sayu", "thoma", "xingqiu", "yanfei"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_6_2: [
+        ["venti"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["sucrose", "xiangling", "yunjin"],
+        ["bennett", "xinyan", "sara", "barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "ningguang", "noelle", "razor", "rosaria", "sayu", "thoma", "xingqiu", "yanfei"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    //2.5
+    wish_2_5_2: [
+        ["shogun"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["bennett", "xinyan", "sara"],
+        ["barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_5_3: [
+        ["kokomi"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["bennett", "xinyan", "sara"],
+        ["barbara", "beidou", "chongyun", "diona", "fischl", "gorou", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_5_1: [
+        ["yae"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["fischl", "diona", "thoma"],
+        ["barbara", "beidou", "bennett", "chongyun", "gorou", "sara", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "xiangling", "xingqiu", "xinyan", "yanfei", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    //2.4
+    wish_2_4_3: [
+        ["zhongli"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["xingqiu", "beidou", "yanfei"],
+        ["barbara", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xinyan"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_4_4: [
+        ["ganyu"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["xingqiu", "beidou", "yanfei"],
+        ["barbara", "bennett", "chongyun", "diona", "fischl", "gorou", "sara", "ningguang", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xinyan"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_4_1: [
+        ["shenhe"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["yunjin", "ningguang", "chongyun"],
+        ["barbara", "beidou", "bennett", "diona", "fischl", "gorou", "sara", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_2_4_2: [
+        ["xiao"],
+        ["jean", "qiqi", "keqing", "mona", "diluc"],
+        ["yunjin", "ningguang", "chongyun"],
+        ["barbara", "beidou", "bennett", "diona", "fischl", "gorou", "sara", "noelle", "razor", "rosaria", "sayu", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ]
 }
 
 const weaponPools = {
