@@ -1,5 +1,5 @@
-div.section a,
-div.section a:visited {
+div.section a#author_anchor,
+div.section a#author_anchor:visited {
     background-color: #002727;
     color: #00cdd0;
 }
@@ -67,6 +67,10 @@ p.rights {
 
 p.rights span {
     color: #89ff56;
+}
+
+p.panchors {
+    color: #000000;
 }
 
 p#TotalCounter {

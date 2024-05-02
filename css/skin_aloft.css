@@ -1,5 +1,5 @@
-div.section a,
-div.section a:visited {
+div.section a#author_anchor,
+div.section a#author_anchor:visited {
     background-color: #ffec80;
     color: #897500;
 }

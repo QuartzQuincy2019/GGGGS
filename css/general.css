@@ -13,6 +13,12 @@
 
 * {
     margin: 0;
+}
+
+p,
+div,
+span,
+strong {
     font-size: var(--universal-font-size);
 }
 
@@ -42,7 +48,6 @@ div.section {
 div.section a,
 div.section a:visited {
     font-family: 'Times New Roman', Times, serif, "Tinos Nerd Propo";
-    text-decoration: underline;
 }
 
 body {
@@ -173,11 +178,18 @@ p.TipTitle {
     margin-top: 5vh;
 }
 
-p.instructions {
+.instructions {
     font-size: var(--universal-font-size);
     font-family: 'Arial Black', Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
     transition-property: all;
     transition-duration: 0.3s;
+}
+
+p.panchors {
+    font-size: calc(var(--universal-font-size) + 0.3em);
+    font-family: 'Arial Black', Arial, "Tinos Nerd Propo", "华文中宋", "宋体";
+    font-weight: bold;
+    background-color: #ffffffa0;
 }
 
 p.instructions .emphasis1 {
@@ -197,11 +209,11 @@ p.instructions .emphasis2 {
     transition-duration: 0.3s;
 }
 
-.centerized strong::after {
+strong.TipTitleStrong::after {
     content: "----------";
 }
 
-.centerized strong::before {
+strong.TipTitleStrong::before {
     content: "----------";
 }
 
@@ -317,4 +329,87 @@ audio {
     z-index: 1;
     top: 100%;
     left: 0;
+}
+
+a.anchors {
+    color: inherit;
+    background-color: inherit;
+    text-decoration: none;
+    transition-property: all;
+    transition-duration: 300ms;
+}
+
+a.anchors:hover {
+    text-decoration: underline;
+    text-shadow: 0.08em 0.08em 0 #fff, 0.09em 0.04em 0 #d6d6d6, -0.06em -0.06em 0 #ababab, -0.04em 0.05em 0 #000;
+}
+
+a.anchors::before {
+    content: "";
+}
+
+
+div#NavigationListArea {
+    position: sticky;
+    right: 1em;
+    top: 1em;
+    font-size: calc(var(--universal-font-size) * 0.8);
+}
+
+ul#NavigationList {
+    list-style: none;
+    line-height: 180%;
+}
+
+ul#NavigationList li {
+    cursor: pointer;
+    padding: 0.2em;
+    border-left-width: 0.2em;
+    border-left-style: solid;
+    border-left-color: #ffc6d4;
+    text-align: right;
+    background-color: #ffffffe0;
+    transition-property: all;
+    transition-duration: 450ms;
+}
+
+ul#NavigationList li:hover {
+    font-weight: 500;
+}
+
+ul#NavigationList li.active {
+    border-left-width: 0.2em;
+    border-left-style: solid;
+    border-left-color: #e6003ae0;
+    background-color: #ffc6d4e0;
+    text-shadow: 0.06em 0.06em 0.05em #939393;
+    font-weight: 700;
+}
+
+
+@media screen and (min-width: 1300px) {
+    div#Content {
+        display: flex;
+    }
+
+    div#MainBoard {
+        flex: 85%;
+    }
+}
+
+@media screen and (max-width: 1299px) {
+    div#Content {
+        display: block;
+    }
+
+    div#NavigationListArea {
+        position: fixed;
+        right: 0.5em;
+        top: 0.5em;
+        font-size: calc(var(--universal-font-size) * 0.8);
+    }
+
+    ul#NavigationList {
+        line-height: 120%;
+    }
 }

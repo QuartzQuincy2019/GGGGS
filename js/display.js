@@ -1,4 +1,6 @@
 var E_SpecialGachaControl = document.getElementById("SpecialGachaControl");
+var E_NavigationList = document.getElementById("NavigationList");
+var E_NavigationListArea = document.getElementById("NavigationListArea");
 
 function generateBar(_background_color, _innerHTML, _id) {
     var _p = document.createElement("div");
@@ -183,3 +185,41 @@ function randomArtworkBanner() {
     var c = findCharacter(z);
     setBanner(c.wfile);
 }
+
+
+var E_Anchors = document.querySelectorAll(".anchors");
+function refreshNavList() {
+    E_Anchors = document.querySelectorAll(".anchors");
+    E_Anchors.forEach(function (link) {
+        var listItem = document.createElement('li');
+        listItem.textContent = link.textContent;
+        var target = link.getAttribute('href')
+        listItem.setAttribute('data-target', target);
+        listItem.onclick = (() => {
+            let s = "a.anchors[href='" + target + "']";
+            let a = document.querySelector(s);
+            a.scrollIntoView({ behavior: "smooth" });
+        });
+        E_NavigationList.appendChild(listItem);
+    });
+}
+refreshNavList();
+
+// 滚动事件，检测当前所处区域并标识在导航目录上
+window.addEventListener('scroll', function () {
+    var fromTop = window.scrollY;
+    E_Anchors.forEach(function (link) {
+        var section = link.parentElement.parentElement;
+        var up = section.offsetTop;
+        var bottom = section.offsetTop + section.offsetHeight;
+        var E_li = document.querySelector("li[data-target='" + link.getAttribute('href') + "']")
+        if (
+            up <= fromTop + 5 &&
+            bottom >= fromTop
+        ) {
+            E_li.classList.add('active');
+        } else {
+            E_li.classList.remove('active');
+        }
+    });
+});
