@@ -39,6 +39,22 @@ function locateCardsOf(condition) {
 
 var screen = document.querySelector("body");
 
+/**
+ * 是否触摸在其上
+ * @param {Element} element 
+ * @param {*} TOUCH 
+ * @returns 
+ */
+function isTouchedOn(element, TOUCH) {
+    const rect = element.getBoundingClientRect();
+    if (TOUCH.clientX >= rect.left && TOUCH.clientX <= rect.right &&
+        TOUCH.clientY >= rect.top && TOUCH.clientY <= rect.bottom) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function renewCardStyle() {
     SCharacterCards = locateCardsOf("character S");
     RCharacterCards = locateCardsOf("character R");
@@ -54,9 +70,25 @@ function renewCardStyle() {
             const imageUrl = findCharacter(name).nfile; // 构建图片文件名
             card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
         });
+        card.addEventListener('touchstart', function (event) {
+            const touch = event.touches[0];
+            if (!isTouchedOn(card, touch)) {
+                return;
+            }
+            if (!card.classList.contains('characterCard')) {
+                return;
+            }
+            const cardId = card.id;
+            const name = extractNameFromId(cardId); // 提取name部分
+            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
+            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
+        });
         card.addEventListener('mouseleave', function (event) {
             const card = event.currentTarget;
             card.style.backgroundImage = ''; // 恢复原样
+        });
+        card.addEventListener('touchend', function (event) {
+            card.style.backgroundImage = '';
         });
     });
 
@@ -69,8 +101,24 @@ function renewCardStyle() {
             var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
             card.children[1].innerHTML = elementChs + "/" + _chara.signature;
         });
+        card.addEventListener('touchstart', function (event) {
+            var touch = event.touches[0];
+            if (!isTouchedOn(card, touch)) {
+                return;
+            }
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+            var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
+            card.children[1].innerHTML = elementChs + "/" + _chara.signature;
+        });
         card.addEventListener('mouseleave', function (event) {
             const card = event.currentTarget;
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            card.children[1].innerHTML = findCharacter(_name).nameChs;
+        });
+        card.addEventListener('touchend', function (event) {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
             card.children[1].innerHTML = findCharacter(_name).nameChs;
