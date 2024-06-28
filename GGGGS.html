@@ -111,6 +111,8 @@
                             title="选择卡池&#10;以下所有卡池均为《原神》中出现（过）的卡池">
                             <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义角色卡池</option>
                             <!-- 4.7 -->
+                            <option value="wish_4_7_3">v4.7【纺坠终久之梦】后半：2024年06月25日-3——希格雯</option>
+                            <option value="wish_4_7_4">v4.7【纺坠终久之梦】后半：2024年06月25日-4——芙宁娜</option>
                             <option value="wish_4_7_1">v4.7【纺坠终久之梦】前半：2024年06月05日-1——克洛琳德</option>
                             <option value="wish_4_7_2">v4.7【纺坠终久之梦】前半：2024年06月05日-2——艾尔海森</option>
                             <!-- 4.6 -->
@@ -219,6 +221,7 @@
                             class="ChronicleDisabled WeaponSpecialized" onchange="updateCards();updateBanner();"
                             title="选择武器卡池">
                             <option value="none" selected title="选中该选项后，所有卡片重归原位">󰃣自定义武器卡池</option>
+                            <option value="wish_4_7_2">v4.7【纺坠终久之梦】后半：2024年06月25日-2—-希格雯&芙宁娜</option>
                             <option value="wish_4_7_1">v4.7【纺坠终久之梦】前半：2024年06月05日-1—-克洛琳德&艾尔海森</option>
                             <option value="wish_4_6_2">v4.6【两界为火，赤夜将熄】后半：2024年05月14日-2—-流浪者&白术</option>
                             <option value="wish_4_6_1">v4.6【两界为火，赤夜将熄】前半：2024年04月24日-1—-阿蕾奇诺&林尼</option>
@@ -375,9 +378,9 @@
                                     <label for="uc_option2_2"
                                         title="上一次抽到的四星物品为：&#10;四星武器 或 卡池的非UP四星角色">当前处于四星大保底</label><br>
                                 </div>
-                                <p>󰐍单轮抽数(1≤x≤100000)：</p><input id="GachaTimes" type="number"
-                                    title="单轮抽数&#10;允许的最大值为100000。&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。"
-                                    min="1" max="100000" step="1"><br>
+                                <p>󰐍单轮抽数(1≤x≤15000)：</p><input id="GachaTimes" type="number"
+                                    title="单轮抽数&#10;允许的最大值为15000。&#10;在忽略保底状态的情况下，抽数大于10则必定获得至少一个四星物品（包括武器和角色）。其中四星武器不予展示。"
+                                    min="1" max="15000" step="1"><br>
                                 <div class="interface_button" onclick="submitForm(false);">开始/继续祈愿</div>
                                 <div id="repeat_wish" class="interface_button" onclick="submitForm(true);">󰜉重复上次祈愿
                                 </div>

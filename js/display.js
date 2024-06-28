@@ -1,6 +1,88 @@
 var E_SpecialGachaControl = document.getElementById("SpecialGachaControl");
+var SCharacterCards = document.querySelectorAll('.card.characterCard.starS');
+var RCharacterCards = document.querySelectorAll('.card.characterCard.starR');
+var characterCards = document.querySelectorAll('.card.characterCard');
 var E_NavigationList = document.getElementById("NavigationList");
 var E_NavigationListArea = document.getElementById("NavigationListArea");
+
+function locateCards() {
+    document.querySelectorAll('.card');
+}
+
+/**
+ * 刷新相应卡片
+ * @param {string} condition character/weapon R/S
+ * @returns 
+ */
+function locateCardsOf(condition) {
+    var selector = '.card';
+    if (condition == "character") {
+        selector += '.characterCard';
+    }
+    if (condition == "weapon") {
+        selector += '.weaponCard';
+    }
+    if (condition == "character S") {
+        selector += '.characterCard.starS';
+    }
+    if (condition == "character R") {
+        selector += '.characterCard.starR';
+    }
+    if (condition == "weapon S") {
+        selector += '.weaponCard.starS';
+    }
+    if (condition == "weapon R") {
+        selector += '.weaponCard.starR';
+    }
+    return document.querySelectorAll(selector);
+}
+
+var screen = document.querySelector("body");
+
+function renewCardStyle() {
+    SCharacterCards = locateCardsOf("character S");
+    RCharacterCards = locateCardsOf("character R");
+    characterCards = locateCardsOf("character");
+    SCharacterCards.forEach(card => {
+        card.addEventListener('mouseenter', function (event) {
+            const card = event.currentTarget;
+            if (!card.classList.contains('characterCard')) {
+                return;
+            }
+            const cardId = card.id;
+            const name = extractNameFromId(cardId); // 提取name部分
+            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
+            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
+        });
+        card.addEventListener('mouseleave', function (event) {
+            const card = event.currentTarget;
+            card.style.backgroundImage = ''; // 恢复原样
+        });
+    });
+
+    characterCards.forEach(card => {
+        card.addEventListener('mouseenter', function (event) {
+            const card = event.currentTarget;
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+            var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
+            card.children[1].innerHTML = elementChs + "/" + _chara.signature;
+        });
+        card.addEventListener('mouseleave', function (event) {
+            const card = event.currentTarget;
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            card.children[1].innerHTML = findCharacter(_name).nameChs;
+        });
+    });
+}
+
+document.getElementsByTagName('body').item(0).onload += renewCardStyle();
+
+screen.addEventListener("click", function () {
+    renewCardStyle();
+});
 
 function generateBar(_background_color, _innerHTML, _id) {
     var _p = document.createElement("div");
@@ -176,7 +258,7 @@ function updateBanner() {
         return;
     }
     var version = selectedPool.slice(5, -2);//"4_2"
-    var url = "./img/Banner_" + version + ".png";
+    var url = PATH_BANNER + "Banner_" + version + ".png";
     setBanner(url);
 }
 
@@ -223,3 +305,10 @@ window.addEventListener('scroll', function () {
         }
     });
 });
+
+function extractNameFromId(cardId) {
+    const parts = cardId.split('_'); // 通过下划线分割id
+    const nameIndex = parts.length - 1; // 获取name所在的索引位置
+    return parts[nameIndex]; // 返回最后一个部分作为name
+}
+

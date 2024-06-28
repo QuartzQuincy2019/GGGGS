@@ -213,6 +213,7 @@ function initializeCharacterCard(character, destination) {
     _charaicon.src = _chara.pfile;
     _card.appendChild(_charaicon);
     var _title = document.createElement("p");
+    _title.classList.add("cardTitle");
     _title.innerHTML = _chara.nameChs;
     _card.appendChild(_title);
     var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
@@ -399,9 +400,9 @@ function tidyPoolArray() {
         var E = document.getElementById("EpitomizationClaim");
         if (Sup.length == 0) {
             E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>一</strong>把武器）";
-        } else if(Sup.length == 1) {
+        } else if (Sup.length == 1) {
             E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>二</strong>把武器）";
-        }else{
+        } else {
             E.innerHTML = "󰯏神铸定轨：【已定轨<strong>" + findWeapon(Sup[0]).nameChs + "</strong>】";
         }
     }
@@ -789,7 +790,9 @@ function outputObtained() {
             inventory.appendChild(_container);
             initializeWeaponCard(findWeapon(containerInfo[i].name), _container);
         }
-        inventory.children[inventory.children.length - 1].children[0].id += "_" + Number(i);
+        let _id = inventory.children[inventory.children.length - 1].children[0].id;
+        let _name = _id.split("_")[2];
+        inventory.children[inventory.children.length - 1].children[0].id = "card_obtained_" + Number(i) + '_' + _name;
         _container.innerHTML += "<p class='veryMark'><strong>" + Number(containerInfo[i].obtainedCalc) + "</strong></p>";
         _container.innerHTML += "<p>#" + Number(i) + ":(" + Number(containerInfo[i].obtainedRecord) + ")</p>";
         starRCardControl();
