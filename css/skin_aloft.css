@@ -144,7 +144,12 @@ input[type="number"]:focus {
     text-shadow: 0 0 calc(var(--universal-font-size) * 0.1) #aeaeae;
 }
 
-.card p {
+.card div.cardTitle {
     background-color: #ffffffd0;
     text-shadow: 0 0 0.1vh #414141;
+}
+
+:root {
+    --navbar-secondary-color: #ffc6d4;
+    --navbar-main-color: #e6003ae0;
 }

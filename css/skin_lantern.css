@@ -417,7 +417,12 @@ input[type="number"]:focus {
         2em 2em;
 }
 
-.card p {
+.card div.cardTitle {
     background-color: #ffffffd0;
     text-shadow: 0 0 calc(var(--universal-font-size) * 0.04) #303030;
+}
+
+:root {
+    --navbar-secondary-color: #fff8bee0;
+    --navbar-main-color: #36de07;
 }

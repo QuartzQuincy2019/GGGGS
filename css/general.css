@@ -8,7 +8,10 @@
     --color-A: #aaaaaa;
     --color-B: #bbbbbb;
     --universal-font-size: 3vh;
-    --card-height: calc(var(--universal-font-size) * 5.6);
+    --card-width: calc(var(--universal-font-size) * 4.59);
+    --card-height: calc(var(--card-width) * 1.39);
+    --navbar-main-color: #e6003ae0;
+    --navbar-secondary-color: #ffc6d4e0;
 }
 
 * {
@@ -366,7 +369,7 @@ ul#NavigationList li {
     padding: 0.2em;
     border-left-width: 0.2em;
     border-left-style: solid;
-    border-left-color: #ffc6d4;
+    border-left-color: var(--navbar-secondary-color);
     text-align: right;
     background-color: #ffffffe0;
     transition-property: all;
@@ -380,8 +383,8 @@ ul#NavigationList li:hover {
 ul#NavigationList li.active {
     border-left-width: 0.2em;
     border-left-style: solid;
-    border-left-color: #e6003ae0;
-    background-color: #ffc6d4e0;
+    border-left-color: var(--navbar-main-color);
+    background-color: var(--navbar-secondary-color);
     text-shadow: 0.06em 0.06em 0.05em #939393;
     font-weight: 700;
 }

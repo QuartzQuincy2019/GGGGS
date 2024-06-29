@@ -209,10 +209,12 @@ function initializeCharacterCard(character, destination) {
     _card.classList.add("characterCard");
     _card.classList.add(extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME));
     _card.classList.add("star" + extractValue(_chara.star, STAR_NUMBER, STAR_NAME));
+    //创建img
     var _charaicon = document.createElement("img");
     _charaicon.src = _chara.pfile;
     _card.appendChild(_charaicon);
-    var _title = document.createElement("p");
+    //创建cardTitle(div)
+    var _title = document.createElement("div");
     _title.classList.add("cardTitle");
     _title.innerHTML = _chara.nameChs;
     _card.appendChild(_title);
@@ -252,7 +254,8 @@ function initializeWeaponCard(weapon, destination) {
     var _weaponImg = document.createElement("img");
     _weaponImg.src = _weapon.weaponFile;
     _card.appendChild(_weaponImg);
-    var _title = document.createElement("p");
+    var _title = document.createElement("div");
+    _title.classList.add("cardTitle");
     _title.innerHTML = _weapon.nameChs;
     _card.appendChild(_title);
     _card.title = _weapon.star + "星 " + _weapon.nameChs;
