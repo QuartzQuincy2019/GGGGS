@@ -279,6 +279,21 @@ for (var i = 0; i < WEAPON_LIST.length; i++) {
 }
 
 const itemPools = {
+    //4.8
+    wish_4_8_1: [
+        ["navia"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["kirara", "kaveh", "ningguang"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "sara", "shinobu", "layla", "lynette", "mika", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_4_8_2: [
+        ["nilou"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["kirara", "kaveh", "ningguang"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "sara", "shinobu", "layla", "lynette", "mika", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
     //4.7
     wish_4_7_3: [
         ["sigewinne"],
@@ -890,6 +905,13 @@ const itemPools = {
 }
 
 const weaponPools = {
+    wish_4_8_1: [
+        ["Verdict", "Key_of_Khaj-Nisut"],
+        ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
+        ["Xiphos'_Moonlight", "The_Bell", "Dragon's_Bane", "Eye_of_Perception", "Rust"],
+        ["Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Flute", "The_Stringless", "The_Widsith"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+    ],
     wish_4_7_2: [
         ["Silvershower_Heartstrings", "Splendor_of_Tranquil_Waters"],
         ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
