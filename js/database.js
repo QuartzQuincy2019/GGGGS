@@ -40,13 +40,14 @@ class Character {
     signature;//角色称号
     element;//角色元素
     nameChs;//角色简体中文名
+    fullName;
     /**
      * 
      * @param {String} name 
      * @param {Number} star 
      * @param {String} signature
      */
-    constructor(name, star, signature, element, nameChs) {
+    constructor(name, star, signature, element, nameChs, fullName) {
         this.name = name;
         this.star = star;
         this.pfile = './img/p_' + this.name + '.png';
@@ -57,6 +58,7 @@ class Character {
         this.signature = signature;
         this.element = element;
         this.nameChs = nameChs;
+        this.fullName = fullName;
     }
 }
 
@@ -80,93 +82,94 @@ class Weapon {
  */
 var CHARACTER_LIST = [
     //mondstadt
-    new Character("jean", 5, "蒲公英骑士", Element.anemo, "琴"),
-    new Character("amber", 4, "飞行冠军", Element.pyro, "安柏"),
-    new Character("lisa", 4, "蔷薇魔女", Element.electro, "丽莎"),
-    new Character("kaeya", 4, "寒风剑士", Element.cryo, "凯亚"),
-    new Character("barbara", 4, "闪耀偶像", Element.hydro, "芭芭拉"),
-    new Character("diluc", 5, "晨曦的暗面", Element.pyro, "迪卢克"),
-    new Character("razor", 4, "奔狼领的传说", Element.electro, "雷泽"),
-    new Character("venti", 5, "风色诗人", Element.anemo, "温迪"),
-    new Character("klee", 5, "逃跑的太阳", Element.pyro, "可莉"),
-    new Character("bennett", 4, "命运试金石", Element.pyro, "班尼特"),
-    new Character("noelle", 4, "未授勋之花", Element.geo, "诺艾尔"),
-    new Character("fischl", 4, "断罪皇女！！", Element.electro, "菲谢尔"),
-    new Character("sucrose", 4, "无害甜度", Element.anemo, "砂糖"),
-    new Character("mona", 5, "星天水镜", Element.hydro, "莫娜"),
-    new Character("diona", 4, "猫尾特调", Element.cryo, "迪奥娜"),
-    new Character("albedo", 5, "白垩之子", Element.geo, "阿贝多"),
-    new Character("rosaria", 4, "棘冠恩典", Element.cryo, "罗莎莉亚"),
-    new Character("eula", 5, "浪花骑士", Element.cryo, "优菈"),
-    new Character("mika", 4, "晴霜的标绘", Element.cryo, "米卡"),
+    new Character("jean", 5, "蒲公英骑士", Element.anemo, "琴", "Jean"),
+    new Character("amber", 4, "飞行冠军", Element.pyro, "安柏", "Amber"),
+    new Character("lisa", 4, "蔷薇魔女", Element.electro, "丽莎", "Lisa"),
+    new Character("kaeya", 4, "寒风剑士", Element.cryo, "凯亚", "Kaeya"),
+    new Character("barbara", 4, "闪耀偶像", Element.hydro, "芭芭拉", "Barbara"),
+    new Character("diluc", 5, "晨曦的暗面", Element.pyro, "迪卢克", "Diluc"),
+    new Character("razor", 4, "奔狼领的传说", Element.electro, "雷泽", "Razor"),
+    new Character("venti", 5, "风色诗人", Element.anemo, "温迪", "Venti"),
+    new Character("klee", 5, "逃跑的太阳", Element.pyro, "可莉", "Klee"),
+    new Character("bennett", 4, "命运试金石", Element.pyro, "班尼特", "Bennett"),
+    new Character("noelle", 4, "未授勋之花", Element.geo, "诺艾尔", "Noelle"),
+    new Character("fischl", 4, "断罪皇女！！", Element.electro, "菲谢尔", "Fischl"),
+    new Character("sucrose", 4, "无害甜度", Element.anemo, "砂糖", "Sucrose"),
+    new Character("mona", 5, "星天水镜", Element.hydro, "莫娜", "Mona"),
+    new Character("diona", 4, "猫尾特调", Element.cryo, "迪奥娜", "Diona"),
+    new Character("albedo", 5, "白垩之子", Element.geo, "阿贝多", "Albedo"),
+    new Character("rosaria", 4, "棘冠恩典", Element.cryo, "罗莎莉亚", "Rosaria"),
+    new Character("eula", 5, "浪花骑士", Element.cryo, "优菈", "Eula"),
+    new Character("mika", 4, "晴霜的标绘", Element.cryo, "米卡", "Mika"),
     //liyue
-    new Character("xiao", 5, "靖妖傩舞", Element.anemo, "魈"),
-    new Character("beidou", 4, "无冕的龙王", Element.electro, "北斗"),
-    new Character("ningguang", 4, "群玉阁之主", Element.geo, "凝光"),
-    new Character("xiangling", 4, "万民百味", Element.pyro, "香菱"),
-    new Character("xingqiu", 4, "少年春衫薄", Element.hydro, "行秋"),
-    new Character("chongyun", 4, "雪融有踪", Element.cryo, "重云"),
-    new Character("keqing", 5, "霆霓快雨", Element.electro, "刻晴"),
-    new Character("qiqi", 5, "冻冻回魂夜", Element.cryo, "七七"),
-    new Character("zhongli", 5, "尘世闲游", Element.geo, "钟离"),
-    new Character("xinyan", 4, "燥热旋律", Element.pyro, "辛焱"),
-    new Character("ganyu", 5, "循循守月", Element.cryo, "甘雨"),
-    new Character("hutao", 5, "雪霁梅香", Element.pyro, "胡桃"),
-    new Character("yanfei", 4, "智明无邪", Element.pyro, "烟绯"),
-    new Character("shenhe", 5, "孤辰茕怀", Element.cryo, "申鹤"),
-    new Character("yunjin", 4, "红毹婵娟", Element.geo, "云堇"),
-    new Character("yelan", 5, "兰生幽谷", Element.hydro, "夜兰"),
-    new Character("yaoyao", 4, "仙蕊玲珑", Element.dendro, "瑶瑶"),
-    new Character("baizhu", 5, "遵生合和", Element.dendro, "白术"),
-    new Character("xianyun", 5, "鸾音鹤信", Element.anemo, "闲云"),
-    new Character("gaming", 4, "骏猊頕首", Element.pyro, "嘉明"),
+    new Character("xiao", 5, "靖妖傩舞", Element.anemo, "魈", "Xiao"),
+    new Character("beidou", 4, "无冕的龙王", Element.electro, "北斗", "Beidou"),
+    new Character("ningguang", 4, "群玉阁之主", Element.geo, "凝光", "Ningguang"),
+    new Character("xiangling", 4, "万民百味", Element.pyro, "香菱", "Xiangling"),
+    new Character("xingqiu", 4, "少年春衫薄", Element.hydro, "行秋", "Xingqiu"),
+    new Character("chongyun", 4, "雪融有踪", Element.cryo, "重云", "Chongyun"),
+    new Character("keqing", 5, "霆霓快雨", Element.electro, "刻晴", "Keqing"),
+    new Character("qiqi", 5, "冻冻回魂夜", Element.cryo, "七七", "Qiqi"),
+    new Character("zhongli", 5, "尘世闲游", Element.geo, "钟离", "Zhongli"),
+    new Character("xinyan", 4, "燥热旋律", Element.pyro, "辛焱", "Xinyan"),
+    new Character("ganyu", 5, "循循守月", Element.cryo, "甘雨", "Ganyu"),
+    new Character("hutao", 5, "雪霁梅香", Element.pyro, "胡桃", "Hu Tao"),
+    new Character("yanfei", 4, "智明无邪", Element.pyro, "烟绯", "Yanfei"),
+    new Character("shenhe", 5, "孤辰茕怀", Element.cryo, "申鹤", "Shenhe"),
+    new Character("yunjin", 4, "红毹婵娟", Element.geo, "云堇", "Yun Jin"),
+    new Character("yelan", 5, "兰生幽谷", Element.hydro, "夜兰", "Yelan"),
+    new Character("yaoyao", 4, "仙蕊玲珑", Element.dendro, "瑶瑶", "Yaoyao"),
+    new Character("baizhu", 5, "遵生合和", Element.dendro, "白术", "Baizhu"),
+    new Character("xianyun", 5, "鸾音鹤信", Element.anemo, "闲云", "Xianyun"),
+    new Character("gaming", 4, "骏猊頕首", Element.pyro, "嘉明", "Gaming"),
     //inazuma
-    new Character("ayaka", 5, "白鹭霜华", Element.cryo, "神里绫华"),
-    new Character("kazuha", 5, "红叶逐荒波", Element.anemo, "枫原万叶"),
-    new Character("yoimiya", 5, "琉焰华舞", Element.pyro, "宵宫"),
-    new Character("sayu", 4, "忍里之貉", Element.anemo, "早柚"),
-    new Character("shogun", 5, "一心净土", Element.electro, "雷电将军"),
-    new Character("sara", 4, "黑羽鸣镝", Element.electro, "九条裟罗"),
-    new Character("kokomi", 5, "真珠之智", Element.hydro, "珊瑚宫心海"),
-    new Character("thoma", 4, "渡来介者", Element.pyro, "托马"),
-    new Character("gorou", 4, "戎犬锵锵", Element.geo, "五郎"),
-    new Character("itto", 5, "花坂豪快", Element.geo, "荒泷一斗"),
-    new Character("yae", 5, "浮世笑百姿", Element.electro, "八重神子"),
-    new Character("ayato", 5, "磐祭叶守", Element.hydro, "神里绫人"),
-    new Character("shinobu", 4, "烦恼刈除", Element.electro, "久岐忍"),
-    new Character("heizo", 4, "心朝乂安", Element.anemo, "鹿野院平藏"),
-    new Character("kirara", 4, "檐宇猫游", Element.dendro, "绮良良"),
-    new Character("chiori", 5, "鸣雷的裁锦师", Element.geo, "千织"),
+    new Character("ayaka", 5, "白鹭霜华", Element.cryo, "神里绫华", "Kamisato Ayaka"),
+    new Character("kazuha", 5, "红叶逐荒波", Element.anemo, "枫原万叶", "Kaedehara Kazuha"),
+    new Character("yoimiya", 5, "琉焰华舞", Element.pyro, "宵宫", "Yoimiya"),
+    new Character("sayu", 4, "忍里之貉", Element.anemo, "早柚", "Sayu"),
+    new Character("shogun", 5, "一心净土", Element.electro, "雷电将军", "Raiden Shogun"),
+    new Character("sara", 4, "黑羽鸣镝", Element.electro, "九条裟罗", "Kujou Sara"),
+    new Character("kokomi", 5, "真珠之智", Element.hydro, "珊瑚宫心海", "Sangonomiya Kokomi"),
+    new Character("thoma", 4, "渡来介者", Element.pyro, "托马", "Thoma"),
+    new Character("gorou", 4, "戎犬锵锵", Element.geo, "五郎", "Gorou"),
+    new Character("itto", 5, "花坂豪快", Element.geo, "荒泷一斗", "Arataki Itto"),
+    new Character("yae", 5, "浮世笑百姿", Element.electro, "八重神子", "Yae Miko"),
+    new Character("ayato", 5, "磐祭叶守", Element.hydro, "神里绫人", "Kamisato Ayato"),
+    new Character("shinobu", 4, "烦恼刈除", Element.electro, "久岐忍", "Kuki Shinobu"),
+    new Character("heizo", 4, "心朝乂安", Element.anemo, "鹿野院平藏", "Shikanoin Heizou"),
+    new Character("kirara", 4, "檐宇猫游", Element.dendro, "绮良良", "Kirara"),
+    new Character("chiori", 5, "鸣雷的裁锦师", Element.geo, "千织", "Chiori"),
     //sumeru
-    new Character("tighnari", 5, "浅蔚轻行", Element.dendro, "提纳里"),
-    new Character("collei", 4, "萃念初蘖", Element.dendro, "柯莱"),
-    new Character("dori", 4, "梦园藏金", Element.electro, "多莉"),
-    new Character("cyno", 5, "缄秘的裁遣", Element.electro, "赛诺"),
-    new Character("candace", 4, "浮金的誓愿", Element.hydro, "坎蒂丝"),
-    new Character("nilou", 5, "莲光落舞筵", Element.hydro, "妮露"),
-    new Character("nahida", 5, "白草净华", Element.dendro, "纳西妲"),
-    new Character("layla", 4, "绮思晚星", Element.cryo, "莱依拉"),
-    new Character("wanderer", 5, "久世浮倾", Element.anemo, "流浪者"),
-    new Character("faruzan", 4, "机逐封秘", Element.anemo, "珐露珊"),
-    new Character("alhaitham", 5, "诲韬诤言", Element.dendro, "艾尔海森"),
-    new Character("dehya", 5, "炽鬃之狮", Element.pyro, "迪希雅"),
-    new Character("kaveh", 4, "天穹之镜", Element.dendro, "卡维"),
-    new Character("sethos", 4, "衡明知度", Element.electro, "塞索斯"),
+    new Character("tighnari", 5, "浅蔚轻行", Element.dendro, "提纳里", "Tighnari"),
+    new Character("collei", 4, "萃念初蘖", Element.dendro, "柯莱", "Collei"),
+    new Character("dori", 4, "梦园藏金", Element.electro, "多莉", "Dori"),
+    new Character("cyno", 5, "缄秘的裁遣", Element.electro, "赛诺", "Cyno"),
+    new Character("candace", 4, "浮金的誓愿", Element.hydro, "坎蒂丝", "Candace"),
+    new Character("nilou", 5, "莲光落舞筵", Element.hydro, "妮露", "Nilou"),
+    new Character("nahida", 5, "白草净华", Element.dendro, "纳西妲", "Nahida"),
+    new Character("layla", 4, "绮思晚星", Element.cryo, "莱依拉", "Layla"),
+    new Character("wanderer", 5, "久世浮倾", Element.anemo, "流浪者", "Wanderer"),
+    new Character("faruzan", 4, "机逐封秘", Element.anemo, "珐露珊", "Faruzan"),
+    new Character("alhaitham", 5, "诲韬诤言", Element.dendro, "艾尔海森", "Alhaitham"),
+    new Character("dehya", 5, "炽鬃之狮", Element.pyro, "迪希雅", "Dehya"),
+    new Character("kaveh", 4, "天穹之镜", Element.dendro, "卡维", "Kaveh"),
+    new Character("sethos", 4, "衡明知度", Element.electro, "塞索斯", "Sethos"),
     //fontaine
-    new Character("lyney", 5, "惑光幻戏", Element.pyro, "林尼"),
-    new Character("lynette", 4, "丽影绮行", Element.anemo, "琳妮特"),
-    new Character("freminet", 4, "浅怀遐梦", Element.cryo, "菲米尼"),
-    new Character("neuvillette", 5, "谕告的潮音", Element.hydro, "那维莱特"),
-    new Character("wriothesley", 5, "寂罪的密使", Element.cryo, "莱欧斯利"),
-    new Character("furina", 5, "不休独舞", Element.hydro, "芙宁娜"),
-    new Character("charlotte", 4, "朗镜索真", Element.cryo, "夏洛蒂"),
-    new Character("navia", 5, "明花蔓舵", Element.geo, "娜维娅"),
-    new Character("chevreuse", 4, "明律决罚", Element.pyro, "夏沃蕾"),
-    new Character("arlecchino", 5, "孤暝厄月", Element.pyro, "阿蕾奇诺"),
-    new Character("clorinde", 5, "秉烛狝影", Element.electro, "克洛琳德"),
-    new Character("sigewinne", 5, "龙女妙变", Element.hydro, "希格雯"),
+    new Character("lyney", 5, "惑光幻戏", Element.pyro, "林尼", "Lyney"),
+    new Character("lynette", 4, "丽影绮行", Element.anemo, "琳妮特", "Lynette"),
+    new Character("freminet", 4, "浅怀遐梦", Element.cryo, "菲米尼", "Freminet"),
+    new Character("neuvillette", 5, "谕告的潮音", Element.hydro, "那维莱特", "Neuvillette"),
+    new Character("wriothesley", 5, "寂罪的密使", Element.cryo, "莱欧斯利", "Wriothesly"),
+    new Character("furina", 5, "不休独舞", Element.hydro, "芙宁娜", "Furina"),
+    new Character("charlotte", 4, "朗镜索真", Element.cryo, "夏洛蒂", "Charlotte"),
+    new Character("navia", 5, "明花蔓舵", Element.geo, "娜维娅", "Navia"),
+    new Character("chevreuse", 4, "明律决罚", Element.pyro, "夏沃蕾", "Chevreuse"),
+    new Character("arlecchino", 5, "孤暝厄月", Element.pyro, "阿蕾奇诺", "Arlecchino"),
+    new Character("clorinde", 5, "秉烛狝影", Element.electro, "克洛琳德", "Clorinde"),
+    new Character("sigewinne", 5, "龙女妙变", Element.hydro, "希格雯", "Sigewinne"),
+    new Character("emilie", 5, "千缕之踪", Element.dendro, "艾梅莉埃", "Emilie"),
     //
-    new Character("tartaglia", 5, "「公子」", Element.hydro, "达达利亚")
+    new Character("tartaglia", 5, "「公子」", Element.hydro, "达达利亚", "Tartaglia")
 ];
 
 var characterMap = {};
@@ -203,6 +206,7 @@ var WEAPON_LIST = [
     new Weapon("Key_of_Khaj-Nisut", 5, WeaponType.sword, "圣显之钥"),
     new Weapon("Light_of_Foliar_Incision", 5, WeaponType.sword, "裁叶萃光"),
     new Weapon("Lost_Prayer_to_the_Sacred_Winds", 5, WeaponType.catalyst, "四风原典"),
+    new Weapon("Lumidouce_Elegy", 5, WeaponType.polearm, "柔灯挽歌"),
     new Weapon("Memory_of_Dust", 5, WeaponType.catalyst, "尘世之锁"),
     new Weapon("Mistsplitter_Reforged", 5, WeaponType.sword, "雾切之回光"),
     new Weapon("Polar_Star", 5, WeaponType.bow, "冬极白星"),
@@ -280,11 +284,18 @@ for (var i = 0; i < WEAPON_LIST.length; i++) {
 
 const itemPools = {
     //4.8
-    wish_4_8_1: [
-        ["navia"],
+    wish_4_8_3: [
+        ["emilie"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
-        ["kirara", "kaveh", "ningguang"],
-        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "sara", "shinobu", "layla", "lynette", "mika", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["yanfei", "xiangling", "razor"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_4_8_4: [
+        ["yelan"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["yanfei", "xiangling", "razor"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yaoyao", "yunjin"],
         ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
     ],
     wish_4_8_2: [
@@ -905,11 +916,18 @@ const itemPools = {
 }
 
 const weaponPools = {
+    wish_4_8_2: [
+        ["Lumidouce_Elegy", "Aqua_Simulacra"],
+        ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
+        ["Makhaira_Aquamarine", "Wandering_Evenstar", "The_Flute", "Favonius_Lance", "Favonius_Warbow"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword" /*"Favonius_Warbow"*/, "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+    ],
     wish_4_8_1: [
         ["Verdict", "Key_of_Khaj-Nisut"],
         ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
         ["Xiphos'_Moonlight", "The_Bell", "Dragon's_Bane", "Eye_of_Perception", "Rust"],
-        ["Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Flute", "The_Stringless", "The_Widsith"],
+        ["Favonius_Codex", "Favonius_Greatsword",/*'Favonius_Lance',*/ "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Flute", "The_Stringless", "The_Widsith"],
         ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
     ],
     wish_4_7_2: [

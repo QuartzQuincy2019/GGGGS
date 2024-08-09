@@ -98,8 +98,23 @@ function renewCardStyle() {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
             var _chara = findCharacter(_name);
-            var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-            card.children[1].innerHTML = elementChs + "/" + _chara.signature;
+
+            var shown = "";
+            var elementName = "";
+            var shownSignature = "";
+            switch (LANGUAGE_CODE) {
+                case "chs": {
+                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
+                    shownSignature = _chara.signature;
+                }
+                    break;
+                case 'eng': {
+                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
+                }
+                    break;
+            }
+            shown = elementName + "/" + shownSignature;
+            card.children[1].innerHTML = shown;
         });
         card.addEventListener('touchstart', function (event) {
             var touch = event.touches[0];
@@ -109,19 +124,60 @@ function renewCardStyle() {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
             var _chara = findCharacter(_name);
-            var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-            card.children[1].innerHTML = elementChs + "/" + _chara.signature;
+
+            var shown = "";
+            var elementName = "";
+            var shownSignature = "";
+            switch (LANGUAGE_CODE) {
+                case "chs": {
+                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
+                    shownSignature = _chara.signature;
+                }
+                    break;
+                case 'eng': {
+                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
+                }
+                    break;
+            }
+            shown = elementName + "/" + shownSignature;
+            card.children[1].innerHTML = shown;
         });
         card.addEventListener('mouseleave', function (event) {
             const card = event.currentTarget;
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
-            card.children[1].innerHTML = findCharacter(_name).nameChs;
+            var _chara = findCharacter(_name);
+
+            var shown = "";
+            switch (LANGUAGE_CODE) {
+                case "chs": {
+                    shown = _chara.nameChs;
+                }
+                    break;
+                case 'eng': {
+                    shown = _chara.fullName;
+                }
+                    break;
+            }
+            card.children[1].innerHTML = shown;
         });
         card.addEventListener('touchend', function (event) {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
-            card.children[1].innerHTML = findCharacter(_name).nameChs;
+            var _chara = findCharacter(_name);
+
+            var shown = "";
+            switch (LANGUAGE_CODE) {
+                case "chs": {
+                    shown = _chara.nameChs;
+                }
+                    break;
+                case 'eng': {
+                    shown = _chara.fullName;
+                }
+                    break;
+            }
+            card.children[1].innerHTML = shown;
         });
     });
 }
@@ -360,3 +416,20 @@ function extractNameFromId(cardId) {
     return parts[nameIndex]; // 返回最后一个部分作为name
 }
 
+function refreshCardFontSize() {// 获取所有满足选择器".card div.cardTitle"的元素
+    let elements = document.querySelectorAll('.card div.cardTitle');
+
+    // 根据LANGUAGE_CODE设置font-size
+    elements.forEach(element => {
+        if (LANGUAGE_CODE === "chs") {
+            element.style.fontSize = "calc(var(--universal-font-size) * 0.6)";
+            element.style["white-space"] = "nowrap";
+            element.style["font-weight"] = "500";
+        } else if (LANGUAGE_CODE === "eng") {
+            element.style.fontSize = "calc(var(--universal-font-size) * 0.46)";
+            element.style["white-space"] = "normal";
+            element.style["font-weight"] = "700";
+        }
+    });
+}
+setInterval(refreshCardFontSize, 600);

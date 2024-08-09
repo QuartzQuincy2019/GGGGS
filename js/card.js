@@ -203,9 +203,23 @@ function clearCard() {
  * @returns 
  */
 function initializeCharacterCard(character, destination) {
+    var fullName = "";
+    var elementName = "";
     var _chara = character;
     var _card = document.createElement("div");
     _card.classList.add("card");
+    switch (LANGUAGE_CODE) {
+        case 'chs': {
+            fullName = _chara.nameChs;
+            elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
+        }
+            break;
+        case 'eng': {
+            fullName = _chara.fullName;
+            elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
+        }
+            break;
+    }
     _card.classList.add("characterCard");
     _card.classList.add(extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME));
     _card.classList.add("star" + extractValue(_chara.star, STAR_NUMBER, STAR_NAME));
@@ -216,10 +230,9 @@ function initializeCharacterCard(character, destination) {
     //创建cardTitle(div)
     var _title = document.createElement("div");
     _title.classList.add("cardTitle");
-    _title.innerHTML = _chara.nameChs;
+    _title.innerHTML = fullName;
     _card.appendChild(_title);
-    var elementChs = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-    _card.title = _chara.star + "星【" + elementChs + "】 “" + _chara.signature + "” " + _chara.nameChs;
+    _card.title = _chara.star + "★[" + elementName + "] “" + _chara.signature + "” - " + _chara.fullName;
     _card.onclick = function () {
         moveCard(this);
     };
@@ -248,6 +261,25 @@ function initializeCharacterCard(character, destination) {
 function initializeWeaponCard(weapon, destination) {
     var _weapon = weapon;
     var _card = document.createElement("div");
+    let fullName = _weapon.name;
+    let fullNameArr = fullName.split("_");
+    fullName = "";
+    for (var i = 0; i < fullNameArr.length; i++) {
+        fullName += " " + fullNameArr[i];
+    }
+    var shownName = "";
+    var cardHover = "";
+    switch (LANGUAGE_CODE) {
+        case 'chs': {
+            shownName = _weapon.nameChs;
+            cardHover = fullName;
+        }
+            break;
+        case 'eng': {
+            shownName = fullName;
+        }
+            break;
+    }
     _card.classList.add("card");
     _card.classList.add("weaponCard");
     _card.classList.add("star" + extractValue(_weapon.star, STAR_NUMBER, STAR_NAME));
@@ -256,9 +288,9 @@ function initializeWeaponCard(weapon, destination) {
     _card.appendChild(_weaponImg);
     var _title = document.createElement("div");
     _title.classList.add("cardTitle");
-    _title.innerHTML = _weapon.nameChs;
+    _title.innerHTML = shownName;
     _card.appendChild(_title);
-    _card.title = _weapon.star + "星 " + _weapon.nameChs;
+    _card.title = cardHover + " " + _weapon.star + "★";
     var parentNode = destination;
     _card.id = "card_" + _weapon.name;//卡片id
     _card.onclick = function () {

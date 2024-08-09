@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v5.3.1";
+var __VERSION = "v5.4.0";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -11,6 +11,7 @@ var E_TotalCounter = document.getElementById("TotalCounter");
 var E_ChronicledArea = document.getElementById("ChronicledArea");
 
 var _GACHA_MODE = "character"; // character或weapon，仅限于非chronicled
+var LANGUAGE_CODE = "chs";//chs eng
 
 /**
  * 获取数组最后一个元素
@@ -182,4 +183,15 @@ function rearrangeItem(arrayInMess) {
     const cElements = arrayInMess.filter(item => getItemType(item) == "character");
     const wElements = arrayInMess.filter(item => getItemType(item) == "weapon");
     return [...cElements, ...wElements];
+}
+
+
+function changeLanguage() {
+    if (LANGUAGE_CODE == "eng") {
+        LANGUAGE_CODE = "chs";
+    } else if (LANGUAGE_CODE == "chs") {
+        LANGUAGE_CODE = "eng";
+    }
+    // document.getElementById("change_language_button").title = "当前卡片语言：" + LANGUAGE_CODE;
+    initializeAllCard();
 }

@@ -61,9 +61,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: calc(var(--universal-font-size) * 0.6);
+    text-align: center;
     border-bottom-left-radius: 0.6vh;
     border-bottom-right-radius: 0.6vh;
-    font-family: '华文中宋', '宋体';
+    font-family: Arial, '华文中宋', '宋体';
     transition-property: all;
     transition-duration: 0.3s;
 }
