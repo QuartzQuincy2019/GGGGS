@@ -100,19 +100,8 @@ function renewCardStyle() {
             var _chara = findCharacter(_name);
 
             var shown = "";
-            var elementName = "";
-            var shownSignature = "";
-            switch (LANGUAGE_CODE) {
-                case "chs": {
-                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-                    shownSignature = _chara.signature;
-                }
-                    break;
-                case 'eng': {
-                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
-                }
-                    break;
-            }
+            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
+            var shownSignature = _chara.signature[LANGUAGE_CODE];
             shown = elementName + "/" + shownSignature;
             card.children[1].innerHTML = shown;
         });
@@ -126,19 +115,8 @@ function renewCardStyle() {
             var _chara = findCharacter(_name);
 
             var shown = "";
-            var elementName = "";
-            var shownSignature = "";
-            switch (LANGUAGE_CODE) {
-                case "chs": {
-                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-                    shownSignature = _chara.signature;
-                }
-                    break;
-                case 'eng': {
-                    elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
-                }
-                    break;
-            }
+            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
+            var shownSignature = _chara.signature[LANGUAGE_CODE];
             shown = elementName + "/" + shownSignature;
             card.children[1].innerHTML = shown;
         });
@@ -147,37 +125,14 @@ function renewCardStyle() {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
             var _chara = findCharacter(_name);
-
-            var shown = "";
-            switch (LANGUAGE_CODE) {
-                case "chs": {
-                    shown = _chara.nameChs;
-                }
-                    break;
-                case 'eng': {
-                    shown = _chara.fullName;
-                }
-                    break;
-            }
-            card.children[1].innerHTML = shown;
+            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
         });
         card.addEventListener('touchend', function (event) {
             const cardId = card.id;
             var _name = extractNameFromId(cardId);
             var _chara = findCharacter(_name);
 
-            var shown = "";
-            switch (LANGUAGE_CODE) {
-                case "chs": {
-                    shown = _chara.nameChs;
-                }
-                    break;
-                case 'eng': {
-                    shown = _chara.fullName;
-                }
-                    break;
-            }
-            card.children[1].innerHTML = shown;
+            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
         });
     });
 }
@@ -416,7 +371,7 @@ function extractNameFromId(cardId) {
     return parts[nameIndex]; // 返回最后一个部分作为name
 }
 
-function refreshCardFontSize() {// 获取所有满足选择器".card div.cardTitle"的元素
+function refreshCardSize() {// 获取所有满足选择器".card div.cardTitle"的元素
     let elements = document.querySelectorAll('.card div.cardTitle');
 
     // 根据LANGUAGE_CODE设置font-size
@@ -426,10 +381,34 @@ function refreshCardFontSize() {// 获取所有满足选择器".card div.cardTit
             element.style["white-space"] = "nowrap";
             element.style["font-weight"] = "500";
         } else if (LANGUAGE_CODE === "eng") {
-            element.style.fontSize = "calc(var(--universal-font-size) * 0.46)";
+            element.style.fontSize = "calc(var(--universal-font-size) * 0.5)";
             element.style["white-space"] = "normal";
             element.style["font-weight"] = "700";
         }
     });
+
+    elements = document.querySelectorAll('.card');
+    elements.forEach(element => {
+        if (LANGUAGE_CODE === "chs") {
+            element.style.width = "var(--card-width)";
+            element.style.height = "var(--card-height)";
+        } else if (LANGUAGE_CODE === "eng") {
+            element.style.width = "calc(var(--card-width) * 1.12)";
+            element.style.height = "calc(var(--card-height) * 1.27)";
+        }
+    });
+
 }
-setInterval(refreshCardFontSize, 600);
+setInterval(refreshCardSize, 400);
+
+$(".filter_Snon").click(function () {
+    $("#Snon_PoolBox").toggle(1000, function () {
+        $("#Snon_PoolBox *").toggle(1000);
+    });
+});
+
+$(".filter_Rnon").click(function () {
+    $("#Rnon_PoolBox").toggle(1000, function () {
+        $("#Rnon_PoolBox *").toggle(1000);
+    });
+});

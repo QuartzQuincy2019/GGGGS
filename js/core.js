@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v5.4.1";
+var __VERSION = "v5.4.6";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');
@@ -11,43 +11,7 @@ var E_TotalCounter = document.getElementById("TotalCounter");
 var E_ChronicledArea = document.getElementById("ChronicledArea");
 
 var _GACHA_MODE = "character"; // character或weapon，仅限于非chronicled
-var LANGUAGE_CODE = "chs";//chs eng
-
-/**
- * 获取数组最后一个元素
- * @returns 
- */
-Array.prototype.getLast = function () {
-    return this[this.length - 1];
-}
-
-/**
- * 删除String数组中对应的字符串
- * @param {String} target 
- */
-Array.prototype.deleteElement = function (target) {
-    var targetIndex = this.indexOf(target);
-    if (targetIndex !== -1) {
-        this.splice(targetIndex, 1); // 删除目标字符串
-    }
-}
-
-/**
- * 根据referenceArray中的referenceObj，对应找到valueArray中的元素。
- * 一般要求referenceArray和valueArray的长度对等。
- * @param {Object} referenceObj
- * @param {Array} referenceArray 
- * @param {Array} valueArray 
- * @returns 任意类型的值。若未找到对应值，返回false。
- */
-function extractValue(referenceObj, referenceArray, valueArray) {
-    for (var i = 0; i < referenceArray.length; i++) {
-        if (referenceArray[i] == referenceObj) {
-            return valueArray[i];
-        }
-    }
-    return false;
-}
+var LANGUAGE_CODE = "eng";//chs eng
 
 /**
  * 随机0-1之间的小数。

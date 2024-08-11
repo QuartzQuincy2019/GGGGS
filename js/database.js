@@ -28,6 +28,37 @@ var ELEMENT_NUMBER = [1, 2, 3, 4, 5, 6, 7];
 var STAR_NUMBER = [4, 5];
 var STAR_NAME = ["R", "S"];
 
+var ELEMENT_CALL = {
+    anemo: {
+        chs: "风",
+        eng: "Anemo"
+    },
+    geo: {
+        chs: "岩",
+        eng: "Geo"
+    },
+    electro: {
+        chs: "雷",
+        eng: "Electro"
+    },
+    dendro: {
+        chs: "草",
+        eng: "Dendro"
+    },
+    hydro: {
+        chs: "水",
+        eng: "Hydro"
+    },
+    pyro: {
+        chs: "火",
+        eng: "Pyro"
+    },
+    cryo: {
+        chs: "冰",
+        eng: "Cryo"
+    }
+}
+
 var PATH_FULLWISH = "./img/w/";
 var PATH_BANNER = "./img/b/";
 var PATH_NAMECARD = "./img/n/";
@@ -37,17 +68,21 @@ class Character {
     star;//角色星数
     pfile;//Charaicon对应文件路径
     wfile;//WishArtworks对应文件路径
-    signature;//角色称号
+    signature = {
+        chs:"", eng:""
+    }//角色称号
     element;//角色元素
-    nameChs;//角色简体中文名
-    fullName;
+    elementName;
+    fullName = {
+        chs:"", eng:""
+    }
     /**
      * 
      * @param {String} name 
      * @param {Number} star 
-     * @param {String} signature
+     * @param {Object} signature
      */
-    constructor(name, star, signature, element, nameChs, fullName) {
+    constructor(name, star, signature, element, fullName) {
         this.name = name;
         this.star = star;
         this.pfile = './img/p_' + this.name + '.png';
@@ -57,8 +92,8 @@ class Character {
         }
         this.signature = signature;
         this.element = element;
-        this.nameChs = nameChs;
         this.fullName = fullName;
+        this.elementName = extractValue(this.element,ELEMENT_NUMBER,ELEMENT_NAME);
     }
 }
 
@@ -68,13 +103,16 @@ class Weapon {
     weaponFile;
     weaponType;
     nameChs;
-    fullName;
+    fullName={
+        chs:"",eng:""
+    }
     constructor(name, star, weaponType, nameChs) {
         this.name = name;
         this.star = star;
         this.weaponType = weaponType;
         this.weaponFile = './img/weapon/' + this.star + '/Weapon_' + this.name + '.png';
         this.nameChs = nameChs;
+        this.fullName.chs = this.nameChs;
         let fn = this.name;
         let fnArr = fn.split("_");
         fn = "";
@@ -85,7 +123,7 @@ class Weapon {
                 fn += "" + fnArr[i];
             }
         }
-        this.fullName = fn;
+        this.fullName.eng = fn;
     }
 }
 
@@ -94,94 +132,101 @@ class Weapon {
  */
 var CHARACTER_LIST = [
     //mondstadt
-    new Character("jean", 5, "蒲公英骑士", Element.anemo, "琴", "Jean"),
-    new Character("amber", 4, "飞行冠军", Element.pyro, "安柏", "Amber"),
-    new Character("lisa", 4, "蔷薇魔女", Element.electro, "丽莎", "Lisa"),
-    new Character("kaeya", 4, "寒风剑士", Element.cryo, "凯亚", "Kaeya"),
-    new Character("barbara", 4, "闪耀偶像", Element.hydro, "芭芭拉", "Barbara"),
-    new Character("diluc", 5, "晨曦的暗面", Element.pyro, "迪卢克", "Diluc"),
-    new Character("razor", 4, "奔狼领的传说", Element.electro, "雷泽", "Razor"),
-    new Character("venti", 5, "风色诗人", Element.anemo, "温迪", "Venti"),
-    new Character("klee", 5, "逃跑的太阳", Element.pyro, "可莉", "Klee"),
-    new Character("bennett", 4, "命运试金石", Element.pyro, "班尼特", "Bennett"),
-    new Character("noelle", 4, "未授勋之花", Element.geo, "诺艾尔", "Noelle"),
-    new Character("fischl", 4, "断罪皇女！！", Element.electro, "菲谢尔", "Fischl"),
-    new Character("sucrose", 4, "无害甜度", Element.anemo, "砂糖", "Sucrose"),
-    new Character("mona", 5, "星天水镜", Element.hydro, "莫娜", "Mona"),
-    new Character("diona", 4, "猫尾特调", Element.cryo, "迪奥娜", "Diona"),
-    new Character("albedo", 5, "白垩之子", Element.geo, "阿贝多", "Albedo"),
-    new Character("rosaria", 4, "棘冠恩典", Element.cryo, "罗莎莉亚", "Rosaria"),
-    new Character("eula", 5, "浪花骑士", Element.cryo, "优菈", "Eula"),
-    new Character("mika", 4, "晴霜的标绘", Element.cryo, "米卡", "Mika"),
+    new Character("jean", 5, { chs: "蒲公英骑士", eng: "Dandelion Knight" }, Element.anemo, { chs: "琴", eng: "Jean" }),
+    new Character("amber", 4, { chs: "飞行冠军", eng: "Gliding Champion" }, Element.pyro, { chs: "安柏", eng: "Amber" }),
+    new Character("lisa", 4, { chs: "蔷薇魔女", eng: "Witch of Purple Rose" }, Element.electro, { chs: "丽莎", eng: "Lisa" }),
+    new Character("kaeya", 4, { chs: "寒风剑士", eng: "Frostwind Swordsman" }, Element.cryo, { chs: "凯亚", eng: "Kaeya" }),
+    new Character("barbara", 4, { chs: "闪耀偶像", eng: "Shining Idol" }, Element.hydro, { chs: "芭芭拉", eng: "Barbara" }),
+    new Character("diluc", 5, { chs: "晨曦的暗面", eng: "The Dark Side of Dawn" }, Element.pyro, { chs: "迪卢克", eng: "Diluc" }),
+    new Character("razor", 4, { chs: "奔狼领的传说", eng: "Wolf Boy" }, Element.electro, { chs: "雷泽", eng: "Razor" }),
+    new Character("venti", 5, { chs: "风色诗人", eng: "Windborne Bard" }, Element.anemo, { chs: "温迪", eng: "Venti" }),
+    new Character("klee", 5, { chs: "逃跑的太阳", eng: "Fleeing Sunlight" }, Element.pyro, { chs: "可莉", eng: "Klee" }),
+    new Character("bennett", 4, { chs: "命运试金石", eng: "Trial by Fire" }, Element.pyro, { chs: "班尼特", eng: "Bennett" }),
+    new Character("noelle", 4, { chs: "未授勋之花", eng: "Chivalric Blossom" }, Element.geo, { chs: "诺艾尔", eng: "Noelle" }),
+    new Character("fischl", 4, { chs: "断罪皇女！！", eng: "Prinzessin der Verurteilung!" }, Element.electro, { chs: "菲谢尔", eng: "Fischl" }),
+    new Character("sucrose", 4, { chs: "无害甜度", eng: "Harmless Sweetie" }, Element.anemo, { chs: "砂糖", eng: "Sucrose" }),
+    new Character("mona", 5, { chs: "星天水镜", eng: "Astral Reflection" }, Element.hydro, { chs: "莫娜", eng: "Mona" }),
+    new Character("diona", 4, { chs: "猫尾特调", eng: "Kätzlein Cocktail" }, Element.cryo, { chs: "迪奥娜", eng: "Diona" }),
+    new Character("albedo", 5, { chs: "白垩之子", eng: "Kreideprinz" }, Element.geo, { chs: "阿贝多", eng: "Albedo" }),
+    new Character("rosaria", 4, { chs: "棘冠恩典", eng: "Thorny Benevolence" }, Element.cryo, { chs: "罗莎莉亚", eng: "Rosaria" }),
+    new Character("eula", 5, { chs: "浪花骑士", eng: "Dance of the Shimmering Wave" }, Element.cryo, { chs: "优菈", eng: "Eula" }),
+    new Character("mika", 4, { chs: "晴霜的标绘", eng: "Coordinates of Clear Frost" }, Element.cryo, { chs: "米卡", eng: "Mika" }),
     //liyue
-    new Character("xiao", 5, "靖妖傩舞", Element.anemo, "魈", "Xiao"),
-    new Character("beidou", 4, "无冕的龙王", Element.electro, "北斗", "Beidou"),
-    new Character("ningguang", 4, "群玉阁之主", Element.geo, "凝光", "Ningguang"),
-    new Character("xiangling", 4, "万民百味", Element.pyro, "香菱", "Xiangling"),
-    new Character("xingqiu", 4, "少年春衫薄", Element.hydro, "行秋", "Xingqiu"),
-    new Character("chongyun", 4, "雪融有踪", Element.cryo, "重云", "Chongyun"),
-    new Character("keqing", 5, "霆霓快雨", Element.electro, "刻晴", "Keqing"),
-    new Character("qiqi", 5, "冻冻回魂夜", Element.cryo, "七七", "Qiqi"),
-    new Character("zhongli", 5, "尘世闲游", Element.geo, "钟离", "Zhongli"),
-    new Character("xinyan", 4, "燥热旋律", Element.pyro, "辛焱", "Xinyan"),
-    new Character("ganyu", 5, "循循守月", Element.cryo, "甘雨", "Ganyu"),
-    new Character("hutao", 5, "雪霁梅香", Element.pyro, "胡桃", "Hu Tao"),
-    new Character("yanfei", 4, "智明无邪", Element.pyro, "烟绯", "Yanfei"),
-    new Character("shenhe", 5, "孤辰茕怀", Element.cryo, "申鹤", "Shenhe"),
-    new Character("yunjin", 4, "红毹婵娟", Element.geo, "云堇", "Yun Jin"),
-    new Character("yelan", 5, "兰生幽谷", Element.hydro, "夜兰", "Yelan"),
-    new Character("yaoyao", 4, "仙蕊玲珑", Element.dendro, "瑶瑶", "Yaoyao"),
-    new Character("baizhu", 5, "遵生合和", Element.dendro, "白术", "Baizhu"),
-    new Character("xianyun", 5, "鸾音鹤信", Element.anemo, "闲云", "Xianyun"),
-    new Character("gaming", 4, "骏猊頕首", Element.pyro, "嘉明", "Gaming"),
+    new Character("xiao", 5, { chs: "靖妖傩舞", eng: "Vigilant Yaksha" }, Element.anemo, { chs: "魈", eng: "Xiao" }),
+    new Character("beidou", 4, { chs: "无冕的龙王", eng: "Uncrowned Lord of the Ocean" }, Element.electro, { chs: "北斗", eng: "Beidou" }),
+    new Character("ningguang", 4, { chs: "群玉阁之主", eng: "Eclipsing Star" }, Element.geo, { chs: "凝光", eng: "Ningguang" }),
+    new Character("xiangling", 4, { chs: "万民百味", eng: "Exquisite Delicacy" }, Element.pyro, { chs: "香菱", eng: "Xiangling" }),
+    new Character("xingqiu", 4, { chs: "少年春衫薄", eng: "Juvenile Galant" }, Element.hydro, { chs: "行秋", eng: "Xingqiu" }),
+    new Character("chongyun", 4, { chs: "雪融有踪", eng: "Frozen Ardor" }, Element.cryo, { chs: "重云", eng: "Chongyun" }),
+    new Character("keqing", 5, { chs: "霆霓快雨", eng: "Driving Thunder" }, Element.electro, { chs: "刻晴", eng: "Keqing" }),
+    new Character("qiqi", 5, { chs: "冻冻回魂夜", eng: "Icy Resurrection" }, Element.cryo, { chs: "七七", eng: "Qiqi" }),
+    new Character("zhongli", 5, { chs: "尘世闲游", eng: "Vago Mundo" }, Element.geo, { chs: "钟离", eng: "Zhongli" }),
+    new Character("xinyan", 4, { chs: "燥热旋律", eng: "Blazing Riff" }, Element.pyro, { chs: "辛焱", eng: "Xinyan" }),
+    new Character("ganyu", 5, { chs: "循循守月", eng: "Plenilune Gaze" }, Element.cryo, { chs: "甘雨", eng: "Ganyu" }),
+    new Character("hutao", 5, { chs: "雪霁梅香", eng: "Fragrance in Thaw" }, Element.pyro, { chs: "胡桃", eng: "Hu Tao" }),
+    new Character("yanfei", 4, { chs: "智明无邪", eng: "Wise Innocence" }, Element.pyro, { chs: "烟绯", eng: "Yanfei" }),
+    new Character("shenhe", 5, { chs: "孤辰茕怀", eng: "Lonesome Transcendence" }, Element.cryo, { chs: "申鹤", eng: "Shenhe" }),
+    new Character("yunjin", 4, { chs: "红毹婵娟", eng: "Stage Lucida" }, Element.geo, { chs: "云堇", eng: "Yun Jin" }),
+    new Character("yelan", 5, { chs: "兰生幽谷", eng: "Valley Orchid" }, Element.hydro, { chs: "夜兰", eng: "Yelan" }),
+    new Character("yaoyao", 4, { chs: "仙蕊玲珑", eng: "Burgeoning Grace" }, Element.dendro, { chs: "瑶瑶", eng: "Yaoyao" }),
+    new Character("baizhu", 5, { chs: "遵生合和", eng: "Beyond Mortality" }, Element.dendro, { chs: "白术", eng: "Baizhu" }),
+    new Character("xianyun", 5, { chs: "鸾音鹤信", eng: "Passerine Herald" }, Element.anemo, { chs: "闲云", eng: "Xianyun" }),
+    new Character("gaming", 4, { chs: "骏猊頕首", eng: "Leonine Vanguard" }, Element.pyro, { chs: "嘉明", eng: "Gaming" }),
     //inazuma
-    new Character("ayaka", 5, "白鹭霜华", Element.cryo, "神里绫华", "Kamisato Ayaka"),
-    new Character("kazuha", 5, "红叶逐荒波", Element.anemo, "枫原万叶", "Kaedehara Kazuha"),
-    new Character("yoimiya", 5, "琉焰华舞", Element.pyro, "宵宫", "Yoimiya"),
-    new Character("sayu", 4, "忍里之貉", Element.anemo, "早柚", "Sayu"),
-    new Character("shogun", 5, "一心净土", Element.electro, "雷电将军", "Raiden Shogun"),
-    new Character("sara", 4, "黑羽鸣镝", Element.electro, "九条裟罗", "Kujou Sara"),
-    new Character("kokomi", 5, "真珠之智", Element.hydro, "珊瑚宫心海", "Sangonomiya Kokomi"),
-    new Character("thoma", 4, "渡来介者", Element.pyro, "托马", "Thoma"),
-    new Character("gorou", 4, "戎犬锵锵", Element.geo, "五郎", "Gorou"),
-    new Character("itto", 5, "花坂豪快", Element.geo, "荒泷一斗", "Arataki Itto"),
-    new Character("yae", 5, "浮世笑百姿", Element.electro, "八重神子", "Yae Miko"),
-    new Character("ayato", 5, "磐祭叶守", Element.hydro, "神里绫人", "Kamisato Ayato"),
-    new Character("shinobu", 4, "烦恼刈除", Element.electro, "久岐忍", "Kuki Shinobu"),
-    new Character("heizo", 4, "心朝乂安", Element.anemo, "鹿野院平藏", "Shikanoin Heizou"),
-    new Character("kirara", 4, "檐宇猫游", Element.dendro, "绮良良", "Kirara"),
-    new Character("chiori", 5, "鸣雷的裁锦师", Element.geo, "千织", "Chiori"),
+    new Character("ayaka", 5, { chs: "白鹭霜华", eng: "Frostflake Heron" }, Element.cryo, { chs: "神里绫华", eng: "Kamisato Ayaka" }),
+    new Character("kazuha", 5, { chs: "红叶逐荒波", eng: "Scarlet Leaves Pursue Wild Waves" }, Element.anemo, { chs: "枫原万叶", eng: "Kaedehara Kazuha" }),
+    new Character("yoimiya", 5, { chs: "琉焰华舞", eng: "Frolicking Flames" }, Element.pyro, { chs: "宵宫", eng: "Yoimiya" }),
+    new Character("sayu", 4, { chs: "忍里之貉", eng: "Mujina Ninja" }, Element.anemo, { chs: "早柚", eng: "Sayu" }),
+    new Character("shogun", 5, { chs: "一心净土", eng: "Plane of Euthymia" }, Element.electro, { chs: "雷电将军", eng: "Raiden Shogun" }),
+    new Character("sara", 4, { chs: "黑羽鸣镝", eng: "Crowfeather Kaburaya" }, Element.electro, { chs: "九条裟罗", eng: "Kujou Sara" }),
+    new Character("kokomi", 5, { chs: "真珠之智", eng: "Pearl of Wisdom" }, Element.hydro, { chs: "珊瑚宫心海", eng: "Sangonomiya Kokomi" }),
+    new Character("thoma", 4, { chs: "渡来介者", eng: "Protector From Afar" }, Element.pyro, { chs: "托马", eng: "Thoma" }),
+    new Character("gorou", 4, { chs: "戎犬锵锵", eng: "Canine Warrior" }, Element.geo, { chs: "五郎", eng: "Gorou" }),
+    new Character("itto", 5, { chs: "花坂豪快", eng: "Hanamizaka Heroics" }, Element.geo, { chs: "荒泷一斗", eng: "Arataki Itto" }),
+    new Character("yae", 5, { chs: "浮世笑百姿", eng: "Astute Amusement" }, Element.electro, { chs: "八重神子", eng: "Yae Miko" }),
+    new Character("ayato", 5, { chs: "磐祭叶守", eng: "Pillar of Fortitude" }, Element.hydro, { chs: "神里绫人", eng: "Kamisato Ayato" }),
+    new Character("shinobu", 4, { chs: "烦恼刈除", eng: "Mender of Tribulations" }, Element.electro, { chs: "久岐忍", eng: "Kuki Shinobu" }),
+    new Character("heizo", 4, { chs: "心朝乂安", eng: "Analytical Harmony" }, Element.anemo, { chs: "鹿野院平藏", eng: "Shikanoin Heizou" }),
+    new Character("kirara", 4, { chs: "檐宇猫游", eng: "Cat Upon the Eaves" }, Element.dendro, { chs: "绮良良", eng: "Kirara" }),
+    new Character("chiori", 5, { chs: "鸣雷的裁锦师", eng: "The Thundering Seamstress" }, Element.geo, { chs: "千织", eng: "Chiori" }),
     //sumeru
-    new Character("tighnari", 5, "浅蔚轻行", Element.dendro, "提纳里", "Tighnari"),
-    new Character("collei", 4, "萃念初蘖", Element.dendro, "柯莱", "Collei"),
-    new Character("dori", 4, "梦园藏金", Element.electro, "多莉", "Dori"),
-    new Character("cyno", 5, "缄秘的裁遣", Element.electro, "赛诺", "Cyno"),
-    new Character("candace", 4, "浮金的誓愿", Element.hydro, "坎蒂丝", "Candace"),
-    new Character("nilou", 5, "莲光落舞筵", Element.hydro, "妮露", "Nilou"),
-    new Character("nahida", 5, "白草净华", Element.dendro, "纳西妲", "Nahida"),
-    new Character("layla", 4, "绮思晚星", Element.cryo, "莱依拉", "Layla"),
-    new Character("wanderer", 5, "久世浮倾", Element.anemo, "流浪者", "Wanderer"),
-    new Character("faruzan", 4, "机逐封秘", Element.anemo, "珐露珊", "Faruzan"),
-    new Character("alhaitham", 5, "诲韬诤言", Element.dendro, "艾尔海森", "Alhaitham"),
-    new Character("dehya", 5, "炽鬃之狮", Element.pyro, "迪希雅", "Dehya"),
-    new Character("kaveh", 4, "天穹之镜", Element.dendro, "卡维", "Kaveh"),
-    new Character("sethos", 4, "衡明知度", Element.electro, "塞索斯", "Sethos"),
+    new Character("tighnari", 5, { chs: "浅蔚轻行", eng: "Verdant Strider" }, Element.dendro, { chs: "提纳里", eng: "Tighnari" }),
+    new Character("collei", 4, { chs: "萃念初蘖", eng: "Sprout of Rebirth" }, Element.dendro, { chs: "柯莱", eng: "Collei" }),
+    new Character("dori", 4, { chs: "梦园藏金", eng: "Treasure of Dream Garden" }, Element.electro, { chs: "多莉", eng: "Dori" }),
+    new Character("cyno", 5, { chs: "缄秘的裁遣", eng: "Judicator of Secrets" }, Element.electro, { chs: "赛诺", eng: "Cyno" }),
+    new Character("candace", 4, { chs: "浮金的誓愿", eng: "Golden Vow" }, Element.hydro, { chs: "坎蒂丝", eng: "Candace" }),
+    new Character("nilou", 5, { chs: "莲光落舞筵", eng: "Dance of Lotuslight" }, Element.hydro, { chs: "妮露", eng: "Nilou" }),
+    new Character("nahida", 5, { chs: "白草净华", eng: "Physic of Purity" }, Element.dendro, { chs: "纳西妲", eng: "Nahida" }),
+    new Character("layla", 4, { chs: "绮思晚星", eng: "Fantastical Evening Star" }, Element.cryo, { chs: "莱依拉", eng: "Layla" }),
+    new Character("wanderer", 5, { chs: "久世浮倾", eng: "Eons Adrift" }, Element.anemo, { chs: "流浪者", eng: "Wanderer" }),
+    new Character("faruzan", 4, { chs: "机逐封秘", eng: "Enigmatic Machinist" }, Element.anemo, { chs: "珐露珊", eng: "Faruzan" }),
+    new Character("alhaitham", 5, { chs: "诲韬诤言", eng: "Admonishing Instruction" }, Element.dendro, { chs: "艾尔海森", eng: "Alhaitham" }),
+    new Character("dehya", 5, { chs: "炽鬃之狮", eng: "Flame-Mane" }, Element.pyro, { chs: "迪希雅", eng: "Dehya" }),
+    new Character("kaveh", 4, { chs: "天穹之镜", eng: "Empyrean Reflection" }, Element.dendro, { chs: "卡维", eng: "Kaveh" }),
+    new Character("sethos", 4, { chs: "衡明知度", eng: "Wisdom's Measure" }, Element.electro, { chs: "塞索斯", eng: "Sethos" }),
     //fontaine
-    new Character("lyney", 5, "惑光幻戏", Element.pyro, "林尼", "Lyney"),
-    new Character("lynette", 4, "丽影绮行", Element.anemo, "琳妮特", "Lynette"),
-    new Character("freminet", 4, "浅怀遐梦", Element.cryo, "菲米尼", "Freminet"),
-    new Character("neuvillette", 5, "谕告的潮音", Element.hydro, "那维莱特", "Neuvillette"),
-    new Character("wriothesley", 5, "寂罪的密使", Element.cryo, "莱欧斯利", "Wriothesly"),
-    new Character("furina", 5, "不休独舞", Element.hydro, "芙宁娜", "Furina"),
-    new Character("charlotte", 4, "朗镜索真", Element.cryo, "夏洛蒂", "Charlotte"),
-    new Character("navia", 5, "明花蔓舵", Element.geo, "娜维娅", "Navia"),
-    new Character("chevreuse", 4, "明律决罚", Element.pyro, "夏沃蕾", "Chevreuse"),
-    new Character("arlecchino", 5, "孤暝厄月", Element.pyro, "阿蕾奇诺", "Arlecchino"),
-    new Character("clorinde", 5, "秉烛狝影", Element.electro, "克洛琳德", "Clorinde"),
-    new Character("sigewinne", 5, "龙女妙变", Element.hydro, "希格雯", "Sigewinne"),
-    new Character("emilie", 5, "千缕之踪", Element.dendro, "艾梅莉埃", "Emilie"),
+    new Character("lyney", 5, { chs: "惑光幻戏", eng: "Spectacle of Phantasmagoria" }, Element.pyro, { chs: "林尼", eng: "Lyney" }),
+    new Character("lynette", 4, { chs: "丽影绮行", eng: "Elegance in the Shadows" }, Element.anemo, { chs: "琳妮特", eng: "Lynette" }),
+    new Character("freminet", 4, { chs: "浅怀遐梦", eng: "Yearning for Unseen Depths" }, Element.cryo, { chs: "菲米尼", eng: "Freminet" }),
+    new Character("neuvillette", 5, { chs: "谕告的潮音", eng: "Ordainer of Inexorable Judgment" }, Element.hydro, { chs: "那维莱特", eng: "Neuvillette" }),
+    new Character("wriothesley", 5, { chs: "寂罪的密使", eng: "Emissary of Solitary Iniquity" }, Element.cryo, { chs: "莱欧斯利", eng: "Wriothesly" }),
+    new Character("furina", 5, { chs: "不休独舞", eng: "Endless Solo of Solitude" }, Element.hydro, { chs: "芙宁娜", eng: "Furina" }),
+    new Character("charlotte", 4, { chs: "朗镜索真", eng: "Lens of Verity" }, Element.cryo, { chs: "夏洛蒂", eng: "Charlotte" }),
+    new Character("navia", 5, { chs: "明花蔓舵", eng: "Helm of the Radiant Rose" }, Element.geo, { chs: "娜维娅", eng: "Navia" }),
+    new Character("chevreuse", 4, { chs: "明律决罚", eng: "Executor of Justice" }, Element.pyro, { chs: "夏沃蕾", eng: "Chevreuse" }),
+    new Character("arlecchino", 5, { chs: "孤暝厄月", eng: "Dire Balemoon" }, Element.pyro, { chs: "阿蕾奇诺", eng: "Arlecchino" }),
+    new Character("clorinde", 5, { chs: "秉烛狝影", eng: "Candlebearer, Shadowhunter" }, Element.electro, { chs: "克洛琳德", eng: "Clorinde" }),
+    new Character("sigewinne", 5, { chs: "龙女妙变", eng: "Wondrous Dragonheir" }, Element.hydro, { chs: "希格雯", eng: "Sigewinne" }),
+    new Character("emilie", 5, { chs: "千缕之踪", eng: "A Thousand Scents Traced" }, Element.dendro, { chs: "艾梅莉埃", eng: "Emilie" }),
+    //natlan
+    //new Character("kachina",        ?, {chs:"?", eng:"Mottled Gold Yet Unsmelted"},         Element.geo,         {chs:"卡齐娜", eng:"Kachina"}),
+    //new Character("kinich",        ?, {chs:"?", eng:"Turnfire Hunt"},         Element.dendro,         {chs:"基尼奇", eng:"Kinich"}),
+    //new Character("mualani",        ?, {chs:"?", eng:"Splish-Splash Wavechaser"},         Element.hydro,         {chs:"玛拉妮", eng:"Mualani"}),
+    //new Character("citlali",        ?, {chs:"?", eng:"?"},         Element.cyro,         {chs:"茜特菈莉", eng:"Citlali"}),
+    //new Character("chasca",        ?, {chs:"?", eng:"?"},         Element.cyro,         {chs:"恰斯卡", eng:"Chasca"}),
+    //new Character("chasca",        ?, {chs:"?", eng:"?"},         Element.geo,         {chs:"希诺宁", eng:"Xilonen"}),
     //
-    new Character("tartaglia", 5, "「公子」", Element.hydro, "达达利亚", "Tartaglia")
+    new Character("tartaglia", 5, { chs: "「公子」", eng: "Childe" }, Element.hydro, { chs: "达达利亚", eng: "Tartaglia" })
 ];
 
 var characterMap = {};

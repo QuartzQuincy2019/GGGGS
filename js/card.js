@@ -203,26 +203,14 @@ function clearCard() {
  * @returns 
  */
 function initializeCharacterCard(character, destination) {
-    var fullName = "";
-    var elementName = "";
     var _chara = character;
     var _card = document.createElement("div");
     _card.classList.add("card");
-    switch (LANGUAGE_CODE) {
-        case 'chs': {
-            fullName = _chara.nameChs;
-            elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAMECHS);
-        }
-            break;
-        case 'eng': {
-            fullName = _chara.fullName;
-            elementName = extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME);
-        }
-            break;
-    }
     _card.classList.add("characterCard");
     _card.classList.add(extractValue(_chara.element, ELEMENT_NUMBER, ELEMENT_NAME));
     _card.classList.add("star" + extractValue(_chara.star, STAR_NUMBER, STAR_NAME));
+    var fullName = _chara.fullName[LANGUAGE_CODE];
+    var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
     //创建img
     var _charaicon = document.createElement("img");
     _charaicon.src = _chara.pfile;
@@ -232,7 +220,7 @@ function initializeCharacterCard(character, destination) {
     _title.classList.add("cardTitle");
     _title.innerHTML = fullName;
     _card.appendChild(_title);
-    _card.title = _chara.star + "★[" + elementName + "] “" + _chara.signature + "” - " + _chara.fullName;
+    _card.title = _chara.star + "★[" + elementName + "] \"" + _chara.signature[LANGUAGE_CODE] + "\" - " + _chara.fullName[LANGUAGE_CODE];
     _card.onclick = function () {
         moveCard(this);
     };
@@ -263,20 +251,8 @@ function initializeCharacterCard(character, destination) {
 function initializeWeaponCard(weapon, destination) {
     var _weapon = weapon;
     var _card = document.createElement("div");
-    let fullName = _weapon.fullName;
-    var shownName = "";
-    var cardHover = "";
-    switch (LANGUAGE_CODE) {
-        case 'chs': {
-            shownName = _weapon.nameChs;
-            cardHover = fullName;
-        }
-            break;
-        case 'eng': {
-            shownName = fullName;
-        }
-            break;
-    }
+    var shownName = _weapon.fullName[LANGUAGE_CODE];
+    var cardHover = shownName;
     _card.classList.add("card");
     _card.classList.add("weaponCard");
     _card.classList.add("star" + extractValue(_weapon.star, STAR_NUMBER, STAR_NAME));
@@ -437,13 +413,7 @@ function tidyPoolArray() {
         } else if (Sup.length == 1) {
             E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>二</strong>把武器）";
         } else {
-            let shownName = "";
-            switch (LANGUAGE_CODE) {
-                case "chs": shownName = findWeapon(Sup[0]).nameChs;
-                    break;
-                case "eng": shownName = findWeapon(Sup[0]).fullName;
-                    break
-            }
+            let shownName = findWeapon(Sup[0]).fullName[LANGUAGE_CODE];
             E.innerHTML = "󰯏神铸定轨：【已定轨<strong>" + shownName + "</strong>】";
         }
     }
