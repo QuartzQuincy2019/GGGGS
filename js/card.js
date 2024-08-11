@@ -250,7 +250,9 @@ function initializeCharacterCard(character, destination) {
     if (parentNode.parentNode.id == inventory.id) {
         _card.id = "card_obtained_" + _chara.name;
     }
-    parentNode.appendChild(_card);
+    $(parentNode).append(_card);
+    $(_card).hide(10);
+    $(_card).fadeIn(400);
 }
 
 /**
@@ -261,12 +263,7 @@ function initializeCharacterCard(character, destination) {
 function initializeWeaponCard(weapon, destination) {
     var _weapon = weapon;
     var _card = document.createElement("div");
-    let fullName = _weapon.name;
-    let fullNameArr = fullName.split("_");
-    fullName = "";
-    for (var i = 0; i < fullNameArr.length; i++) {
-        fullName += " " + fullNameArr[i];
-    }
+    let fullName = _weapon.fullName;
     var shownName = "";
     var cardHover = "";
     switch (LANGUAGE_CODE) {
@@ -305,7 +302,9 @@ function initializeWeaponCard(weapon, destination) {
     if (parentNode.parentNode.id == inventory.id) {
         _card.id = "card_obtained_" + _weapon.name;
     }
-    parentNode.appendChild(_card);
+    $(parentNode).append(_card);
+    $(_card).hide(10);
+    $(_card).fadeIn(400);
 }
 
 function generateCard(name, destination) {
@@ -438,7 +437,14 @@ function tidyPoolArray() {
         } else if (Sup.length == 1) {
             E.innerHTML = "󰯏神铸定轨：【未定轨】（请选择参与神铸定轨的第<strong>二</strong>把武器）";
         } else {
-            E.innerHTML = "󰯏神铸定轨：【已定轨<strong>" + findWeapon(Sup[0]).nameChs + "</strong>】";
+            let shownName = "";
+            switch (LANGUAGE_CODE) {
+                case "chs": shownName = findWeapon(Sup[0]).nameChs;
+                    break;
+                case "eng": shownName = findWeapon(Sup[0]).fullName;
+                    break
+            }
+            E.innerHTML = "󰯏神铸定轨：【已定轨<strong>" + shownName + "</strong>】";
         }
     }
 }

@@ -68,12 +68,24 @@ class Weapon {
     weaponFile;
     weaponType;
     nameChs;
+    fullName;
     constructor(name, star, weaponType, nameChs) {
         this.name = name;
         this.star = star;
         this.weaponType = weaponType;
         this.weaponFile = './img/weapon/' + this.star + '/Weapon_' + this.name + '.png';
         this.nameChs = nameChs;
+        let fn = this.name;
+        let fnArr = fn.split("_");
+        fn = "";
+        for (var i = 0; i < fnArr.length; i++) {
+            if (i != 0) {
+                fn += " " + fnArr[i];
+            } else {
+                fn += "" + fnArr[i];
+            }
+        }
+        this.fullName = fn;
     }
 }
 

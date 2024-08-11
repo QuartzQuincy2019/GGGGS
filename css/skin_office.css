@@ -131,7 +131,7 @@ input[type="number"]:focus {
 
 .CommonBox {
     background-image: linear-gradient(to right top,
-            #86e7ffe0, #69eefee0, #4bf5f6e0, #37fae9e0, #3cffd5e0);
+            #86e7ffc0, #69eefec0, #4bf5f6c0, #37fae9c0, #3cffd5c0);
 }
 
 .UpBox {
@@ -151,8 +151,8 @@ input[type="number"]:focus {
 }
 
 .card div.cardTitle {
-    background-color: #ffffffd0;
-    text-shadow: 0 0 0.1vh #414141;
+    background-color: #ffffff;
+    text-shadow: 0 0 0.07vh #414141;
 }
 
 :root {
