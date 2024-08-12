@@ -183,6 +183,35 @@ function checkSCommonCharacter() {
     return num;
 }
 
+function refreshCardSize() {// 获取所有满足选择器".card div.cardTitle"的元素
+    let elements = document.querySelectorAll('.card div.cardTitle');
+
+    // 根据LANGUAGE_CODE设置font-size
+    elements.forEach(element => {
+        if (LANGUAGE_CODE === "chs") {
+            element.style.fontSize = "calc(var(--universal-font-size) * 0.6)";
+            element.style["white-space"] = "nowrap";
+            element.style["font-weight"] = "500";
+        } else if (LANGUAGE_CODE === "eng") {
+            element.style.fontSize = "calc(var(--universal-font-size) * 0.5)";
+            element.style["white-space"] = "normal";
+            element.style["font-weight"] = "700";
+        }
+    });
+
+    elements = document.querySelectorAll('.card');
+    elements.forEach(element => {
+        if (LANGUAGE_CODE === "chs") {
+            element.style.width = "var(--card-width)";
+            element.style.height = "var(--card-height)";
+        } else if (LANGUAGE_CODE === "eng") {
+            element.style.width = "calc(var(--card-width) * 1.05)";
+            element.style.height = "calc(var(--card-height) * 1.17)";
+        }
+    });
+
+}
+
 /**
  * 清空NonBox、UpBox、CommonBox中的卡片
  */
@@ -239,8 +268,12 @@ function initializeCharacterCard(character, destination) {
         _card.id = "card_obtained_" + _chara.name;
     }
     $(parentNode).append(_card);
-    $(_card).hide(10);
-    $(_card).fadeIn(400);
+    refreshCardSize();
+    if ($(destination).parent().attr("id") != 'inventory') {//v5.4.9
+        _card.classList.add("console_card");
+        $(_card).hide(10);
+        $(_card).fadeIn(400);
+    }
 }
 
 /**
@@ -279,8 +312,12 @@ function initializeWeaponCard(weapon, destination) {
         _card.id = "card_obtained_" + _weapon.name;
     }
     $(parentNode).append(_card);
-    $(_card).hide(10);
-    $(_card).fadeIn(400);
+    refreshCardSize();
+    if ($(destination).parent().attr("id") != 'inventory') {//v5.4.9
+        _card.classList.add("console_card");
+        $(_card).hide(10);
+        $(_card).fadeIn(400);
+    }
 }
 
 function generateCard(name, destination) {
@@ -596,49 +633,6 @@ function moveCard(element) {
     }
     tidyPoolArray();
     return;
-    if (origin.id === "Snon_PoolBox") destination = document.getElementById("Scommon_PoolBox");
-    if (origin.id === "Scommon_PoolBox") destination = document.getElementById("Sup_PoolBox");
-    if (origin.id === "Sup_PoolBox") destination = document.getElementById("Snon_PoolBox");
-    if (_CHRONICLE_MODE == true) {
-        console.log(findCharacter(passengerName).star);
-        if (findCharacter(passengerName).star == 5) {
-            if (origin.id === "Snon_PoolBox") {//要前往ScommonBox
-                S_Non.deleteElement(passengerName);//消去Non的身份
-                ChronicledSup.push(passengerName);//在Ch中登记
-                Scommon.push(passengerName);
-                initializeCharacterCard(findCharacter(passengerName), E_SChBox);//在Ch中复制一份
-            }
-            if (origin.id === "Scommon_PoolBox") {//要前往SupBox
-                Scommon.deleteElement(passengerName);
-                if (Sup.length != 0) {
-                    E_SupBox.removeChild(document.getElementById("card_" + Sup[0]));//删除当前的Sup卡片
-                    initializeCharacterCard(findCharacter(Sup[0]), E_ScommonBox);//并将其挪至Scom
-                    Scommon.push(Sup[0]);//将当前的Sup驱赶至Scommon
-                }
-                Sup = [passengerName];
-            }
-            if (origin.id === "Sup_PoolBox") {//要前往SnonBox
-                ChronicledSup.deleteElement(passengerName);
-                S_Non.push(Sup[0]);
-                Sup.deleteElement(passengerName);
-                E_SChBox.removeChild(document.getElementById("card_chronicled_" + passengerName));
-            }
-        }
-        if (findCharacter(passengerName).star == 4) {
-            if (origin.id == E_RnonBox.id) {//要前往Rup
-                destination = E_RupBox;
-                R_Non.deleteElement(passengerName);
-                Rup.push(passengerName);
-            }
-            if (origin.id == E_RupBox.id) {//要返回Rnon
-                destination = E_RnonBox;
-                Rup.deleteElement(passengerName);
-                R_Non.push(passengerName);
-            }
-        }
-        origin.removeChild(passenger);
-        destination.appendChild(passenger);
-    }
 }
 
 /**
@@ -773,40 +767,181 @@ function updateChronicle() {
     selectWishPool(chronicledPools[getSelectValue(E_SEL_CH)]);
     analizeCardSet();
 }
+function locateCards() {
+    document.querySelectorAll('.card');
+}
+
+/**
+ * 刷新相应卡片
+ * @param {string} condition character/weapon R/S
+ * @returns 
+ */
+function locateCardsOf(condition) {
+    var selector = '.card';
+    if (condition == "character") {
+        selector += '.characterCard';
+    }
+    if (condition == "weapon") {
+        selector += '.weaponCard';
+    }
+    if (condition == "character S") {
+        selector += '.characterCard.starS';
+    }
+    if (condition == "character R") {
+        selector += '.characterCard.starR';
+    }
+    if (condition == "weapon S") {
+        selector += '.weaponCard.starS';
+    }
+    if (condition == "weapon R") {
+        selector += '.weaponCard.starR';
+    }
+    return document.querySelectorAll(selector);
+}
+
+var screen = document.querySelector("body");
+
+/**
+ * 重要函数。控制鼠标悬停于卡片上后外观和文字的改变。
+ */
+function renewCardStyle() {
+    SCharacterCards = locateCardsOf("character S");
+    RCharacterCards = locateCardsOf("character R");
+    characterCards = locateCardsOf("character");
+    SCharacterCards.forEach(card => {
+        card.addEventListener('mouseenter', function (event) {
+            const card = event.currentTarget;
+            if (!card.classList.contains('characterCard')) {
+                return;
+            }
+            const cardId = card.id;
+            const name = extractNameFromId(cardId); // 提取name部分
+            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
+            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
+        });
+        card.addEventListener('touchstart', function (event) {
+            const touch = event.touches[0];
+            if (!isTouchedOn(card, touch)) {
+                return;
+            }
+            if (!card.classList.contains('characterCard')) {
+                return;
+            }
+            const cardId = card.id;
+            const name = extractNameFromId(cardId); // 提取name部分
+            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
+            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
+        });
+        card.addEventListener('mouseleave', function (event) {
+            const card = event.currentTarget;
+            card.style.backgroundImage = ''; // 恢复原样
+        });
+        card.addEventListener('touchend', function (event) {
+            card.style.backgroundImage = '';
+        });
+    });
+
+    characterCards.forEach(card => {
+        card.addEventListener('mouseenter', function (event) {
+            const card = event.currentTarget;
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+
+            var shown = "";
+            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
+            var shownSignature = _chara.signature[LANGUAGE_CODE];
+            shown = elementName + "/" + shownSignature;
+            card.children[1].innerHTML = shown;
+        });
+        card.addEventListener('touchstart', function (event) {
+            var touch = event.touches[0];
+            if (!isTouchedOn(card, touch)) {
+                return;
+            }
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+
+            var shown = "";
+            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
+            var shownSignature = _chara.signature[LANGUAGE_CODE];
+            shown = elementName + "/" + shownSignature;
+            card.children[1].innerHTML = shown;
+        });
+        card.addEventListener('mouseleave', function (event) {
+            const card = event.currentTarget;
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
+        });
+        card.addEventListener('touchend', function (event) {
+            const cardId = card.id;
+            var _name = extractNameFromId(cardId);
+            var _chara = findCharacter(_name);
+
+            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
+        });
+    });
+}
+
+document.getElementsByTagName('body').item(0).onload += renewCardStyle();
+
+screen.addEventListener("click", function () {
+    renewCardStyle();
+});
 
 function outputObtained() {
     inventory.innerHTML = "";
     checkPools();
     var chSelVal = getSelectValue(E_SEL_CH).slice(-1);
-    for (var i = 1; i < containerInfo.length + 1; i++) {
-        if (containerInfo[i] == undefined) return;
-        var _container = document.createElement("div");
-        _container.classList.add("container");
-        if (containerInfo[i].type == "character") {
-            if (_GACHA_MODE == "character" || (_CHRONICLE_MODE == true && chSelVal == 'C')) {
-                if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
-                if (_CHRONICLE_MODE == false) {
-                    if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+    let totalItems = containerInfo.length - 1;
+    let itemsLoaded = 0; // 已加载的元素数量
+    const itemsPerLoad = 100; // 每次滚动加载的元素数量 v5.4.11
+    function loadItems() {
+        let itemsRemaining = totalItems - itemsLoaded;
+        let count = Math.min(itemsPerLoad, itemsRemaining);
+        for (var i = itemsLoaded + 1; i < itemsLoaded + count + 1; i++) {
+            if (containerInfo[i] == undefined) return;
+            var _container = document.createElement("div");
+            _container.classList.add("container");
+            if (containerInfo[i].type == "character") {//如果获得的是角色
+                if (_GACHA_MODE == "character" || (_CHRONICLE_MODE == true && chSelVal == 'C')) {
+                    if (isSCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("SUpContainer");
+                    if (_CHRONICLE_MODE == false) {
+                        if (isRCharacter(containerInfo[i].name) && isUpCharacter(containerInfo[i].name)) _container.classList.add("RUpContainer");
+                    }
                 }
-            }
-            inventory.appendChild(_container);
-            initializeCharacterCard(findCharacter(containerInfo[i].name), _container);
-        } else {
-            if (_GACHA_MODE == "weapon" || (_CHRONICLE_MODE == true && chSelVal == 'W')) {
-                if (Sup[0] == (containerInfo[i].name) && isStar(5, containerInfo[i].name)) _container.classList.add("SUpContainer");
-                if (_CHRONICLE_MODE == false) {
-                    if (isUp(containerInfo[i].name) && isStar(4, containerInfo[i].name)) _container.classList.add("RUpContainer");
+                inventory.appendChild(_container);
+                initializeCharacterCard(findCharacter(containerInfo[i].name), _container);
+            } else {
+                if (_GACHA_MODE == "weapon" || (_CHRONICLE_MODE == true && chSelVal == 'W')) {
+                    if (Sup[0] == (containerInfo[i].name) && isStar(5, containerInfo[i].name)) _container.classList.add("SUpContainer");
+                    if (_CHRONICLE_MODE == false) {
+                        if (isUp(containerInfo[i].name) && isStar(4, containerInfo[i].name)) _container.classList.add("RUpContainer");
+                    }
                 }
+                inventory.appendChild(_container);
+                initializeWeaponCard(findWeapon(containerInfo[i].name), _container);
             }
-            inventory.appendChild(_container);
-            initializeWeaponCard(findWeapon(containerInfo[i].name), _container);
+            let _id = inventory.children[inventory.children.length - 1].children[0].id;
+            let _name = _id.split("_")[2];
+            inventory.children[inventory.children.length - 1].children[0].id = "card_obtained_" + Number(i) + '_' + _name;
+            _container.innerHTML += "<p class='veryMark'><strong>" + Number(containerInfo[i].obtainedCalc) + "</strong></p>";
+            _container.innerHTML += "<p>#" + Number(i) + ":(" + Number(containerInfo[i].obtainedRecord) + ")</p>";
+            starRCardControl();
+            weaponCardControl();
         }
-        let _id = inventory.children[inventory.children.length - 1].children[0].id;
-        let _name = _id.split("_")[2];
-        inventory.children[inventory.children.length - 1].children[0].id = "card_obtained_" + Number(i) + '_' + _name;
-        _container.innerHTML += "<p class='veryMark'><strong>" + Number(containerInfo[i].obtainedCalc) + "</strong></p>";
-        _container.innerHTML += "<p>#" + Number(i) + ":(" + Number(containerInfo[i].obtainedRecord) + ")</p>";
-        starRCardControl();
-        weaponCardControl();
+        itemsLoaded += count;
     }
+    loadItems();
+    $(window).scroll(function () {
+        // 检查用户是否滚动到接近页面底部
+        if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            // 加载更多元素
+            loadItems();
+            renewCardStyle();
+        }
+    });
 }

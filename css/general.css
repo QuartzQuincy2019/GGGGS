@@ -8,8 +8,8 @@
     --color-A: #aaaaaa;
     --color-B: #bbbbbb;
     --universal-font-size: 3vh;
-    --card-width: calc(var(--universal-font-size) * 4.59);
-    --card-height: calc(var(--card-width) * 1.39);
+    --card-width: calc(var(--universal-font-size) * 4.82);
+    --card-height: calc(var(--card-width) * 1.45);
     --navbar-main-color: #e6003ae0;
     --navbar-secondary-color: #ffc6d4e0;
 }
@@ -112,7 +112,7 @@ div#header {
 .header_title,
 .header_title a#TitleLink {
     text-decoration: none;
-    font-family: 'Trebuchet MS', Arial, "Tinos Nerd Propo";
+    font-family: 'Trebuchet MS', 'Times New Roman';
     text-align: center;
     display: block;
     -webkit-user-select: none;

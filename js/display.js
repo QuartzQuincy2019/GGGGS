@@ -5,39 +5,6 @@ var characterCards = document.querySelectorAll('.card.characterCard');
 var E_NavigationList = document.getElementById("NavigationList");
 var E_NavigationListArea = document.getElementById("NavigationListArea");
 
-function locateCards() {
-    document.querySelectorAll('.card');
-}
-
-/**
- * 刷新相应卡片
- * @param {string} condition character/weapon R/S
- * @returns 
- */
-function locateCardsOf(condition) {
-    var selector = '.card';
-    if (condition == "character") {
-        selector += '.characterCard';
-    }
-    if (condition == "weapon") {
-        selector += '.weaponCard';
-    }
-    if (condition == "character S") {
-        selector += '.characterCard.starS';
-    }
-    if (condition == "character R") {
-        selector += '.characterCard.starR';
-    }
-    if (condition == "weapon S") {
-        selector += '.weaponCard.starS';
-    }
-    if (condition == "weapon R") {
-        selector += '.weaponCard.starR';
-    }
-    return document.querySelectorAll(selector);
-}
-
-var screen = document.querySelector("body");
 
 /**
  * 是否触摸在其上
@@ -54,94 +21,6 @@ function isTouchedOn(element, TOUCH) {
         return false;
     }
 }
-
-function renewCardStyle() {
-    SCharacterCards = locateCardsOf("character S");
-    RCharacterCards = locateCardsOf("character R");
-    characterCards = locateCardsOf("character");
-    SCharacterCards.forEach(card => {
-        card.addEventListener('mouseenter', function (event) {
-            const card = event.currentTarget;
-            if (!card.classList.contains('characterCard')) {
-                return;
-            }
-            const cardId = card.id;
-            const name = extractNameFromId(cardId); // 提取name部分
-            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
-            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
-        });
-        card.addEventListener('touchstart', function (event) {
-            const touch = event.touches[0];
-            if (!isTouchedOn(card, touch)) {
-                return;
-            }
-            if (!card.classList.contains('characterCard')) {
-                return;
-            }
-            const cardId = card.id;
-            const name = extractNameFromId(cardId); // 提取name部分
-            const imageUrl = findCharacter(name).nfile; // 构建图片文件名
-            card.style.backgroundImage = `url(${imageUrl})`; // 设置背景图片
-        });
-        card.addEventListener('mouseleave', function (event) {
-            const card = event.currentTarget;
-            card.style.backgroundImage = ''; // 恢复原样
-        });
-        card.addEventListener('touchend', function (event) {
-            card.style.backgroundImage = '';
-        });
-    });
-
-    characterCards.forEach(card => {
-        card.addEventListener('mouseenter', function (event) {
-            const card = event.currentTarget;
-            const cardId = card.id;
-            var _name = extractNameFromId(cardId);
-            var _chara = findCharacter(_name);
-
-            var shown = "";
-            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
-            var shownSignature = _chara.signature[LANGUAGE_CODE];
-            shown = elementName + "/" + shownSignature;
-            card.children[1].innerHTML = shown;
-        });
-        card.addEventListener('touchstart', function (event) {
-            var touch = event.touches[0];
-            if (!isTouchedOn(card, touch)) {
-                return;
-            }
-            const cardId = card.id;
-            var _name = extractNameFromId(cardId);
-            var _chara = findCharacter(_name);
-
-            var shown = "";
-            var elementName = ELEMENT_CALL[_chara.elementName][LANGUAGE_CODE];
-            var shownSignature = _chara.signature[LANGUAGE_CODE];
-            shown = elementName + "/" + shownSignature;
-            card.children[1].innerHTML = shown;
-        });
-        card.addEventListener('mouseleave', function (event) {
-            const card = event.currentTarget;
-            const cardId = card.id;
-            var _name = extractNameFromId(cardId);
-            var _chara = findCharacter(_name);
-            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
-        });
-        card.addEventListener('touchend', function (event) {
-            const cardId = card.id;
-            var _name = extractNameFromId(cardId);
-            var _chara = findCharacter(_name);
-
-            card.children[1].innerHTML = _chara.fullName[LANGUAGE_CODE];
-        });
-    });
-}
-
-document.getElementsByTagName('body').item(0).onload += renewCardStyle();
-
-screen.addEventListener("click", function () {
-    renewCardStyle();
-});
 
 function generateBar(_background_color, _innerHTML, _id) {
     var _p = document.createElement("div");
@@ -172,6 +51,18 @@ var E_AUTHOR_BAR = document.getElementById("author_bar");
 E_AUTHOR_BAR.style.position = "fixed";
 E_AUTHOR_BAR.style.bottom = "calc(var(--universal-font-size) + 2.0vh)";
 E_AUTHOR_BAR.style.right = "0.2vw";
+
+addBar("#e042f0", "i18n", "i18n_bar", document.getElementById("section_1"));
+var E_i18n_BAR = document.getElementById("i18n_bar");
+E_i18n_BAR.style.position = "fixed";
+E_i18n_BAR.style.bottom = "calc(var(--universal-font-size) * 2 + 3.4vh)";
+E_i18n_BAR.style.right = "0.2vw";
+
+addBar("#007222", "final", "final_bar", document.getElementById("section_1"));
+var E_FINAL_BAR = document.getElementById("final_bar");
+E_FINAL_BAR.style.position = "fixed";
+E_FINAL_BAR.style.bottom = "calc(var(--universal-font-size) * 3 + 4.7vh)";
+E_FINAL_BAR.style.right = "0.2vw";
 
 function areaControl(elementId) {
     var _E = document.getElementById(elementId);
@@ -371,44 +262,31 @@ function extractNameFromId(cardId) {
     return parts[nameIndex]; // 返回最后一个部分作为name
 }
 
-function refreshCardSize() {// 获取所有满足选择器".card div.cardTitle"的元素
-    let elements = document.querySelectorAll('.card div.cardTitle');
 
-    // 根据LANGUAGE_CODE设置font-size
-    elements.forEach(element => {
-        if (LANGUAGE_CODE === "chs") {
-            element.style.fontSize = "calc(var(--universal-font-size) * 0.6)";
-            element.style["white-space"] = "nowrap";
-            element.style["font-weight"] = "500";
-        } else if (LANGUAGE_CODE === "eng") {
-            element.style.fontSize = "calc(var(--universal-font-size) * 0.5)";
-            element.style["white-space"] = "normal";
-            element.style["font-weight"] = "700";
-        }
-    });
-
-    elements = document.querySelectorAll('.card');
-    elements.forEach(element => {
-        if (LANGUAGE_CODE === "chs") {
-            element.style.width = "var(--card-width)";
-            element.style.height = "var(--card-height)";
-        } else if (LANGUAGE_CODE === "eng") {
-            element.style.width = "calc(var(--card-width) * 1.12)";
-            element.style.height = "calc(var(--card-height) * 1.27)";
-        }
-    });
-
-}
-setInterval(refreshCardSize, 400);
-
+var isSnonHidden = false;
 $(".filter_Snon").click(function () {
-    $("#Snon_PoolBox").toggle(1000, function () {
-        $("#Snon_PoolBox *").toggle(1000);
-    });
+    if (isSnonHidden) {
+        $("#Snon_PoolBox").show(1000, function () {
+            $("#Snon_PoolBox *").show(1000);
+        });
+    } else {
+        $("#Snon_PoolBox").hide(1000, function () {
+            $("#Snon_PoolBox *").hide(1000);
+        });
+    }
+    isSnonHidden = !isSnonHidden;
 });
 
+var isRnonHidden = false;
 $(".filter_Rnon").click(function () {
-    $("#Rnon_PoolBox").toggle(1000, function () {
-        $("#Rnon_PoolBox *").toggle(1000);
-    });
+    if (isRnonHidden) {
+        $("#Rnon_PoolBox").show(1000, function () {
+            $("#Rnon_PoolBox *").show(1000);
+        });
+    } else {
+        $("#Rnon_PoolBox").hide(1000, function () {
+            $("#Rnon_PoolBox *").hide(1000);
+        });
+    }
+    isRnonHidden = !isRnonHidden;
 });
