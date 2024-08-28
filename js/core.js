@@ -1,7 +1,7 @@
 // core.js
 // 核心。储存版本、文件操作、核心函数。
 
-var __VERSION = "v5.4.11";
+var __VERSION = "v5.4.13";
 document.getElementById("VersionTitle").innerHTML = __VERSION;
 
 var E_header = document.getElementById('header');

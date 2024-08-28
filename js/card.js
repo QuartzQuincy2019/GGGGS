@@ -752,6 +752,14 @@ function updateCards() {
             selectWishPool(itemPools[selectedPool]);
         }
         if (_GACHA_MODE == "weapon") {
+            if (Number(selectedPool[5]) >= 5) {//原神v5.0及以后
+                MAX_FATE_POINT = 1;
+                document.getElementById("FatePointInput").max = 1;
+            };
+            if (Number(selectedPool[5]) <= 4) {
+                MAX_FATE_POINT = 2;
+                document.getElementById("FatePointInput").max = 2;
+            };
             selectWishPool(weaponPools[selectedPool]);
         }
         analizeCardSet();

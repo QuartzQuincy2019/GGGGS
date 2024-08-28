@@ -62,6 +62,7 @@ var _FatePoint = 0;
 var S_Probability = 0.006;
 var R_Probability = 0.051;
 var _TotalWishTimes = 0;
+var MAX_FATE_POINT = 1;//最大命定值。原神5.0更新后，武器池最大命定值由2变为1.
 
 class ContainerInfo {
     type;//character/weapon
@@ -301,7 +302,7 @@ function weaponWish(totalWishes, startSDrop, startRDrop, fp, isSC, isRC) {
     containerInfo = [null];//清空
     fp = Number(fp);
     _FatePoint = fp;
-    var maxFatePoint = 2;
+    var maxFatePoint = MAX_FATE_POINT;
     _TotalWishTimes = totalWishes;
     _S_DropCalc = startSDrop;
     _R_DropCalc = startRDrop;
