@@ -49,11 +49,11 @@ option {
 }
 
 .subtitle {
-    text-shadow: 2px 2px 5px #bbe6ff;
+    text-shadow: 2px 2px 1px #d8f1ff;
 }
 
 p#VersionTitle {
-    text-shadow: 1px 1px 4px #bbe6ff;
+    text-shadow: 2px 2px 1px #d8f1ff;
 }
 
 div.section p.instructions {
