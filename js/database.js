@@ -190,6 +190,7 @@ var CHARACTER_LIST = [
     new Character("heizo", 4, { chs: "心朝乂安", eng: "Analytical Harmony" }, Element.anemo, { chs: "鹿野院平藏", eng: "Shikanoin Heizou" }),
     new Character("kirara", 4, { chs: "檐宇猫游", eng: "Cat Upon the Eaves" }, Element.dendro, { chs: "绮良良", eng: "Kirara" }),
     new Character("chiori", 5, { chs: "鸣雷的裁锦师", eng: "The Thundering Seamstress" }, Element.geo, { chs: "千织", eng: "Chiori" }),
+    new Character("mizuki", 5, { chs: "绮梦缱绻", eng: "Embrace of Enchanting Dreams" }, Element.anemo, { chs: "梦见月瑞希", eng: "Yumemizuki Mizuki" }),
     //sumeru
     new Character("tighnari", 5, { chs: "浅蔚轻行", eng: "Verdant Strider" }, Element.dendro, { chs: "提纳里", eng: "Tighnari" }),
     new Character("collei", 4, { chs: "萃念初蘖", eng: "Sprout of Rebirth" }, Element.dendro, { chs: "柯莱", eng: "Collei" }),
@@ -228,7 +229,8 @@ var CHARACTER_LIST = [
     new Character("ororon", 4, { chs: "深黯的谜烟", eng: "Shadow of the Night-Wind" }, Element.electro, { chs: "欧洛伦", eng: "Ororon" }),
     new Character("mavuika", 5, { chs: "焚夜以炎", eng: "Night-Igniting Flame" }, Element.pyro, { chs: "玛薇卡", eng: "Mavuika" }),
     new Character("citlali", 5, { chs: "白星黑曜", eng: "Obsidian Opalstar" }, Element.cryo, { chs: "茜特菈莉", eng: "Citlali" }),
-    //new Character("lanyan", 4, { chs: "?", eng: "Spring Woven From Jade" }, Element.anemo, { chs: "蓝砚", eng: "Lan Yan" }),
+    //new Character("varesa", 5, { chs: "？", eng: "Strength in Serenity" }, Element.electro, { chs: "瓦雷莎", eng: "Varesa" }),
+    //new Character("iansan", 4, { chs: "？", eng: "Tempered in Molten Stone" }, Element.electro, { chs: "伊安珊", eng: "Iansan" }),
     //
     new Character("tartaglia", 5, { chs: "「公子」", eng: "Childe" }, Element.hydro, { chs: "达达利亚", eng: "Tartaglia" })
 ];
@@ -290,6 +292,7 @@ var WEAPON_LIST = [
     new Weapon("Staff_of_the_Scarlet_Sands", 5, WeaponType.polearm, "赤沙之杖"),
     new Weapon("Starcaller's_Watch", 5, WeaponType.catalyst, "祭星者之望"),
     new Weapon("Summit_Shaper", 5, WeaponType.sword, "斫峰之刃"),
+    new Weapon("Sunny_Morning_Sleep-In", 5, WeaponType.catalyst, "寝正月初晴"),
     new Weapon("Surf's_Up", 5, WeaponType.catalyst, "冲浪时光"),
     new Weapon("The_First_Great_Magic", 5, WeaponType.bow, "最初的大魔术"),
     new Weapon("The_Unforged", 5, WeaponType.claymore, "无工之剑"),
@@ -355,19 +358,48 @@ for (var i = 0; i < WEAPON_LIST.length; i++) {
 }
 
 const itemPools = {
+    //5.4
+    wish_5_4_3: [
+        ["furina"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["charlotte", "chongyun", "mika"],
+        ["barbara", "beidou", "bennett", "candace", "chevreuse", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "rosaria", "sara", "shinobu", "lanyan", "layla", "lynette", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_5_4_4: [
+        ["wriothesley"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["charlotte", "chongyun", "mika"],
+        ["barbara", "beidou", "bennett", "candace", "chevreuse", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "rosaria", "sara", "shinobu", "lanyan", "layla", "lynette", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_5_4_1: [
+        ["mizuki"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["gorou", "sayu", "xiangling"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "kachina", "kaveh", "kirara", "rosaria", "sara", "shinobu", "lanyan", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sethos", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
+    wish_5_4_2: [
+        ["sigewinne"],
+        ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
+        ["gorou", "sayu", "xiangling"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "kachina", "kaveh", "kirara", "rosaria", "sara", "shinobu", "lanyan", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sethos", "heizo", "sucrose", "thoma", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
+    ],
     //5.3
     wish_5_3_3: [
         ["arlecchino"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["lanyan", "chevreuse", "rosaria"],
-        ["barbara", "beidou", "candace", "charlotte", "chongyun", "collei", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
         ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
     ],
     wish_5_3_4: [
         ["clorinde"],
         ["jean", "qiqi", "tighnari", "keqing", "mona", "dehya", "diluc"],
         ["lanyan", "chevreuse", "rosaria"],
-        ["barbara", "beidou", "candace", "charlotte", "chongyun", "collei", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
         ["Dragon's_Bane", "Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"]
     ],
     wish_5_3_1: [
@@ -1111,6 +1143,20 @@ const itemPools = {
 }
 
 const weaponPools = {
+    wish_5_4_2: [
+        ["Splendor_of_Tranquil_Waters", "Cashflow_Supervision"],
+        ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
+        ["Favonius_Sword", "Sacrificial_Greatsword", "Dragon's_Bane", "Sacrificial_Fragments", "Rust"],
+        ["Eye_of_Perception", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Sacrificial_Bow", "Sacrificial_Sword", "The_Bell", "The_Flute", "The_Stringless", "The_Widsith"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "lanyan", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+    ],
+    wish_5_4_1: [
+        ["Sunny_Morning_Sleep-In", "Silvershower_Heartstrings"],
+        ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
+        ["Akuoumaru", "Wavebreaker's_Fin", "Mouun's_Moon", "The_Flute", "Eye_of_Perception"],
+        ["Dragon's_Bane", "Favonius_Codex", "Favonius_Greatsword", "Favonius_Lance", "Favonius_Sword", "Favonius_Warbow", "Lion's_Roar", "Rainslasher", "Rust", "Sacrificial_Bow", "Sacrificial_Fragments", "Sacrificial_Greatsword", "Sacrificial_Sword", "The_Bell", "The_Stringless", "The_Widsith"],
+        ["barbara", "beidou", "bennett", "candace", "charlotte", "chevreuse", "chongyun", "collei", "diona", "dori", "faruzan", "fischl", "freminet", "gaming", "gorou", "kachina", "kaveh", "kirara", "sara", "shinobu", "lanyan", "layla", "lynette", "mika", "ningguang", "noelle", "ororon", "razor", "rosaria", "sayu", "sethos", "heizo", "sucrose", "thoma", "xiangling", "xingqiu", "xinyan", "yanfei", "yaoyao", "yunjin"],
+    ],
     wish_5_3_2: [
         ["Crimson_Moon's_Semblance", "Absolution"],
         ["Amos'_Bow", "Aquila_Favonia", "Lost_Prayer_to_the_Sacred_Winds", "Primordial_Jade_Winged-Spear", "Skyward_Atlas", "Skyward_Blade", "Skyward_Harp", "Skyward_Pride", "Skyward_Spine", "Wolf's_Gravestone"],
